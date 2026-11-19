@@ -1,35 +1,292 @@
 ---
 title: "Outbreaks in Toronto healthcare institutions"
-subtitle: "Weekly surveillance summary"
+format:
+  dashboard:
+    scrolling: true
+    css: styles.css
+    nav-buttons:
+      - icon: github
+        href: https://github.com/samielsabri/toronto_healthcare_institutions_outbreaks
 ---
 
-```{r setup}
+```{r}
+#| include: false
 for (f in list.files("R", pattern = "\\.R$", full.names = TRUE)) source(f)
-library(dplyr)
-clean <- nanoparquet::read_parquet("data/clean/outbreaks.parquet") |> filter(in_scope)
+suppressPackageStartupMessages(library(dplyr))
+clean_all <- nanoparquet::read_parquet("data/clean/outbreaks.parquet")
+clean <- filter(clean_all, in_scope)
 info <- freshness_info()
-current_season <- max(clean$season)
+current <- current_season_info(info$as_of)
+weekly <- weekly_counts(clean, current)
+ranges <- bind_rows(baseline_range(weekly, "pre-pandemic", current),
+                    baseline_range(weekly, "post-pandemic", current))
+this_season <- filter(clean, season == current$season)
+resp_this <- filter(this_season, outbreak_type == "Respiratory")
+fmt_n <- function(x) format(x, big.mark = ",")
+tbl <- function(x, ...) knitr::kable(x, format = "html", table.attr = 'class="table table-sm"', ...)
 ```
 
-```{r freshness, results = "asis"}
+# This season
+
+```{r}
+#| output: asis
 cat(freshness_banner_html(info))
 ```
 
-::: {.callout-note}
-The full dashboard (seasonal comparisons, agent mix, onset alerts, outbreak
-duration and facility recurrence) is under construction. This page currently
-shows the season-to-date summary.
-:::
+## Row {height="140px"}
 
-## Season `r current_season` to date
-
-```{r season-table}
-clean |>
-  filter(season == current_season) |>
-  count(Setting = setting_group, Type = outbreak_type) |>
-  tidyr::pivot_wider(names_from = Type, values_from = n, values_fill = 0) |>
-  mutate(Total = rowSums(across(where(is.numeric)))) |>
-  knitr::kable()
+```{r}
+#| content: valuebox
+#| title: !expr paste("Outbreaks in", current$season, "so far")
+list(value = fmt_n(nrow(this_season)), icon = "clipboard2-pulse", color = "light")
 ```
 
-Open outbreaks as of `r format(info$as_of, "%e %B %Y")`: **`r sum(clean$is_open)`**.
+```{r}
+#| content: valuebox
+#| title: "Open as of the data-as-of date"
+list(value = fmt_n(sum(this_season$is_open) + sum(clean$is_open & clean$season != current$season)),
+     icon = "hourglass-split", color = "light")
+```
+
+```{r}
+#| content: valuebox
+#| title: "Respiratory outbreaks with no agent identified"
+list(value = sprintf("%.0f%%", 100 * mean(resp_this$agent_mix_group == "unknown")),
+     icon = "question-circle", color = "light")
+```
+
+## Row {height="190px"}
+
+::: {.card title="New outbreaks per week, against two comparison ranges"}
+
+Counts are of outbreaks as published (one per affected unit or ward), by
+week of onset. Testing and reporting changed during the pandemic, so this
+season is compared with **two separate ranges**, never a pooled one:
+the **pre-pandemic** seasons (2016/17 to 2018/19, plus 2019/20 up to
+early March 2020) and the **post-pandemic** seasons (2022/23 to 2025/26).
+Since 2020 more outbreaks are declared per affected unit and far more
+pathogens are identified, so the post-pandemic range is the fairer
+comparison. The pre-pandemic range shows how far the baseline has
+moved.
+
+:::
+
+## Row {height="1100px"}
+
+### Column {.tabset}
+
+```{r}
+#| title: Respiratory
+girafe_dash(plot_current_vs_baseline(weekly, ranges, current, "Respiratory"), width = 12, height = 10)
+```
+
+```{r}
+#| title: Enteric
+girafe_dash(plot_current_vs_baseline(weekly, ranges, current, "Enteric"), width = 12, height = 10)
+```
+
+```{r}
+#| title: Table
+weekly |>
+  filter(season == current$season) |>
+  left_join(ranges |> select(week, setting, type, baseline, lo, hi) |>
+              mutate(range = paste0(lo, "-", hi)) |>
+              select(-lo, -hi) |>
+              tidyr::pivot_wider(names_from = baseline, values_from = range),
+            by = c("week", "setting", "type")) |>
+  transmute(`ISO week` = iso_week_of_season_week(week), Type = type, Setting = setting,
+            `New outbreaks` = n, `Pre-pandemic range` = `pre-pandemic`,
+            `Post-pandemic range` = `post-pandemic`) |>
+  arrange(desc(`ISO week` >= 35), desc(`ISO week`), Type, Setting) |>
+  tbl()
+```
+
+# Agents
+
+## Row {height="190px"}
+
+::: {.card title="Which pathogens are behind this season's respiratory outbreaks?"}
+
+Each outbreak is counted once. An outbreak where more than one pathogen was
+found is shown as **Multiple agents**. For per-pathogen totals that count
+such outbreaks under every pathogen found, see the table. *Unknown* means
+no agent was identified, often because testing was not done or was
+negative, so it says as much about testing as about the virus.
+
+:::
+
+## Row {height="520px"}
+
+### Column {.tabset}
+
+```{r}
+#| title: This season, weekly
+girafe_dash(plot_agent_mix_weekly(agent_mix_weekly(clean, current$season, current$season_week)),
+            width = 10, height = 5)
+```
+
+```{r}
+#| title: Every season
+girafe_dash(plot_agent_mix_seasons(agent_mix_by_season(clean)), width = 10, height = 5.5)
+```
+
+```{r}
+#| title: Table
+grp <- names(AGENT_GROUPS)
+clean |>
+  filter(outbreak_type == "Respiratory") |>
+  group_by(Season = season) |>
+  summarise(Outbreaks = n(),
+            across(all_of(paste0("agent_", grp)), sum),
+            `Co-detections` = sum(co_detection)) |>
+  rename_with(~ unname(AGENT_GROUPS[sub("^agent_", "", .x)]), starts_with("agent_")) |>
+  arrange(desc(Season)) |>
+  tbl(caption = "Respiratory outbreaks by pathogen. An outbreak with two pathogens is counted under both, so pathogen columns add up to more than the total.")
+```
+
+# Season onset
+
+::: {.card title="Season onset alerts for influenza, RSV and COVID-19"}
+
+Not yet published: the alert method and thresholds are being finalized.
+
+:::
+
+# Duration
+
+## Row {height="210px"}
+
+::: {.card title="How long do outbreaks last?"}
+
+Time from onset until the outbreak was declared over, for outbreaks that
+began in the post-pandemic seasons (2022/23 onward). Outbreaks still open
+are included up to the data-as-of date and then **censored**
+(Kaplan–Meier), so recent, still-running outbreaks do not make durations
+look shorter. Duration reflects the rules for declaring an outbreak over
+(a set period with no new cases) as well as transmission.
+
+:::
+
+```{r}
+#| include: false
+dur <- duration_data(clean)
+resp_dur <- filter(dur, outbreak_type == "Respiratory")
+ent_dur <- filter(dur, outbreak_type == "Enteric")
+agent_cols <- AGENT_COLOURS[c("COVID-19", "Influenza", "RSV", "Rhinovirus/enterovirus",
+                              "Other respiratory virus", "Unknown")]
+```
+
+## Row {height="520px"}
+
+### Column {.tabset}
+
+```{r}
+#| title: Respiratory, by setting
+girafe_dash(plot_km(resp_dur, "setting", SETTING_COLOURS), width = 9, height = 5)
+```
+
+```{r}
+#| title: Respiratory, by pathogen
+girafe_dash(plot_km(filter(resp_dur, agent %in% names(agent_cols)) |> droplevels(), "agent", agent_cols),
+            width = 9, height = 5)
+```
+
+```{r}
+#| title: Enteric, by setting
+girafe_dash(plot_km(ent_dur, "setting", SETTING_COLOURS), width = 9, height = 5)
+```
+
+```{r}
+#| title: Table
+bind_rows(
+  km_medians(resp_dur, "setting") |> mutate(Type = "Respiratory", By = "Setting"),
+  km_medians(filter(resp_dur, agent %in% names(agent_cols)) |> droplevels(), "agent") |>
+    mutate(Type = "Respiratory", By = "Pathogen"),
+  km_medians(ent_dur, "setting") |> mutate(Type = "Enteric", By = "Setting")
+) |>
+  transmute(Type, Group = group, Outbreaks = outbreaks, `Still open` = still_open,
+            `Median days` = median_days,
+            `95% CI` = sprintf("%g-%g", ci_low, ci_high)) |>
+  tbl(caption = "Median duration from Kaplan-Meier estimates, post-pandemic seasons.")
+```
+
+# Facilities
+
+```{r}
+#| include: false
+fsc <- facility_season_counts(clean)
+# Complete seasons only: 2015/16 starts in January 2016 and the current
+# season is still in progress, so both would understate repeat outbreaks.
+complete_seasons <- season_label(2016:(current$season_start_year - 1L))
+rs <- repeat_share(fsc) |> filter(season %in% complete_seasons) |>
+  mutate(setting = factor(setting, levels = names(SETTING_COLOURS)))
+last_complete <- season_label(current$season_start_year - 1L)
+dist <- recurrence_distribution(fsc) |> filter(season == last_complete) |>
+  mutate(setting = factor(setting, levels = rev(names(SETTING_COLOURS))))
+```
+
+## Row {height="210px"}
+
+::: {.card title="Do the same facilities have repeat outbreaks?"}
+
+A facility is a physical site (one address, split by setting where an
+LTCH and a retirement home share an address). Counts are outbreaks as
+published, so several wards affected at once count separately. Only
+facilities with at least one outbreak appear; the dataset has no list of
+all facilities, so facilities with none cannot be counted. Counts are not
+adjusted for facility size, so individual facilities are deliberately not
+ranked.
+
+:::
+
+## Row {height="520px"}
+
+### Column {.tabset}
+
+```{r}
+#| title: Repeat outbreaks by season
+girafe_dash(plot_repeat_share(rs), width = 9, height = 5)
+```
+
+```{r}
+#| title: !expr paste("Outbreaks per facility,", last_complete)
+girafe_dash(plot_recurrence_distribution(dist), width = 12, height = 4.5)
+```
+
+```{r}
+#| title: Table
+rs |>
+  transmute(Season = season, Setting = setting, `Facilities with outbreaks` = facilities,
+            `With 2+ outbreaks` = repeat_facilities, Share = sprintf("%.0f%%", 100 * share_repeat)) |>
+  arrange(desc(Season), Setting) |>
+  tbl()
+```
+
+# About
+
+::: {.card title="About this dashboard"}
+
+An unofficial, independent surveillance summary built from the City of
+Toronto's open dataset *Outbreaks in Toronto Healthcare Institutions*,
+which Toronto Public Health refreshes every Thursday with data as of
+Wednesday afternoon. It is updated automatically each week; the banner on
+the first page shows how current the data are.
+
+**What it counts.** Declared outbreaks in hospitals, long-term care homes
+(LTCH) and retirement homes, by week of onset. The data contain no case
+counts, attack rates or deaths, so everything here is outbreak-level.
+
+**Main caveats.**
+Outbreaks are recorded per unit or ward, not per facility.
+Testing and reporting changed during the pandemic, so counts before and
+after 2020 are not directly comparable.
+Pathogen labels changed over the years and have been harmonized.
+"Coronavirus" in the source means seasonal coronaviruses, not COVID-19.
+Recent weeks are provisional because outbreaks are reported with a delay.
+Counts reflect testing and reporting practices as well as disease activity.
+
+Methods and every analytical decision are documented in the
+[project repository](https://github.com/samielsabri/toronto_healthcare_institutions_outbreaks),
+including the [decisions log](https://github.com/samielsabri/toronto_healthcare_institutions_outbreaks/blob/main/reports/decisions.md).
+
+:::

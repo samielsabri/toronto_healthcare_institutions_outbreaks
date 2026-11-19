@@ -9,3 +9,14 @@
   border-left-color: #b26a00;
   background: #fff6e5;
 }
+
+/* Interactive charts (ggiraph) fill their dashboard card; without this the
+   widget falls back to its 300px default width inside the flex layout. */
+.girafe.html-widget {
+  width: 100% !important;
+}
+.girafe.html-widget > .girafe_container_std {
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+}
