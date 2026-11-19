@@ -1,0 +1,67 @@
+season,setting_group,hospital_subtype,n
+2015/16,Hospital,Acute care,19
+2015/16,Hospital,Chronic care,24
+2015/16,Hospital,Psychiatric,1
+2015/16,LTCH,,101
+2015/16,Retirement home,,19
+2015/16,Shelter,,1
+2016/17,Hospital,Acute care,36
+2016/17,Hospital,Chronic care,38
+2016/17,Hospital,Psychiatric,2
+2016/17,LTCH,,225
+2016/17,Retirement home,,78
+2017/18,Hospital,Acute care,47
+2017/18,Hospital,Chronic care,43
+2017/18,Hospital,Psychiatric,12
+2017/18,LTCH,,270
+2017/18,Retirement home,,75
+2017/18,Shelter,,2
+2018/19,Hospital,Acute care,36
+2018/19,Hospital,Chronic care,35
+2018/19,Hospital,Psychiatric,5
+2018/19,LTCH,,211
+2018/19,Retirement home,,44
+2019/20,Hospital,Acute care,48
+2019/20,Hospital,Chronic care,33
+2019/20,Hospital,Psychiatric,4
+2019/20,LTCH,,256
+2019/20,Retirement home,,63
+2020/21,Hospital,Acute care,130
+2020/21,Hospital,Chronic care,54
+2020/21,Hospital,Psychiatric,8
+2020/21,LTCH,,185
+2020/21,Retirement home,,56
+2021/22,Hospital,Acute care,181
+2021/22,Hospital,Chronic care,118
+2021/22,Hospital,Psychiatric,15
+2021/22,Hospital,Transitional care,4
+2021/22,LTCH,,380
+2021/22,Retirement home,,147
+2022/23,Hospital,Acute care,146
+2022/23,Hospital,Chronic care,121
+2022/23,Hospital,Psychiatric,13
+2022/23,Hospital,Transitional care,13
+2022/23,LTCH,,522
+2022/23,Retirement home,,196
+2023/24,Hospital,Acute care,106
+2023/24,Hospital,Chronic care,151
+2023/24,Hospital,Psychiatric,25
+2023/24,Hospital,Transitional care,6
+2023/24,LTCH,,666
+2023/24,Retirement home,,188
+2024/25,Hospital,Acute care,83
+2024/25,Hospital,Chronic care,102
+2024/25,Hospital,Psychiatric,13
+2024/25,Hospital,Transitional care,3
+2024/25,LTCH,,663
+2024/25,Retirement home,,182
+2025/26,Hospital,Acute care,61
+2025/26,Hospital,Chronic care,80
+2025/26,Hospital,Psychiatric,12
+2025/26,LTCH,,487
+2025/26,Retirement home,,117
+2026/27,Hospital,Acute care,12
+2026/27,Hospital,Chronic care,8
+2026/27,Hospital,Psychiatric,4
+2026/27,LTCH,,86
+2026/27,Retirement home,,13
