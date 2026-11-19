@@ -1,0 +1,29 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+
+website:
+  title: "Toronto Institutional Outbreak Surveillance"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Dashboard
+  page-footer:
+    left: >
+      Contains information licensed under the
+      [Open Government Licence – Toronto](https://open.toronto.ca/open-data-license/).
+      Source: City of Toronto Open Data, *Outbreaks in Toronto Healthcare Institutions*.
+    right: "Unofficial; not produced or endorsed by Toronto Public Health."
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
+
+execute:
+  echo: false
+  warning: false
+  message: false

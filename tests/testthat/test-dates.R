@@ -38,3 +38,11 @@ test_that("comparison periods follow decision D6", {
   # ISO week 10 of 2020 is season week 28 of 2019/20; week 11 is week 29
   expect_equal(season_week(as.Date(c("2020-03-02", "2020-03-09"))), c(28L, 29L))
 })
+
+test_that("freshness info reads the refresh time and derives the as-of date", {
+  info <- freshness_info(root_path("data", "raw", "manifest.csv"))
+  expect_s3_class(info$refreshed, "POSIXct")
+  expect_equal(lubridate::wday(info$as_of, week_start = 1), 3)  # a Wednesday
+  expect_true(info$as_of < as.Date(info$refreshed))
+  expect_match(freshness_banner_html(info), format(info$as_of, "%Y-%m-%d"))
+})

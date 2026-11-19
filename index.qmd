@@ -1,0 +1,35 @@
+---
+title: "Outbreaks in Toronto healthcare institutions"
+subtitle: "Weekly surveillance summary"
+---
+
+```{r setup}
+for (f in list.files("R", pattern = "\\.R$", full.names = TRUE)) source(f)
+library(dplyr)
+clean <- nanoparquet::read_parquet("data/clean/outbreaks.parquet") |> filter(in_scope)
+info <- freshness_info()
+current_season <- max(clean$season)
+```
+
+```{r freshness, results = "asis"}
+cat(freshness_banner_html(info))
+```
+
+::: {.callout-note}
+The full dashboard (seasonal comparisons, agent mix, onset alerts, outbreak
+duration and facility recurrence) is under construction. This page currently
+shows the season-to-date summary.
+:::
+
+## Season `r current_season` to date
+
+```{r season-table}
+clean |>
+  filter(season == current_season) |>
+  count(Setting = setting_group, Type = outbreak_type) |>
+  tidyr::pivot_wider(names_from = Type, values_from = n, values_fill = 0) |>
+  mutate(Total = rowSums(across(where(is.numeric)))) |>
+  knitr::kable()
+```
+
+Open outbreaks as of `r format(info$as_of, "%e %B %Y")`: **`r sum(clean$is_open)`**.

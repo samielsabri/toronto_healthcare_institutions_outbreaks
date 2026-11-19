@@ -1,0 +1,11 @@
+.freshness-banner {
+  border-left: 4px solid #2e7d32;
+  background: #f1f8f2;
+  padding: 0.6rem 0.9rem;
+  margin: 0 0 1.25rem 0;
+  border-radius: 4px;
+}
+.freshness-banner.is-stale {
+  border-left-color: #b26a00;
+  background: #fff6e5;
+}
