@@ -51,3 +51,21 @@ test_that("facility = physical site x setting group (decision D5)", {
   expect_false(out$unit_id[1] == out$unit_id[2])                 # units kept distinct
   expect_equal(out$facility_id[1], "1-main-st--ltch")
 })
+
+test_that("decision D8: one-off setting slips join the address's dominant facility", {
+  addr <- c(rep("1 MAIN ST", 25), "1 MAIN ST",           # 1 of 26 (4%): reassigned
+            rep("2 MAIN ST", 10), rep("2 MAIN ST", 3),   # 3 of 13: kept (more than 2)
+            rep("3 MAIN ST", 4), "3 MAIN ST")            # 1 of 5 (20%): kept (share >= 10%)
+  sg <- c(rep("Retirement home", 25), "LTCH",
+          rep("LTCH", 10), rep("Retirement home", 3),
+          rep("LTCH", 4), "Retirement home")
+  out <- facility_setting_group(addr, sg)
+  changed <- out != sg
+  expect_equal(sum(changed), 1)                                  # only one outbreak moves
+  expect_equal(addr[changed], "1 MAIN ST")
+  expect_equal(out[changed], "Retirement home")
+  expect_equal(out[addr == "2 MAIN ST"], sg[addr == "2 MAIN ST"])  # 3 outbreaks: kept
+  expect_equal(out[addr == "3 MAIN ST"], sg[addr == "3 MAIN ST"])  # 20% share: kept
+  # An address with a single setting is never changed
+  expect_equal(facility_setting_group("4 MAIN ST", "LTCH"), "LTCH")
+})

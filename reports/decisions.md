@@ -1,6 +1,6 @@
 # Methodological decisions log
 
-Decisions made after reviewing the Phase 1 EDA ([`01_eda.md`](01_eda.md), section 6).
+Decisions D1–D7 were made after reviewing the Phase 1 EDA ([`01_eda.md`](01_eda.md), section 6); D8 during Phase 2 cleaning.
 Evidence for each is reproducible with [`scripts/decision_aids.R`](../scripts/decision_aids.R).
 
 | # | Question | Decision | Rationale |
@@ -12,6 +12,7 @@ Evidence for each is reproducible with [`scripts/decision_aids.R`](../scripts/de
 | D5 | What is a "facility"? | **Physical site** (normalized address), **split by setting** where one address holds more than one setting (e.g. an LTCH and a retirement home). Not the operator. The unit-level label is kept too. | Recurrence is about a building, its residents and its staff. Operator names change and merge over time. Co-located LTCHs and retirement homes are separately licensed with separate residents. |
 | D6 | Pre-pandemic baseline window | **2016/17, 2017/18, 2018/19, plus 2019/20 up to ISO week 10 of 2020** (season week 28). 2015/16 excluded (partial: data start January 2016). | 2019/20 tracks earlier seasons until week 10, then shows a testing spike (weeks 11–12) and a collapse in non-COVID outbreaks. Methods will note that the baseline rests on 3–4 seasons. |
 | D7 | ISO week 53 | **Merge week 53 into week 52** for season-on-season charts. | Keeps every season on one 52-week axis; affects 2015/16 (1 outbreak) and 2020/21 (24), both outside the baselines. |
+| D8 | An outbreak whose setting differs from the rest of its building (e.g. "Hazelton Place Retirement Residence" coded LTCH once): its own facility, or the building's? | **The building's.** If a setting accounts for **at most 2 outbreaks and under 10%** of the outbreaks at an address that also has another setting, those outbreaks are assigned to the address's dominant facility. The outbreak keeps its published setting for setting-level counts; `flag_facility_setting_reassigned` marks it. In the 2026-11-12 data this affects 48 outbreaks and removes 39 one- or two-outbreak "facilities". | Most cases are coding slips (the name contradicts the setting), and leaving them would split a building's outbreak history and undercount repeat outbreaks. The few genuine cases (transitional care units in retirement buildings, mixed campuses such as Copernicus Lodge) are still the same physical building, consistent with D5. A single rule is easier to explain than case-by-case judgement. List: `reports/tables/clean_facility_setting_reassigned.csv`. |
 
 ## Decisions carried over from the Phase 1 proposal (not objected to)
 

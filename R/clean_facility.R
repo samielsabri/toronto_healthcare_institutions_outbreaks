@@ -1,6 +1,7 @@
 # Facility derivation (decision D5): a facility is a physical site, identified
 # by its normalized street address, split by setting group where one address
-# holds more than one setting. Operators are not used.
+# holds more than one setting. Operators are not used. One-off setting coding
+# slips do not split a site (decision D8; see facility_setting_group()).
 #
 # Steps:
 #   1. normalize_address(): rule-based cleaning of the free-text address.
@@ -83,17 +84,41 @@ slugify <- function(x) {
   stringr::str_replace_all(x, "^-|-$", "")
 }
 
+#' Setting group used to define the facility (decision D8).
+#'
+#' An outbreak whose setting group is a small minority at its address (at most
+#' `max_n` outbreaks AND under `max_share` of the address's outbreaks, while
+#' another setting is also recorded there) is assigned to the address's
+#' dominant setting for facility purposes. This stops one-off setting coding
+#' slips (e.g. a retirement residence coded "LTCH" once) from splitting a
+#' building into two facilities. The outbreak's own setting_group is unchanged.
+facility_setting_group <- function(address, setting_group, max_n = 2L, max_share = 0.10) {
+  tab <- dplyr::count(tibble::tibble(address, setting_group), .data$address, .data$setting_group)
+  tab <- dplyr::mutate(
+    dplyr::group_by(tab, .data$address),
+    share = .data$n / sum(.data$n),
+    dominant = .data$setting_group[which.max(.data$n)],
+    minority = dplyr::n() > 1 & .data$n <= max_n & .data$share < max_share
+  )
+  key <- paste(address, setting_group)
+  idx <- match(key, paste(tab$address, tab$setting_group))
+  ifelse(tab$minority[idx], tab$dominant[idx], setting_group)
+}
+
 #' Add facility columns to cleaned outbreaks.
 #'
 #' Requires columns: institution_name, institution_address, setting_group, began.
-#' Adds: address_norm, facility_address, facility_id, facility_name, unit_id.
+#' Adds: address_norm, facility_address, facility_setting_group,
+#' flag_facility_setting_reassigned, facility_id, facility_name, unit_id.
 add_facility <- function(df, crosswalk) {
   df <- dplyr::mutate(
     df,
     address_norm = normalize_address(.data$institution_address),
     facility_address = canonical_address(.data$address_norm, crosswalk),
+    facility_setting_group = facility_setting_group(.data$facility_address, .data$setting_group),
+    flag_facility_setting_reassigned = .data$facility_setting_group != .data$setting_group,
     facility_id = paste(slugify(.data$facility_address),
-                        slugify(.data$setting_group), sep = "--"),
+                        slugify(.data$facility_setting_group), sep = "--"),
     unit_id = paste(.data$facility_id, slugify(normalize_name(.data$institution_name)),
                     sep = "--")
   )

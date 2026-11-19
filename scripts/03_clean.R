@@ -52,16 +52,17 @@ clean |>
   count(season, setting_group, hospital_subtype) |>
   write_csv(file.path(qa, "clean_setting_by_season.csv"), na = "")
 
-# Facilities whose setting is a small minority at their address: possible
-# setting miscoding that creates a spurious facility (for review).
+# Outbreaks whose setting was a small minority at their address and were
+# assigned to the address's dominant facility (decision D8), for review.
+if (file.exists(file.path(qa, "clean_minority_setting_facilities.csv"))) {
+  file.remove(file.path(qa, "clean_minority_setting_facilities.csv"))  # superseded
+}
 clean |>
-  count(facility_address, setting_group, name = "n") |>
-  group_by(facility_address) |>
-  mutate(share = n / sum(n), n_settings = n()) |>
-  ungroup() |>
-  filter(n_settings > 1, n <= 2, share < 0.1) |>
-  arrange(facility_address) |>
-  write_csv(file.path(qa, "clean_minority_setting_facilities.csv"))
+  filter(flag_facility_setting_reassigned) |>
+  arrange(facility_address, began) |>
+  select(facility_address, institution_name, setting_raw, setting_group,
+         facility_setting_group, facility_name, began) |>
+  write_csv(file.path(qa, "clean_facility_setting_reassigned.csv"))
 
 # Quality flags
 clean |>
