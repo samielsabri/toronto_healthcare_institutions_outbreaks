@@ -1,8 +1,8 @@
 # Weekly surveillance update.
 #
 # The City refreshes the data on Thursdays (data as of Wednesday 2 pm,
-# published around 16:00 UTC). This runs at 18:00 UTC on Thursdays, and can
-# be started by hand from the Actions tab (workflow_dispatch).
+# published around 16:00 UTC). This runs at 18:00 UTC on Thursdays, when code
+# that affects the site changes on main, and by hand from the Actions tab.
 #
 #   1. Download all annual files and save this week's snapshot, then commit
 #      them straight away so a later failure never loses a snapshot.
@@ -18,6 +18,18 @@ on:
   schedule:
     - cron: "0 18 * * 4"
   workflow_dispatch:
+  # Also rebuild and redeploy when the site or pipeline code changes on main.
+  # (The workflow's own data commits use GITHUB_TOKEN and do not re-trigger it.)
+  push:
+    branches: [main]
+    paths:
+      - "index.qmd"
+      - "_quarto.yml"
+      - "styles.css"
+      - "R/**"
+      - "scripts/**"
+      - "data/reference/**"
+      - ".github/workflows/weekly-update.yml"
 
 permissions:
   contents: write
