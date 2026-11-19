@@ -18,3 +18,4 @@ renv/staging/
 *_files/
 
 .DS_Store
+pipeline_check.md
