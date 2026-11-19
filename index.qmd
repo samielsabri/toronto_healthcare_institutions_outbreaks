@@ -146,11 +146,88 @@ clean |>
 
 # Season onset
 
-::: {.card title="Season onset alerts for influenza, RSV and COVID-19"}
+```{r}
+#| include: false
+on_w <- lapply(c(influenza = "influenza", rsv = "rsv", covid19 = "covid19"),
+               onset_weekly, clean = clean, current = current)
+th <- lapply(on_w[c("influenza", "rsv")], fit_mem_thresholds, current = current)
+st <- Map(onset_status, on_w[c("influenza", "rsv")], th, MoreArgs = list(current = current))
+covid_this <- filter(on_w$covid19, season_start_year == current$season_start_year, week < current$season_week)
+```
 
-Not yet published: the alert method and thresholds are being finalized.
+## Row {height="230px"}
+
+```{r}
+#| content: valuebox
+#| title: !expr onset_status_title(st$influenza, "Influenza")
+list(value = onset_status_value(st$influenza), icon = "activity", color = "light")
+```
+
+```{r}
+#| content: valuebox
+#| title: !expr onset_status_title(st$rsv, "RSV")
+list(value = onset_status_value(st$rsv), icon = "activity", color = "light")
+```
+
+```{r}
+#| content: valuebox
+#| title: "COVID-19 outbreaks in the latest complete week (no formal alert)"
+list(value = utils::tail(covid_this$n, 1), icon = "virus", color = "light")
+```
+
+## Row {height="210px"}
+
+::: {.card title="When does the influenza and RSV season start?"}
+
+Each season's start is flagged with the **moving epidemic method** (MEM),
+the approach ECDC and WHO Europe use for influenza, applied here to weekly
+outbreak counts. The thresholds are fitted on the four post-pandemic
+seasons (2022/23 to 2025/26) with the method's default settings. The
+season starts in the first week above the **epidemic threshold**;
+the higher lines mark medium, high and very high intensity. The current
+week is incomplete and is not used. Weekly counts are small, so a single
+week just above the threshold can be noise: the number of consecutive
+weeks above it is the more reliable signal. Four seasons is a short
+history, so the thresholds will firm up as seasons accumulate. COVID-19 has no stable
+seasonal pattern yet, so it is shown against the post-pandemic range
+without an alert.
 
 :::
+
+## Row {height="560px"}
+
+### Column {.tabset}
+
+```{r}
+#| title: Influenza
+girafe_dash(plot_onset_mem(on_w$influenza, th$influenza, current, AGENT_COLOURS[["Influenza"]], "influenza"),
+            width = 11, height = 5.2)
+```
+
+```{r}
+#| title: RSV
+girafe_dash(plot_onset_mem(on_w$rsv, th$rsv, current, AGENT_COLOURS[["RSV"]], "RSV"),
+            width = 11, height = 5.2)
+```
+
+```{r}
+#| title: COVID-19
+girafe_dash(plot_covid_vs_range(on_w$covid19, current), width = 11, height = 5.2)
+```
+
+```{r}
+#| title: Table
+bind_rows(lapply(c("influenza", "rsv"), function(a) tibble(
+  Agent = unname(ONSET_AGENTS[a]),
+  `Epidemic threshold` = round(th[[a]]$epidemic, 1),
+  Medium = round(th[[a]]$medium, 1), High = round(th[[a]]$high, 1),
+  `Very high` = round(th[[a]]$very_high, 1),
+  `Season start` = if (st[[a]]$started) sprintf("ISO W%02d", iso_week_of_season_week(st[[a]]$first_week)) else "Not started",
+  `Latest complete week` = sprintf("W%02d: %d (%s)", iso_week_of_season_week(st[[a]]$latest_week),
+                                   st[[a]]$latest_n, st[[a]]$latest_level)
+))) |>
+  tbl(caption = "Moving epidemic method thresholds (weekly outbreaks, all settings), fitted on 2022/23 to the last complete season.")
+```
 
 # Duration
 
@@ -230,12 +307,13 @@ dist <- recurrence_distribution(fsc) |> filter(season == last_complete) |>
 ::: {.card title="Do the same facilities have repeat outbreaks?"}
 
 A facility is a physical site (one address, split by setting where an
-LTCH and a retirement home share an address). Counts are outbreaks as
-published, so several wards affected at once count separately. Only
-facilities with at least one outbreak appear; the dataset has no list of
-all facilities, so facilities with none cannot be counted. Counts are not
-adjusted for facility size, so individual facilities are deliberately not
-ranked.
+LTCH and a retirement home share an address). Because the source records
+one outbreak per affected ward, wards affected together are grouped into
+one **episode**: outbreaks of the same type at the same facility that each
+begin within 14 days of the previous one. A *repeat* is a later, separate
+episode in the same season. Only facilities with at least one outbreak
+appear (the dataset lists no others), and counts are not adjusted for
+facility size, so individual facilities are deliberately not ranked.
 
 :::
 
@@ -249,7 +327,7 @@ girafe_dash(plot_repeat_share(rs), width = 9, height = 5)
 ```
 
 ```{r}
-#| title: !expr paste("Outbreaks per facility,", last_complete)
+#| title: !expr paste("Episodes per facility,", last_complete)
 girafe_dash(plot_recurrence_distribution(dist), width = 12, height = 4.5)
 ```
 
@@ -257,7 +335,7 @@ girafe_dash(plot_recurrence_distribution(dist), width = 12, height = 4.5)
 #| title: Table
 rs |>
   transmute(Season = season, Setting = setting, `Facilities with outbreaks` = facilities,
-            `With 2+ outbreaks` = repeat_facilities, Share = sprintf("%.0f%%", 100 * share_repeat)) |>
+            `With 2+ episodes` = repeat_facilities, Share = sprintf("%.0f%%", 100 * share_repeat)) |>
   arrange(desc(Season), Setting) |>
   tbl()
 ```
