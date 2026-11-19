@@ -24,4 +24,5 @@ Imports:
     survival,
     ggsurvfit,
     ggiraph,
-    scales
+    scales,
+    mem
