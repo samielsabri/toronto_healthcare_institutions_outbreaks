@@ -39,8 +39,15 @@ test_that("a stale refresh is a warning, not a failure", {
 })
 
 test_that("the committed raw data pass", {
+  info <- freshness_info(root_path("data", "raw", "manifest.csv"))
   res <- check_inputs(read_raw_files(root_path("data", "raw")),
                       load_agent_lookup(root_path("data", "reference", "agent_lookup.csv")),
-                      refreshed, today = as.Date("2026-11-13"))
+                      info$refreshed, today = as.Date(info$refreshed))
   expect_length(res$failures, 0)
+})
+
+test_that("an onset after the data-as-of date is a failure", {
+  res <- check_inputs(list(`2026` = good_raw(`Date Outbreak Began` = "2062-11-01")), lk, refreshed,
+                      today = as.Date("2026-11-13"))
+  expect_match(res$failures, "begin after the data-as-of date")
 })

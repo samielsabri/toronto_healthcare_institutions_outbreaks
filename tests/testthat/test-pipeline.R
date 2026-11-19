@@ -45,7 +45,7 @@ test_that("outbreak IDs are unique even when the natural key repeats", {
 # ---- Integration: the real data -------------------------------------------
 clean <- clean_outbreaks(
   raw_list = read_raw_files(root_path("data", "raw")),
-  as_of = as.Date("2026-11-11"),
+  as_of = freshness_info(root_path("data", "raw", "manifest.csv"))$as_of,
   agent_lookup = load_agent_lookup(root_path("data", "reference", "agent_lookup.csv")),
   address_crosswalk = load_address_crosswalk(root_path("data", "reference", "address_crosswalk.csv"))
 )

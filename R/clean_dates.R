@@ -17,6 +17,10 @@ data_as_of <- function(refreshed) {
 #' Open outbreaks: duration = as_of - began (follow-up so far), event = 0.
 add_duration <- function(df, as_of) {
   as_of <- as.Date(as_of)
+  if (any(df$began > as_of)) {
+    stop("Some outbreaks began after the data-as-of date (", as_of,
+         "); check the refresh time in data/raw/manifest.csv.", call. = FALSE)
+  }
   df$is_open <- is.na(df$declared_over)
   end <- dplyr::if_else(df$is_open, as_of, df$declared_over)
   df$duration_days <- as.integer(end - df$began)
