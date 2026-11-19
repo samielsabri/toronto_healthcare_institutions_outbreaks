@@ -123,12 +123,43 @@ km_medians <- function(data, group) {
   )
 }
 
-#' Outbreaks per facility per season (facilities with at least one outbreak).
-facility_season_counts <- function(clean) {
+#' Group outbreaks into facility episodes (decision D9).
+#'
+#' Outbreaks at the same facility and of the same type (respiratory, enteric,
+#' other) belong to one episode when each starts within `window` days of the
+#' previous one; a longer gap starts a new episode. Several wards declared
+#' together therefore count as one episode, not as repeat outbreaks. An
+#' episode belongs to the season of its first onset.
+add_episodes <- function(clean, window = 14L) {
+  clean |>
+    dplyr::arrange(.data$facility_id, .data$outbreak_type, .data$began) |>
+    dplyr::group_by(.data$facility_id, .data$outbreak_type) |>
+    dplyr::mutate(
+      new_episode = is.na(dplyr::lag(.data$began)) |
+        as.integer(.data$began - dplyr::lag(.data$began)) > window,
+      episode_id = paste(.data$facility_id, .data$outbreak_type, cumsum(.data$new_episode), sep = "--")
+    ) |>
+    dplyr::group_by(.data$episode_id) |>
+    dplyr::mutate(episode_start = min(.data$began),
+                  episode_season = season_label(season_start_year(.data$episode_start))) |>
+    dplyr::ungroup() |>
+    dplyr::select(-"new_episode")
+}
+
+#' Episodes per facility per season (facilities with at least one outbreak).
+#'
+#' Counts distinct episodes (decision D9), not unit-level outbreaks; the
+#' number of unit-level outbreaks is kept alongside for reference.
+facility_season_counts <- function(clean, window = 14L) {
   clean |>
     dplyr::filter(.data$in_scope) |>
-    dplyr::count(.data$season, .data$season_start_year, .data$facility_id, .data$facility_name,
-                 setting = .data$facility_setting_group, name = "outbreaks")
+    add_episodes(window) |>
+    dplyr::mutate(season = .data$episode_season,
+                  season_start_year = as.integer(substr(.data$episode_season, 1, 4))) |>
+    dplyr::group_by(.data$season, .data$season_start_year, .data$facility_id, .data$facility_name,
+                    setting = .data$facility_setting_group) |>
+    dplyr::summarise(outbreaks = dplyr::n_distinct(.data$episode_id),
+                     unit_outbreaks = dplyr::n(), .groups = "drop")
 }
 
 #' Distribution of outbreaks per facility in each season, by setting.

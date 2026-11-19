@@ -44,14 +44,33 @@ test_that("agent display groups fold to the fixed levels", {
   expect_true(all(agent_mix_label(c(names(AGENT_GROUPS), "multiple")) %in% AGENT_MIX_LEVELS))
 })
 
-test_that("recurrence counts outbreaks per facility per season", {
-  d <- tibble::tibble(in_scope = TRUE, season = "2025/26", season_start_year = 2025L,
-                      facility_id = c("a", "a", "a", "b"), facility_name = c("A", "A", "A", "B"),
-                      facility_setting_group = "LTCH")
+test_that("D9: wards declared together are one episode; a later outbreak is a repeat", {
+  d <- tibble::tibble(
+    in_scope = TRUE, facility_id = c("a", "a", "a", "a", "a", "b"), facility_name = "X",
+    facility_setting_group = "LTCH",
+    outbreak_type = c("Respiratory", "Respiratory", "Respiratory", "Enteric", "Respiratory", "Respiratory"),
+    began = as.Date(c("2025-11-01", "2025-11-03", "2025-11-12", "2025-11-02", "2026-01-20", "2025-11-01"))
+  )
+  ep <- add_episodes(d)
+  a_resp <- ep[ep$facility_id == "a" & ep$outbreak_type == "Respiratory", ]
+  # 1 Nov, 3 Nov, 12 Nov chain within 14 days -> one episode; 20 Jan -> new episode
+  expect_equal(length(unique(a_resp$episode_id)), 2)
+  # enteric outbreak at the same time is its own episode
+  expect_equal(length(unique(ep$episode_id[ep$facility_id == "a"])), 3)
   fsc <- facility_season_counts(d)
-  expect_equal(fsc$outbreaks[fsc$facility_id == "a"], 3L)
+  expect_equal(fsc$outbreaks[fsc$facility_id == "a"], 3L)       # 2 respiratory + 1 enteric
+  expect_equal(fsc$unit_outbreaks[fsc$facility_id == "a"], 5L)
   rs <- repeat_share(fsc)
-  expect_equal(rs$share_repeat, 0.5)
+  expect_equal(rs$share_repeat, 0.5)                              # a repeats, b does not
+})
+
+test_that("an episode belongs to the season of its first onset", {
+  d <- tibble::tibble(in_scope = TRUE, facility_id = "a", facility_name = "X",
+                      facility_setting_group = "LTCH", outbreak_type = "Respiratory",
+                      began = as.Date(c("2025-08-20", "2025-08-28")))  # ISO wk 34, then wk 35
+  fsc <- facility_season_counts(d)
+  expect_equal(fsc$season, "2024/25")
+  expect_equal(fsc$outbreaks, 1L)
 })
 
 test_that("KM medians return one row per group with censoring counted", {
