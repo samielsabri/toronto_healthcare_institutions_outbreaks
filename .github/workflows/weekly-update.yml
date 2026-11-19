@@ -77,8 +77,8 @@ jobs:
         run: |
           # If no data file changed, drop the manifest's new download time so
           # unchanged weeks do not produce a commit.
-          if git diff --quiet -- 'data/raw/*.csv' ':!data/raw/manifest.csv' \
-             && [ -z "$(git status --porcelain data/snapshots)" ]; then
+          # (git status, not git diff, so a new file such as next year's is seen)
+          if [ -z "$(git status --porcelain -- data/raw ':!data/raw/manifest.csv' data/snapshots)" ]; then
             git checkout -- data/raw/manifest.csv
           fi
           git add data/raw data/snapshots
