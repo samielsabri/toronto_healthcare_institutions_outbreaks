@@ -12,6 +12,7 @@ test_that("open outbreaks are censored at the as-of date", {
   expect_equal(out$is_open, c(TRUE, FALSE))
   expect_equal(out$duration_days, c(10L, 14L))
   expect_equal(out$event, c(0L, 1L))
+  expect_error(add_duration(df, as.Date("2026-10-30")), "after the data-as-of date")
 })
 
 test_that("seasons run from ISO week 35 to ISO week 34", {

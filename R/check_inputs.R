@@ -56,6 +56,11 @@ check_inputs <- function(raw_list, agent_lookup, refreshed, today = Sys.Date()) 
   if (bad_began) failures <- c(failures, sprintf("**%d onset dates** could not be parsed.", bad_began))
   if (bad_over) failures <- c(failures, sprintf(
     "**%d closed outbreaks** (Active = N) have no parseable declared-over date.", bad_over))
+  as_of <- data_as_of(refreshed)
+  future <- raw[!is.na(raw$began) & raw$began > as_of, ]
+  if (nrow(future)) failures <- c(failures, sprintf(
+    "**%d outbreak(s) begin after the data-as-of date (%s):** %s.", nrow(future), as_of,
+    paste0("`", future$institution_name, "` (", future$began, ")", collapse = ", ")))
   n_backwards <- sum(raw$declared_over < raw$began, na.rm = TRUE)
   if (n_backwards) warnings <- c(warnings, sprintf(
     "%d outbreak(s) declared over before they began.", n_backwards))
