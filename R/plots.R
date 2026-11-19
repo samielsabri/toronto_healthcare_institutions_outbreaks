@@ -157,7 +157,7 @@ plot_km <- function(data, group, colours, max_days = 60) {
 
 #' Share of facilities with 2+ outbreaks in a season, by setting.
 plot_repeat_share <- function(rs) {
-  rs$tip <- sprintf("%s, %s\n%d of %d facilities with outbreaks had 2+ (%.0f%%)",
+  rs$tip <- sprintf("%s, %s\n%d of %d facilities with outbreaks had 2+ separate episodes (%.0f%%)",
                     rs$setting, rs$season, rs$repeat_facilities, rs$facilities, 100 * rs$share_repeat)
   ggplot2::ggplot(rs, ggplot2::aes(.data$season, .data$share_repeat, colour = .data$setting,
                                    group = .data$setting)) +
@@ -167,25 +167,96 @@ plot_repeat_share <- function(rs) {
     ggplot2::scale_colour_manual(values = SETTING_COLOURS) +
     ggplot2::scale_fill_manual(values = SETTING_COLOURS, guide = "none") +
     ggplot2::scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1)) +
-    ggplot2::labs(x = "Season", y = "Facilities with 2+ outbreaks") +
+    ggplot2::labs(x = "Season", y = "Facilities with 2+ episodes") +
     theme_dash() +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
 }
 
 #' Distribution of outbreaks per facility in one season, by setting.
 plot_recurrence_distribution <- function(dist) {
-  dist$tip <- sprintf("%s: %d facilit%s with %s outbreak%s (%.0f%%)", dist$setting, dist$facilities,
+  dist$tip <- sprintf("%s: %d facilit%s with %s episode%s (%.0f%%)", dist$setting, dist$facilities,
                       ifelse(dist$facilities == 1, "y", "ies"), dist$bucket,
                       ifelse(dist$bucket == "1", "", "s"), 100 * dist$share)
   ggplot2::ggplot(dist, ggplot2::aes(.data$share, .data$setting, fill = .data$bucket)) +
     ggiraph::geom_col_interactive(ggplot2::aes(tooltip = .data$tip, group = .data$bucket), width = 0.6, colour = PAL$surface,
                                   linewidth = 0.5, position = ggplot2::position_stack(reverse = TRUE)) +
     ggplot2::scale_fill_manual(values = stats::setNames(PAL$ordinal, levels(dist$bucket)),
-                               name = "Outbreaks in the season") +
+                               name = "Episodes in the season") +
     ggplot2::scale_x_continuous(labels = scales::label_percent(), expand = ggplot2::expansion(mult = c(0, 0.03))) +
     ggplot2::labs(x = "Share of facilities that had at least one outbreak", y = NULL) +
     theme_dash() +
     ggplot2::theme(legend.title = ggplot2::element_text(colour = PAL$ink2),
                    panel.grid.major.y = ggplot2::element_blank(),
                    panel.grid.major.x = ggplot2::element_line(colour = PAL$grid, linewidth = 0.3))
+}
+
+#' This season's weekly outbreaks for one agent against its MEM thresholds,
+#' with the last complete season as a faint reference line.
+plot_onset_mem <- function(weekly, th, current, colour, label) {
+  cur <- dplyr::filter(weekly, .data$season_start_year == current$season_start_year)
+  ref <- dplyr::filter(weekly, .data$season_start_year == current$season_start_year - 1L)
+  cur$tip <- sprintf("%s, ISO W%02d\n%d outbreak%s with %s%s", current$season,
+                     iso_week_of_season_week(cur$week), cur$n, ifelse(cur$n == 1, "", "s"), label,
+                     ifelse(cur$week == current$season_week, "\n(partial week, not used for the alert)", ""))
+  ref$tip <- sprintf("%s, ISO W%02d\n%d outbreaks", ref$season, iso_week_of_season_week(ref$week), ref$n)
+  lines <- tibble::tibble(
+    y = c(th$epidemic, th$medium, th$high, th$very_high),
+    lab = sprintf("%s (%.1f)", c("Epidemic threshold", "Medium", "High", "Very high"),
+                  c(th$epidemic, th$medium, th$high, th$very_high))
+  )
+  ggplot2::ggplot() +
+    ggplot2::annotate("rect", xmin = current$season_week - 0.5, xmax = current$season_week + 0.5,
+                      ymin = -Inf, ymax = Inf, fill = PAL$band, alpha = 0.10) +
+    ggplot2::geom_hline(data = lines, ggplot2::aes(yintercept = .data$y),
+                        colour = PAL$muted, linewidth = 0.3) +
+    ggplot2::geom_text(data = lines, ggplot2::aes(x = 52, y = .data$y, label = .data$lab),
+                       hjust = 1, vjust = -0.4, size = 3, colour = PAL$ink2) +
+    ggplot2::geom_line(data = ref, ggplot2::aes(.data$week, .data$n), colour = PAL$band,
+                       linewidth = 0.5, alpha = 0.7) +
+    ggiraph::geom_point_interactive(data = ref, ggplot2::aes(.data$week, .data$n, tooltip = .data$tip),
+                                    alpha = 0, size = 3) +
+    ggplot2::geom_line(data = cur, ggplot2::aes(.data$week, .data$n), colour = colour, linewidth = 0.9) +
+    ggiraph::geom_point_interactive(data = cur, ggplot2::aes(.data$week, .data$n, tooltip = .data$tip),
+                                    shape = 21, fill = colour, colour = PAL$surface, size = 2.4, stroke = 0.6) +
+    season_week_axis() +
+    ggplot2::scale_y_continuous(limits = c(0, NA), expand = ggplot2::expansion(mult = c(0, 0.08))) +
+    ggplot2::labs(x = "Week of onset (ISO week)", y = paste("Outbreaks with", label),
+                  caption = paste0("Coloured: ", current$season, ". Grey: ", season_label(current$season_start_year - 1L),
+                                   " for reference. Thresholds from the moving epidemic method, fitted on ",
+                                   "2022/23 to ", season_label(current$season_start_year - 1L),
+                                   ". Shaded: current week, incomplete.")) +
+    theme_dash()
+}
+
+#' This season's weekly COVID-19 outbreaks against the post-pandemic range.
+plot_covid_vs_range <- function(weekly, current) {
+  cur <- dplyr::filter(weekly, .data$season_start_year == current$season_start_year)
+  rng <- weekly |>
+    dplyr::filter(.data$period == "post-pandemic", .data$season_start_year < current$season_start_year) |>
+    dplyr::group_by(.data$week) |>
+    dplyr::summarise(lo = min(.data$n), median = stats::median(.data$n), hi = max(.data$n), .groups = "drop")
+  cur$tip <- sprintf("%s, ISO W%02d\n%d COVID-19 outbreak%s", current$season,
+                     iso_week_of_season_week(cur$week), cur$n, ifelse(cur$n == 1, "", "s"))
+  rng$tip <- sprintf("ISO W%02d\nPost-pandemic range %g-%g (median %g)",
+                     iso_week_of_season_week(rng$week), rng$lo, rng$hi, rng$median)
+  ggplot2::ggplot() +
+    ggplot2::annotate("rect", xmin = current$season_week - 0.5, xmax = current$season_week + 0.5,
+                      ymin = -Inf, ymax = Inf, fill = PAL$band, alpha = 0.10) +
+    ggplot2::geom_ribbon(data = rng, ggplot2::aes(.data$week, ymin = .data$lo, ymax = .data$hi),
+                         fill = PAL$band, alpha = 0.22) +
+    ggplot2::geom_line(data = rng, ggplot2::aes(.data$week, .data$median), colour = PAL$muted, linewidth = 0.4) +
+    ggiraph::geom_point_interactive(data = rng, ggplot2::aes(.data$week, .data$hi, tooltip = .data$tip),
+                                    alpha = 0, size = 3) +
+    ggplot2::geom_line(data = cur, ggplot2::aes(.data$week, .data$n), colour = AGENT_COLOURS[["COVID-19"]],
+                       linewidth = 0.9) +
+    ggiraph::geom_point_interactive(data = cur, ggplot2::aes(.data$week, .data$n, tooltip = .data$tip),
+                                    shape = 21, fill = AGENT_COLOURS[["COVID-19"]], colour = PAL$surface,
+                                    size = 2.4, stroke = 0.6) +
+    season_week_axis() +
+    ggplot2::scale_y_continuous(limits = c(0, NA)) +
+    ggplot2::labs(x = "Week of onset (ISO week)", y = "Outbreaks with COVID-19",
+                  caption = paste0("Blue: ", current$season, ". Grey band: lowest to highest weekly count in 2022/23 to ",
+                                   season_label(current$season_start_year - 1L), "; grey line: median. ",
+                                   "No formal alert: COVID-19 has no stable seasonal pattern yet.")) +
+    theme_dash()
 }
