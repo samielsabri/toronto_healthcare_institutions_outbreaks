@@ -20,4 +20,8 @@ Imports:
     tibble,
     rlang,
     rmarkdown,
-    testthat
+    testthat,
+    survival,
+    ggsurvfit,
+    ggiraph,
+    scales
