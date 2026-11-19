@@ -18,6 +18,7 @@ Imports:
     jsonlite,
     curl,
     tibble,
-    rlang
+    rlang,
+    rmarkdown
 Suggests:
     testthat
