@@ -136,3 +136,26 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # The build job opens its own issue when it fails; this covers a build that
+  # succeeded but could not be deployed (e.g. Pages settings or permissions).
+  report-deploy-failure:
+    needs: [build, deploy]
+    if: failure() && needs.build.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open or update a GitHub issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          body="The weekly build succeeded but deploying the site to GitHub Pages failed on $(date -u +%F). The data were updated; the public page was not. Run: ${RUN_URL}"
+          gh label create pipeline-failure --color B60205 \
+            --description "Automated: the weekly update failed" --force
+          open_issue=$(gh issue list --label pipeline-failure --state open --json number --jq '.[0].number')
+          if [ -n "$open_issue" ]; then
+            gh issue comment "$open_issue" --body "$body"
+          else
+            gh issue create --title "Weekly update: site deploy failed" --label pipeline-failure --body "$body"
+          fi
