@@ -26,6 +26,17 @@ list_outbreak_resources <- function(package = OUTBREAK_PACKAGE) {
     dplyr::arrange(.data$year)
 }
 
+#' When the City last refreshed the package (CKAN `last_refreshed`, UTC).
+#'
+#' Read from the CKAN API directly because opendatatoronto::show_package()
+#' fails on this package's metadata (v0.1.6).
+get_package_last_refreshed <- function(package = OUTBREAK_PACKAGE) {
+  url <- sprintf("%s/api/3/action/package_show?id=%s", CKAN_BASE_URL, package)
+  meta <- jsonlite::fromJSON(url)
+  if (!isTRUE(meta$success)) stop("CKAN package_show failed for ", package, call. = FALSE)
+  as.POSIXct(meta$result$last_refreshed, tz = "UTC", format = "%Y-%m-%d %H:%M:%OS")
+}
+
 #' Download one datastore resource as CSV, unchanged, to `dest`.
 download_resource_csv <- function(resource_id, dest) {
   url <- sprintf("%s/datastore/dump/%s", CKAN_BASE_URL, resource_id)
@@ -42,6 +53,7 @@ download_all_raw <- function(dir = "data/raw", years = NULL) {
   resources <- list_outbreak_resources()
   if (!is.null(years)) resources <- dplyr::filter(resources, .data$year %in% years)
 
+  last_refreshed <- format(get_package_last_refreshed(), "%Y-%m-%dT%H:%M:%SZ")
   downloaded_at <- format(Sys.time(), "%Y-%m-%dT%H:%M:%S%z")
   manifest <- purrr::pmap_dfr(resources, function(name, id, year) {
     dest <- file.path(dir, paste0(name, ".csv"))
@@ -54,7 +66,8 @@ download_all_raw <- function(dir = "data/raw", years = NULL) {
       file          = basename(dest),
       bytes         = file.size(dest),
       md5           = unname(tools::md5sum(dest)),
-      downloaded_at = downloaded_at
+      downloaded_at = downloaded_at,
+      package_last_refreshed = last_refreshed
     )
   })
   readr::write_csv(manifest, file.path(dir, "manifest.csv"))

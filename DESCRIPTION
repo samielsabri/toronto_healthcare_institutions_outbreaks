@@ -13,6 +13,11 @@ Imports:
     stringr,
     lubridate,
     knitr,
-    ggplot2
+    ggplot2,
+    nanoparquet,
+    jsonlite,
+    curl,
+    tibble,
+    rlang
 Suggests:
     testthat
