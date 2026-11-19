@@ -1,0 +1,158 @@
+addr_norm,addr_canonical,reason
+14 ST MATTHEWS RD,1 BRIDGEPOINT DR,same campus (Bridgepoint; old and new building addresses)
+1 OVERLEA DR,1 OVERLAND DR,"spelling, street-type or direction variant"
+1 KENTON DR,1-3 KENTON DR,"multi-building site (one facility, reported under several street numbers)"
+1 KENTON PL,1-3 KENTON DR,"multi-building site (one facility, reported under several street numbers)"
+1-3 KENTON RD,1-3 KENTON DR,"multi-building site (one facility, reported under several street numbers)"
+10 WILLIAM MORGAN DR,10-14 WILLIAM MORGAN DR,"multi-building site (one facility, reported under several street numbers)"
+10-14 WILLIAN MORGAN DR,10-14 WILLIAM MORGAN DR,"multi-building site (one facility, reported under several street numbers)"
+14 WILLAIM MORGAN DR,10-14 WILLIAM MORGAN DR,"multi-building site (one facility, reported under several street numbers)"
+14 WILLIAM MORGAN DR,10-14 WILLIAM MORGAN DR,"multi-building site (one facility, reported under several street numbers)"
+1001 QUEEN AVE W,1001 QUEEN ST W,"spelling, street-type or direction variant"
+80 WORKMAN WAY,1001 QUEEN ST W,same campus (CAMH Queen St site)
+102 CRAIGLEE AVE,102 CRAIGLEE DR,"spelling, street-type or direction variant"
+11 AVE RD,111 AVE RD,street-number typo (same facility name)
+122 TYNDALE ST,122 TYNDALL AVE,"spelling, street-type or direction variant"
+129 SPADINA RD,123 SPADINA RD,street-number typo (same facility name)
+1238 QUEEN ST,1238 QUEEN ST E,"spelling, street-type or direction variant"
+140 SHERWAY AVE,140 SHERWAY DR,"spelling, street-type or direction variant"
+15 BARBERY PL,15 BARBERRY PL,"spelling, street-type or direction variant"
+18 SUMMERLAND TERR,15 SUMMERLAND TERR,street-number typo (same facility name)
+155 DUNN AVE,150 DUNN AVE,street-number typo (same facility name)
+155 EMMETT AVE,150 EMMETT AVE,street-number typo (same facility name)
+160 WELLESLEY ST,160 WELLESLEY ST E,"spelling, street-type or direction variant"
+1800 O CONNOR,1800 O CONNOR DR,"spelling, street-type or direction variant"
+1860 LAWRENCE AVE,1860 LAWRENCE AVE E,"spelling, street-type or direction variant"
+187 WYNFORD AVE,187 WYNFORD DR,"spelling, street-type or direction variant"
+19 REANS DR,19 REAN DR,"spelling, street-type or direction variant"
+1925 REAN DR,19 REAN DR,street-number typo (same facility name)
+1925 STEEL AVE E,1925 STEELES AVE E,"spelling, street-type or direction variant"
+1925 STEELES AVE,1925 STEELES AVE E,"spelling, street-type or direction variant"
+2111 BUCHAN CRT,2 BUCHAN CRT,street-number typo (same facility name)
+22 O CONNOR DR,2 O CONNOR DR,street-number typo (same facility name)
+200 DAWES RD E,200 DAWES RD,"spelling, street-type or direction variant"
+2005 LAWRENCE AVE,2005 LAWRENCE AVE W,"spelling, street-type or direction variant"
+2005 LAWRENCE AVE E,2005 LAWRENCE AVE W,"spelling, street-type or direction variant"
+2025 FINCH AVE W,2045 FINCH AVE W,street-number typo (same facility name)
+2045 FINCH AVE,2045 FINCH AVE W,"spelling, street-type or direction variant"
+205 CUMMER,205 CUMMER AVE,"spelling, street-type or direction variant"
+305 CUMMER AVE,205 CUMMER AVE,street-number typo (same facility name)
+2070 BAYVIEW AVE,2075 BAYVIEW AVE,street-number typo (same facility name)
+2075 BAYVEW AVE,2075 BAYVIEW AVE,"spelling, street-type or direction variant"
+2100 BLOOR ST,2100 BLOOR ST W,"spelling, street-type or direction variant"
+211 FINCH AVE W,2111 FINCH AVE W,street-number typo (same facility name)
+2111 FINCH AVE,2111 FINCH AVE W,"spelling, street-type or direction variant"
+2111 FINCH W,2111 FINCH AVE W,"spelling, street-type or direction variant"
+215 TYRELL AVE,215 TYRREL AVE,"spelling, street-type or direction variant"
+215 TYRRELL AVE,215 TYRREL AVE,"spelling, street-type or direction variant"
+22 NORFINCH AVE,22 NORFINCH DR,"spelling, street-type or direction variant"
+2223 KIPLING AVE,2233 KIPLING AVE,street-number typo (same facility name)
+225 LAWRENCE AVE W,2245 LAWRENCE AVE W,street-number typo (same facility name)
+311 MCNICOLL AVE,2311 MCNICOLL AVE,street-number typo (same facility name)
+2239 DUFFERIN ST,2339 DUFFERIN ST,street-number typo (same facility name)
+2241 LAWRENCE AVE E,2411 LAWRENCE AVE E,street-number typo (same facility name)
+2411 LAWRENCE AVE,2411 LAWRENCE AVE E,"spelling, street-type or direction variant"
+25 BRUINSWICK AVE,25 BRUNSWICK AVE,"spelling, street-type or direction variant"
+25 BRUNSWICK,25 BRUNSWICK AVE,"spelling, street-type or direction variant"
+260 BAYVIEW AVE,2601 BAYVIEW AVE,street-number typo (same facility name)
+262 ST CLAIR AVE E,262 ST CLAIR AVE W,"spelling, street-type or direction variant"
+65 QUEENS DR,265 QUEENS DR,street-number typo (same facility name)
+2701 ST CLAIR AVE,2701 ST CLAIR AVE E,"spelling, street-type or direction variant"
+2701 ST CLAIRE AVE E,2701 ST CLAIR AVE E,"spelling, street-type or direction variant"
+285 CUMMER AVE E,285 CUMMER AVE,"spelling, street-type or direction variant"
+2881 EGLINTON AVE,2881 EGLINTON AVE E,"spelling, street-type or direction variant"
+2881 EGLINTON E AVE,2881 EGLINTON AVE E,"spelling, street-type or direction variant"
+2920 LAWRENCE AVE W,2920 LAWRENCE AVE E,"spelling, street-type or direction variant"
+2920 LAWRENCE E AVE,2920 LAWRENCE AVE E,"spelling, street-type or direction variant"
+30 THE QUEENSWAY QUAY,30 THE QUEENSWAY,"spelling, street-type or direction variant"
+305 BILLIOL ST,305 BALLIOL ST,"spelling, street-type or direction variant"
+3030 LAWRENCE AVE E,3050 LAWRENCE AVE E,same hospital (Scarborough General); units recorded under 3030
+3050 LAWERENCE AVE E,3050 LAWRENCE AVE E,"spelling, street-type or direction variant"
+303 FINCH AVE E,306 FINCH AVE E,street-number typo (same facility name)
+306 FINCH AVE,306 FINCH AVE E,"spelling, street-type or direction variant"
+3197 LAKE SHORE BLVD W,3197 LAKESHORE BLVD W,"spelling, street-type or direction variant"
+3197 LAKESHORE BLVD,3197 LAKESHORE BLVD W,"spelling, street-type or direction variant"
+3275 ST CLAIR AVE E,3276 ST CLAIR AVE E,street-number typo (same facility name)
+3276 ST CLAIR AVE,3276 ST CLAIR AVE E,"spelling, street-type or direction variant"
+3278 ST CLAIR AVE E,3276 ST CLAIR AVE E,street-number typo (same facility name)
+76 ST CLAIR AVE E,3276 ST CLAIR AVE E,street-number typo (same facility name)
+340 MCCOWAN RD E,340 MCCOWAN RD,"spelling, street-type or direction variant"
+340 MCCOWEN RD,340 MCCOWAN RD,"spelling, street-type or direction variant"
+345 SHERBOURNE PL,345 SHERBOURNE ST,"spelling, street-type or direction variant"
+35 ELM GROVE RD,35 ELM GROVE AVE,"spelling, street-type or direction variant"
+2560 BATHURST ST,3560 BATHURST ST,street-number typo (same facility name)
+3593 KEELE ST,3595 KEELE ST,street-number typo (same facility name)
+5758 SHEPPARD AVE E,3758 SHEPPARD AVE E,street-number typo (same facility name)
+3760 SHEPHERD AVE E,3760 SHEPPARD AVE E,"spelling, street-type or direction variant"
+3760 SHEPPARD AVE,3760 SHEPPARD AVE E,"spelling, street-type or direction variant"
+3830 LAWREN AVE E,3830 LAWRENCE AVE E,"spelling, street-type or direction variant"
+399 BATHRUST ST,399 BATHURST ST,"spelling, street-type or direction variant"
+4 TEDDINGTON AVE,4 TEDDINGTON PARK AVE,"spelling, street-type or direction variant"
+40 BELL ESTATES RD,40 BELL ESTATE RD,"spelling, street-type or direction variant"
+40 PLAYFIAR AVE,40 PLAYFAIR AVE,"spelling, street-type or direction variant"
+50 PLAYFAIR AVE,40 PLAYFAIR AVE,street-number typo (same facility name)
+2001 LESLIE ST,4001 LESLIE ST,street-number typo (same facility name)
+4001 LESLIE MALL,4001 LESLIE ST,"spelling, street-type or direction variant"
+4005 EGLINTON AVE,4005 EGLINTON AVE W,"spelling, street-type or direction variant"
+4500 EGLINTON AVE W,4005 EGLINTON AVE W,street-number typo (same facility name)
+4180 DUNDAS ST,4180 DUNDAS ST W,"spelling, street-type or direction variant"
+420 E MALL,420 THE E MALL,"spelling, street-type or direction variant"
+420 THE W MALL,420 THE E MALL,"spelling, street-type or direction variant"
+4251 DUNDAS ST ST W,4251 DUNDAS ST W,"spelling, street-type or direction variant"
+429 WALMER RD E,429 WALMER RD,"spelling, street-type or direction variant"
+43 WELLESLEY ST,43 WELLESLEY ST E,"spelling, street-type or direction variant"
+475 RUSTIC RD,450 RUSTIC RD,street-number typo (same facility name)
+395 THE W MALL,495 THE W MALL,street-number typo (same facility name)
+45 RESURRECTION RD,5 RESURRECTION RD,street-number typo (same facility name)
+5 RESSURECTION RD,5 RESURRECTION RD,"spelling, street-type or direction variant"
+5 RESURECTION RD,5 RESURRECTION RD,"spelling, street-type or direction variant"
+5 RESURRECTION DR,5 RESURRECTION RD,"spelling, street-type or direction variant"
+5 RESURRECTION PL,5 RESURRECTION RD,"spelling, street-type or direction variant"
+8 RESSURECTION RD,5 RESURRECTION RD,street-number typo (same facility name)
+537 FINCH AVE,537 FINCH AVE W,"spelling, street-type or direction variant"
+45 FOXBAR AVE,54 FOXBAR RD,street-number typo (same facility name)
+54 FOXBAR AVE,54 FOXBAR RD,"spelling, street-type or direction variant"
+514 FINCH AVE W,541 FINCH AVE W,street-number typo (same facility name)
+521 FINCH AVE W,541 FINCH AVE W,street-number typo (same facility name)
+541 FINCH AVE,541 FINCH AVE W,"spelling, street-type or direction variant"
+541 FINCH AVE E,541 FINCH AVE W,"spelling, street-type or direction variant"
+55 BELMONT,55 BELMONT ST,"spelling, street-type or direction variant"
+551 COLLINS RD,551 CONLINS RD,"spelling, street-type or direction variant"
+555 UNIVERSITY AVE E,555 UNIVERSITY AVE,"spelling, street-type or direction variant"
+55 LAWSON RD,59 LAWSON RD,street-number typo (same facility name)
+59 LAWSON RD E,59 LAWSON RD,"spelling, street-type or direction variant"
+5935 LAWSON RD,59 LAWSON RD,street-number typo (same facility name)
+5395 BATHURST ST,5935 BATHURST ST,street-number typo (same facility name)
+5935 BATHRUST ST,5935 BATHURST ST,"spelling, street-type or direction variant"
+5935 BATHURST ST ST,5935 BATHURST ST,"spelling, street-type or direction variant"
+60 GUILDOWOOD PKWY,60 GUILDWOOD PKWY,"spelling, street-type or direction variant"
+66 GUILDWOOD AVE,60 GUILDWOOD PKWY,street-number typo (same facility name)
+60 SCOFFIELD DR,60 SCOTTFIELD DR,"spelling, street-type or direction variant"
+600 UNIVERSITY AVE AVE,600 UNIVERSITY AVE,"spelling, street-type or direction variant"
+61 FAIRFOX CRES,61 FAIRFAX CRES,"spelling, street-type or direction variant"
+610 UNIVERSTIY AVE,610 UNIVERSITY AVE,"spelling, street-type or direction variant"
+65 LIVINGSTONE RD,65 LIVINGSTON RD,"spelling, street-type or direction variant"
+66 RONCESSVALLES AVE,66 RONCESVALLES AVE,"spelling, street-type or direction variant"
+66 RONCESVALES AVE,66 RONCESVALLES AVE,"spelling, street-type or direction variant"
+685 FINCH AVE,685 FINCH AVE W,"spelling, street-type or direction variant"
+140 HUMBERLINE DR,70 HUMBERLINE DR,street-number typo (same facility name)
+70 HUMBERLINE DR W,70 HUMBERLINE DR,"spelling, street-type or direction variant"
+71 HUMBERLINE DR,70 HUMBERLINE DR,street-number typo (same facility name)
+700 MOUNT PLEASANT RD,700-720 MOUNT PLEASANT RD,"multi-building site (one facility, reported under several street numbers)"
+720 MOUNT PLEASANT RD,700-720 MOUNT PLEASANT RD,"multi-building site (one facility, reported under several street numbers)"
+720 MT PLEASANT RD,700-720 MOUNT PLEASANT RD,"multi-building site (one facility, reported under several street numbers)"
+707 ELLESMERE RD,705-707 ELLESMERE RD,"multi-building site (one facility, reported under several street numbers)"
+718 SHEPPARD AVE,718 SHEPPARD AVE W,"spelling, street-type or direction variant"
+8 DONWAY PL,8 THE DONWAY E,"spelling, street-type or direction variant"
+8 DONWAY PL E,8 THE DONWAY E,"spelling, street-type or direction variant"
+8 THE DON WAY E,8 THE DONWAY E,"spelling, street-type or direction variant"
+8 THE DONWAY,8 THE DONWAY E,"spelling, street-type or direction variant"
+82 BUTTOWOOD AVE,82 BUTTONWOOD AVE,"spelling, street-type or direction variant"
+866 SHEPPARD AVE,866 SHEPPARD AVE W,"spelling, street-type or direction variant"
+886 SHEPPARD AVE E,866 SHEPPARD AVE W,street-number typo (same facility name)
+880 LAWRENCE AVE,880 LAWRENCE AVE E,"spelling, street-type or direction variant"
+9 NIELSON RD,9 NEILSON RD,"spelling, street-type or direction variant"
+92 ISLAND RD E,92 ISLAND RD,"spelling, street-type or direction variant"
+390 MILLWOOD RD,921 MILLWOOD RD,same facility name (The Millwood); street number uncertain
+991 MILLWOOD RD,921 MILLWOOD RD,same facility name (The Millwood); street number uncertain
+95 HUMBER BLVD E,95 HUMBER COLLEGE BLVD,"spelling, street-type or direction variant"
