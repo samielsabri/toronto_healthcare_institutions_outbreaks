@@ -1,0 +1,70 @@
+type,agent1,n
+Respiratory,COVID-19,3367
+Respiratory,Influenza A (Not subtyped),441
+Respiratory,Unable to identify,416
+Respiratory,Rhinovirus,380
+Respiratory,Respiratory syncytial virus,350
+Respiratory,Influenza A (H3),313
+Enteric,Unable to identify,249
+Respiratory,Coronavirus*,214
+Respiratory,Metapneumovirus,199
+Respiratory,Parainfluenza,184
+Enteric,Norovirus-like,158
+Respiratory,Influenza B,128
+Enteric,Norovirus,120
+Respiratory,Enterovirus/ Rhinovirus,110
+Respiratory,Enterovirus/Rhinovirus,75
+Respiratory,Influenza A ((H1N1)pdm09),68
+Respiratory,Influenza A (H3N2),56
+Respiratory,Influenza A (H1N1),47
+Respiratory,Coronavirus,41
+Respiratory,Parainfluenza type 3,38
+Respiratory,Influenza A (H1),23
+Enteric,Clostridium difficile,19
+Respiratory,Enterovirus,15
+Respiratory,Parainfluenza PIV III,6
+Respiratory,Parainfluenza type 1,5
+Respiratory,Parainfluenza type 4,5
+Respiratory,Streptococcus pyogenes,4
+Enteric,Rotavirus,3
+Other,CPE - Colonization,3
+Respiratory,Parainfluenza type 2,3
+Other,(CPE) - Colonization (KPC),2
+Other,(CPE) - Infection - (KPC),2
+Other,CPE Unspecified (VIM),2
+Other,Streptococcus pyogenes,2
+Respiratory,Parainfluenza virus,2
+Respiratory,Pending,2
+Enteric,Campylobacter jejuni,1
+Enteric,Campylobacter unspecified,1
+Enteric,Clostridium difficile (Toxin A & B),1
+Enteric,Clostridium difficile (Toxin B),1
+Enteric,Salmonella Kentucky,1
+Enteric,Shigella flexneri (Group B),1
+Other,(CPE) - Infection - (VIM),1
+Other,(CPE) - Unspecified (NDM),1
+Other,CPE,1
+Other,CPE Citrobacter freundii (KPC),1
+Other,CPE Colonization CPE Other (KPC),1
+Other,CPE Colonization CPE Other (VIM),1
+Other,CPE Colonization Citrobacter freundii (KPC),1
+Other,CPE Colonization E. coli (NDM/OXA-48),1
+Other,CPE Colonization Enterobacter cloacae (VIM),1
+Other,CPE Colonization Klebsiella oxytoca (NDM),1
+Other,CPE Colonization Klebsiella pneumoniae (KPC),1
+Other,CPE Colonization Klebsiella pneumoniae (NDM),1
+Other,CPE Enterobacter cloacae (KPC),1
+Other,CPE Enterobacter unspecified (NDM),1
+Other,CPE Escherichia coli (OXA-48),1
+Other,CPE Unspecified (KPC),1
+Other,CPE Unspecified (NDM),1
+Other,Group B Streptococcal disease (neonatal),1
+Other,Unable to identify,1
+Respiratory,Adenovirus,1
+Respiratory,"Influenza A (H3), Parainfluenza type 1",1
+Respiratory,"Influenza A (H3), Parainfluenza type 2",1
+Respiratory,Influenza A and B,1
+Respiratory,Legionella pneumophila,1
+Respiratory,Parainfluenza Type 1,1
+Respiratory,Parainfluenza UNSPECIFIED,1
+Respiratory,"Rhinovirus, Coronavirus",1
