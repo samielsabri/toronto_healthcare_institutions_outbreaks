@@ -2,7 +2,6 @@
 .Rhistory
 .RData
 .Rproj.user/
-*.Rproj
 
 # renv: library is restored from renv.lock, not committed
 renv/library/
