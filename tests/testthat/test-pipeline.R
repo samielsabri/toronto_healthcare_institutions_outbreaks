@@ -76,3 +76,12 @@ test_that("agent counts match the raw labels", {
   # Shelter is kept but out of scope (decision D1)
   expect_equal(sum(!clean$in_scope), sum(clean$setting_raw == "Shelter"))
 })
+
+test_that("decision D8: reassigned outbreaks keep their own setting", {
+  r <- clean[clean$flag_facility_setting_reassigned, ]
+  expect_true(nrow(r) > 0)
+  expect_true(all(r$setting_group != r$facility_setting_group))
+  expect_true(all(endsWith(r$facility_id, paste0("--", slugify(r$facility_setting_group)))))
+  # every reassigned outbreak lands on a facility that exists without it
+  expect_true(all(r$facility_id %in% clean$facility_id[!clean$flag_facility_setting_reassigned]))
+})

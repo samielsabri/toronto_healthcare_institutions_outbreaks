@@ -124,9 +124,10 @@ clean_outbreaks <- function(raw_list, as_of, agent_lookup, address_crosswalk) {
 summarise_facilities <- function(clean) {
   clean |>
     dplyr::group_by(.data$facility_id, .data$facility_name, .data$facility_address,
-                    .data$setting_group) |>
+                    setting_group = .data$facility_setting_group) |>
     dplyr::summarise(
       n_outbreaks = dplyr::n(),
+      n_setting_reassigned = sum(.data$flag_facility_setting_reassigned),
       n_units = dplyr::n_distinct(.data$unit_id),
       n_address_spellings = dplyr::n_distinct(.data$institution_address),
       first_onset = min(.data$began),
