@@ -1,0 +1,102 @@
+raw_label,agent_groups,note
+"(CPE) - Colonization (KPC)",other,CPE
+"(CPE) - Infection - (KPC)",other,CPE
+"(CPE) - Infection - (VIM)",other,CPE
+"(CPE) - Unspecified (NDM)",other,CPE
+"Adenovirus",other,
+"Adenovirus, Metapneumovirus",other|hmpv,two agents in one field
+"COVID-19",covid19,
+"CPE",other,CPE
+"CPE - Colonization",other,CPE
+"CPE - Infection",other,CPE
+"CPE Citrobacter freundii (KPC)",other,CPE
+"CPE Colonization CPE Other (KPC)",other,CPE
+"CPE Colonization CPE Other (VIM)",other,CPE
+"CPE Colonization Citrobacter freundii (KPC)",other,CPE
+"CPE Colonization E. coli (NDM), CPE Infection E.coli (NDM/OXA-48), CPE Infection E. coli (OXA-48), VRE",other,CPE + VRE
+"CPE Colonization E. coli (NDM/OXA-48)",other,CPE
+"CPE Colonization Enterobacter cloacae (VIM)",other,CPE
+"CPE Colonization Klebsiella oxytoca (NDM)",other,CPE
+"CPE Colonization Klebsiella pneumoniae (KPC)",other,CPE
+"CPE Colonization Klebsiella pneumoniae (NDM)",other,CPE
+"CPE Enterobacter cloacae (KPC)",other,CPE
+"CPE Enterobacter unspecified (NDM)",other,CPE
+"CPE Escherichia coli (NDM), CPE Escherichia coli (OXA-48), VRE",other,CPE + VRE
+"CPE Escherichia coli (OXA-48)",other,CPE
+"CPE Infection E.coli (NDM), VRE",other,CPE + VRE
+"CPE Infection Klebsiella pneumoniae (NDM), CPE Colonization E.coli (NDM)",other,CPE
+"CPE Other (KPC)",other,CPE
+"CPE Unspecified (KPC)",other,CPE
+"CPE Unspecified (NDM)",other,CPE
+"CPE Unspecified (VIM)",other,CPE
+"Campylobacter jejuni",other,
+"Campylobacter unspecified",other,
+"Clostridium difficile",other,
+"Clostridium difficile (Toxin A & B)",other,
+"Clostridium difficile (Toxin B)",other,
+"Coronavirus",seasonal_cov,seasonal coronavirus (label used 2016-2019)
+"Coronavirus*",seasonal_cov,seasonal coronavirus (label used 2020 on; asterisk distinguishes from COVID-19)
+"Coronavirus*, Enterovirus/ Rhinovirus",seasonal_cov|rhino_entero,two agents in one field
+"Coronavirus*, Rhinovirus",seasonal_cov|rhino_entero,two agents in one field
+"Coronavirus, Enterovirus",seasonal_cov|rhino_entero,two agents in one field
+"Coronavirus, Respiratory syncytial virus",seasonal_cov|rsv,two agents in one field
+"Coronavirus, Rhinovirus",seasonal_cov|rhino_entero,two agents in one field
+"Enterovirus",rhino_entero,
+"Enterovirus, Metapneumovirus",rhino_entero|hmpv,two agents in one field
+"Enterovirus, Rhinovirus",rhino_entero,two agents in one field (same group)
+"Enterovirus/ Rhinovirus",rhino_entero,label used 2024 on
+"Enterovirus/Rhinovirus",rhino_entero,label used to 2023
+"Group B Streptococcal disease (neonatal)",other,
+"Influenza A ((H1N1)pdm09)",influenza_a,
+"Influenza A ((H1N1)pdm09), Influenza A (H3)",influenza_a,two subtypes (same group)
+"Influenza A (H1)",influenza_a,
+"Influenza A (H1N1)",influenza_a,
+"Influenza A (H1N1), Respiratory syncytial virus",influenza_a|rsv,two agents in one field
+"Influenza A (H3)",influenza_a,
+"Influenza A (H3), Parainfluenza type 1",influenza_a|parainfluenza,two agents in one field
+"Influenza A (H3), Parainfluenza type 2",influenza_a|parainfluenza,two agents in one field
+"Influenza A (H3N2)",influenza_a,
+"Influenza A (Not subtyped)",influenza_a,
+"Influenza A and B",influenza_a|influenza_b,two agents in one field
+"Influenza B",influenza_b,
+"Influenza B, Coronavirus*",influenza_b|seasonal_cov,two agents in one field
+"Influenza B, Metapneumovirus",influenza_b|hmpv,two agents in one field
+"Influenza B,Respiratory syncytial virus",influenza_b|rsv,two agents in one field
+"Legionella pneumophila",other,
+"Metapneumovirus",hmpv,
+"Metapneumovirus, Coronavirus",hmpv|seasonal_cov,two agents in one field
+"Metapneumovirus, Coronavirus*",hmpv|seasonal_cov,two agents in one field
+"Metapneumovirus, Parainfluenza",hmpv|parainfluenza,two agents in one field
+"Metapneumovirus, RSV",hmpv|rsv,two agents in one field
+"Metapneumovirus, Respiratory syncytial virus",hmpv|rsv,two agents in one field
+"Metapneumovirus, Rhinovirus",hmpv|rhino_entero,two agents in one field
+"None",,placeholder for 'no second agent' (2023 file only)
+"Norovirus",norovirus,label used 2023 on
+"Norovirus-like",norovirus,label used to 2022; merged with Norovirus (decision D2)
+"Parainfluenza",parainfluenza,
+"Parainfluenza PIV III",parainfluenza,
+"Parainfluenza Type 1",parainfluenza,
+"Parainfluenza UNSPECIFIED",parainfluenza,
+"Parainfluenza type 1",parainfluenza,
+"Parainfluenza type 2",parainfluenza,
+"Parainfluenza type 2 & type 4",parainfluenza,two types (same group)
+"Parainfluenza type 3",parainfluenza,
+"Parainfluenza type 3,  Respiratory syncytial virus",parainfluenza|rsv,two agents in one field
+"Parainfluenza type 3, RSV",parainfluenza|rsv,two agents in one field
+"Parainfluenza type 4",parainfluenza,
+"Parainfluenza virus",parainfluenza,
+"Parainfluenza, Coronavirus*",parainfluenza|seasonal_cov,two agents in one field
+"Parainfluenza, Metapneumovirus",parainfluenza|hmpv,two agents in one field
+"Parainfluenza, Rhinovirus",parainfluenza|rhino_entero,two agents in one field
+"Pending",unknown,agent not yet identified
+"Respiratory syncytial virus",rsv,
+"Respiratory syncytial virus/ C",rsv,truncated in source; second agent not recoverable
+"Rhinovirus",rhino_entero,
+"Rhinovirus, Coronavirus",rhino_entero|seasonal_cov,two agents in one field
+"Rhinovirus, Respiratory syncytial virus",rhino_entero|rsv,two agents in one field
+"Rhinovirus/Respiratory syncytial virus",rhino_entero|rsv,two agents in one field
+"Rotavirus",other,
+"Salmonella Kentucky",other,
+"Shigella flexneri (Group B)",other,
+"Streptococcus pyogenes",other,
+"Unable to identify",unknown,
