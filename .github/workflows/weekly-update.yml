@@ -75,6 +75,7 @@ jobs:
 
       - name: Commit raw data and snapshot
         run: |
+          {
           # If no data file changed, drop the manifest's new download time so
           # unchanged weeks do not produce a commit.
           # (git status, not git diff, so a new file such as next year's is seen)
@@ -85,10 +86,13 @@ jobs:
           if ! git diff --cached --quiet; then
             refresh=$(tail -n 1 data/raw/manifest.csv | awk -F, '{print $NF}')
             git commit -m "Data: City refresh ${refresh}"
-            git push
+            # main may have moved during the run (e.g. a code push): rebase first
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
           else
-            echo "No new data since the last run." | tee -a pipeline.log
+            echo "No new data since the last run."
           fi
+          } 2>&1 | tee -a pipeline.log
 
       - name: Check inputs (schema and labels)
         run: Rscript scripts/check_inputs.R 2>&1 | tee -a pipeline.log
@@ -104,11 +108,14 @@ jobs:
 
       - name: Commit cleaned data
         run: |
+          {
           git add data/clean reports/tables
           if ! git diff --cached --quiet; then
             git commit -m "Build: cleaned data for City refresh $(tail -n 1 data/raw/manifest.csv | awk -F, '{print $NF}')"
-            git push
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
+          } 2>&1 | tee -a pipeline.log
 
       - uses: actions/upload-pages-artifact@v3
         with:
