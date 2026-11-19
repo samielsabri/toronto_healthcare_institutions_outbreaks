@@ -1,0 +1,20 @@
+file_year,name,setting,type,agent1,began,over,duration_days
+2016,Seaton House,Shelter,Respiratory,Streptococcus pyogenes,2016-03-17,2017-10-16,578
+2018,St. Joseph's Health Centre,Hospital-Acute Care,Enteric,Clostridium difficile (Toxin A & B),2018-11-29,2019-04-12,134
+2017,Sunnybrook Health Sciences Centre - CrCU,Hospital-Acute Care,Enteric,Clostridium difficile,2017-12-20,2018-05-01,132
+2020,Shepherd Lodge Nursing Home - 4th & 6th Fl,LTCH,Respiratory,COVID-19,2020-10-23,2021-02-26,126
+2020,Villa Colombo,LTCH,Respiratory,COVID-19,2020-04-21,2020-08-07,108
+2020,Deerwood Creek Care Community,LTCH,Respiratory,COVID-19,2020-11-03,2021-02-17,106
+2020,Midland Gardens Care Community,LTCH,Respiratory,COVID-19,2020-04-06,2020-07-17,102
+2020,Midland Gardens Care Community - 2nd Fl,LTCH,Respiratory,COVID-19,2020-11-19,2021-02-26,99
+2020,Eatonville Care Centre,LTCH,Respiratory,COVID-19,2020-03-29,2020-07-06,99
+2020,Weston Terrace Care Community,LTCH,Respiratory,COVID-19,2020-04-06,2020-07-12,97
+2020,Village Of Humber Heights Ltc,LTCH,Respiratory,COVID-19,2020-03-19,2020-06-24,97
+2022,"Fudger House - 1W, 1E, 2W, 2E, 3W & 3E",LTCH,Respiratory,COVID-19,2022-05-19,2022-08-24,97
+2020,Fieldstone Commons Care Community - 1A,LTCH,Respiratory,COVID-19,2020-10-15,2021-01-19,96
+2020,Baycrest Apotex Centre - Jewish Home for the Aged,LTCH,Respiratory,COVID-19,2020-12-18,2021-03-23,95
+2020,Ukrainian Canadian Care Centre,LTCH,Respiratory,COVID-19,2020-04-07,2020-07-11,95
+2022,Yee Hong Centre - Scarborough Finch - 3rd Fl (North) & 6th Fl (South & North),LTCH,Respiratory,COVID-19,2022-09-08,2022-12-12,95
+2023,Sinai Health System - Mount Sinai Hospital - NICU,Hospital-Acute Care,Other,Group B Streptococcal disease (neonatal),2023-11-02,2024-02-05,95
+2016,Cummer Lodge - 2 North,LTCH,Respiratory,Streptococcus pyogenes,2016-03-14,2016-06-15,93
+2025,Nisbet Lodge - 7th Fl,LTCH,Respiratory,COVID-19,2025-12-12,2025-12-12,0

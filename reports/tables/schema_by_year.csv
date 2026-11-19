@@ -1,0 +1,111 @@
+year,position,column,guessed_type
+2016,1,_id,integer
+2016,2,Institution Name,character
+2016,3,Institution Address,character
+2016,4,Outbreak Setting,character
+2016,5,Type of Outbreak,character
+2016,6,Causative Agent-1,character
+2016,7,Causative Agent-2,character
+2016,8,Date Outbreak Began,Date
+2016,9,Date Declared Over,Date
+2016,10,Active,character
+2017,1,_id,integer
+2017,2,Institution Name,character
+2017,3,Institution Address,character
+2017,4,Outbreak Setting,character
+2017,5,Type of Outbreak,character
+2017,6,Causative Agent-1,character
+2017,7,Causative Agent-2,character
+2017,8,Date Outbreak Began,Date
+2017,9,Date Declared Over,Date
+2017,10,Active,character
+2018,1,_id,integer
+2018,2,Institution Name,character
+2018,3,Institution Address,character
+2018,4,Outbreak Setting,character
+2018,5,Type of Outbreak,character
+2018,6,Causative Agent-1,character
+2018,7,Causative Agent-2,character
+2018,8,Date Outbreak Began,Date
+2018,9,Date Declared Over,Date
+2018,10,Active,character
+2019,1,_id,integer
+2019,2,Institution Name,character
+2019,3,Institution Address,character
+2019,4,Outbreak Setting,character
+2019,5,Type of Outbreak,character
+2019,6,Causative Agent-1,character
+2019,7,Causative Agent-2,character
+2019,8,Date Outbreak Began,Date
+2019,9,Date Declared Over,Date
+2019,10,Active,character
+2020,1,_id,integer
+2020,2,Institution Name,character
+2020,3,Institution Address,character
+2020,4,Outbreak Setting,character
+2020,5,Type of Outbreak,character
+2020,6,Causative Agent - 1,character
+2020,7,Causative Agent - 2,character
+2020,8,Date Outbreak Began,Date
+2020,9,Date Declared Over,Date
+2020,10,Active,character
+2021,1,_id,integer
+2021,2,Institution Name,character
+2021,3,Institution Address,character
+2021,4,Outbreak Setting,character
+2021,5,Type of Outbreak,character
+2021,6,Causative Agent-1,character
+2021,7,Causative Agent-2,character
+2021,8,Date Outbreak Began,Date
+2021,9,Date Declared Over,Date
+2021,10,Active,character
+2022,1,_id,integer
+2022,2,Institution Name,character
+2022,3,Institution Address,character
+2022,4,Outbreak Setting,character
+2022,5,Type of Outbreak,character
+2022,6,Causative Agent-1,character
+2022,7,Causative Agent-2,character
+2022,8,Date Outbreak Began,Date
+2022,9,Date Declared Over,Date
+2022,10,Active,character
+2023,1,_id,integer
+2023,2,Institution Name,character
+2023,3,Institution Address,character
+2023,4,Outbreak Setting,character
+2023,5,Type of Outbreak,character
+2023,6,Causative Agent-1,character
+2023,7,Causative Agent-2,character
+2023,8,Date Outbreak Began,Date
+2023,9,Date Declared Over,Date
+2023,10,Active,character
+2024,1,_id,integer
+2024,2,Institution Name,character
+2024,3,Institution Address,character
+2024,4,Outbreak Setting,character
+2024,5,Type of Outbreak,character
+2024,6,Causative Agent-1,character
+2024,7,Causative Agent-2,character
+2024,8,Date Outbreak Began,Date
+2024,9,Date Declared Over,Date
+2024,10,Active,character
+2025,1,_id,integer
+2025,2,Institution Name,character
+2025,3,Institution Address,character
+2025,4,Outbreak Setting,character
+2025,5,Type of Outbreak,character
+2025,6,Causative Agent-1,character
+2025,7,Causative Agent-2,character
+2025,8,Date Outbreak Began,Date
+2025,9,Date Declared Over,Date
+2025,10,Active,character
+2026,1,_id,integer
+2026,2,Institution Name,character
+2026,3,Institution Address,character
+2026,4,Outbreak Setting,character
+2026,5,Type of Outbreak,character
+2026,6,Causative Agent-1,character
+2026,7,Causative Agent-2,character
+2026,8,Date Outbreak Began,Date
+2026,9,Date Declared Over,Date
+2026,10,Active,character

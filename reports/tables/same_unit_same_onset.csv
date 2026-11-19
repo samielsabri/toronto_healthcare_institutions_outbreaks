@@ -1,0 +1,51 @@
+file_year,name,setting,type,agent1,agent2,began,over
+2019,Altamont Care Community,LTCH,Enteric,Unable to identify,,2019-03-12,2019-03-22
+2019,Altamont Care Community,LTCH,Respiratory,Influenza A (H3),,2019-03-12,2019-03-26
+2025,Baycrest Hospital - 7E,Hospital-Chronic Care,Respiratory,COVID-19,,2025-01-27,2025-02-05
+2025,Baycrest Hospital - 7E,Hospital-Chronic Care,Respiratory,Influenza A (Not subtyped),,2025-01-27,2025-02-03
+2023,Cedarbrook Lodge Retirement Residence - 2nd Fl,Retirement Home,Respiratory,Rhinovirus,None,2023-09-29,2023-10-13
+2023,Cedarbrook Lodge Retirement Residence - 2nd Fl,Retirement Home,Respiratory,COVID-19,None,2023-09-29,2023-10-13
+2023,Chartwell Lansing Retirement Residence - 2nd & 3rd Fl,Retirement Home,Respiratory,Rhinovirus,None,2023-08-28,2023-09-21
+2023,Chartwell Lansing Retirement Residence - 2nd & 3rd Fl,Retirement Home,Respiratory,COVID-19,None,2023-08-28,2023-09-15
+2016,Cummer Lodge - 2 North,LTCH,Enteric,Norovirus-like,,2016-03-14,2016-03-29
+2016,Cummer Lodge - 2 North,LTCH,Respiratory,Streptococcus pyogenes,,2016-03-14,2016-06-15
+2016,Extendicare Scarborough,LTCH,Enteric,Norovirus-like,,2016-03-29,2016-04-06
+2016,Extendicare Scarborough,LTCH,Respiratory,Metapneumovirus,Coronavirus,2016-03-29,2016-04-08
+2025,Fieldstone Commons Care Community - 3A,LTCH,Respiratory,Parainfluenza,,2025-07-14,2025-07-18
+2025,Fieldstone Commons Care Community - 3A,LTCH,Respiratory,Rhinovirus,,2025-07-14,2025-07-21
+2022,Harmony Hills Care Community - 2nd Fl & 3B,LTCH,Respiratory,Respiratory syncytial virus,,2022-11-16,2022-12-16
+2022,Harmony Hills Care Community - 2nd Fl & 3B,LTCH,Respiratory,COVID-19,,2022-11-16,2022-12-14
+2025,Hellenic Care for Seniors - 1st Fl,LTCH,Respiratory,Influenza A (H3),,2025-02-05,2025-02-19
+2025,Hellenic Care for Seniors - 1st Fl,LTCH,Respiratory,Rhinovirus,,2025-02-05,2025-02-19
+2025,Humber River Hospital - 13 East,Hospital-Acute Care,Respiratory,COVID-19,,2025-11-26,2025-12-04
+2025,Humber River Hospital - 13 East,Hospital-Acute Care,Respiratory,Influenza A (Not subtyped),,2025-11-26,2025-12-04
+2023,Main Street Terrace - 2nd Fl,LTCH,Respiratory,Parainfluenza,None,2023-01-24,2023-02-13
+2023,Main Street Terrace - 2nd Fl,LTCH,Respiratory,COVID-19,None,2023-01-24,2023-02-13
+2024,Mon Sheong Scarborough - PH South,LTCH,Respiratory,COVID-19,,2024-11-07,2024-11-21
+2024,Mon Sheong Scarborough - PH South,LTCH,Respiratory,Parainfluenza,,2024-11-07,2024-11-20
+2026,North York General Hospital - 8W,Hospital-Acute Care,Respiratory,Parainfluenza,,2026-10-28,2026-11-05
+2026,North York General Hospital - 8W,Hospital-Acute Care,Respiratory,Influenza A (Not subtyped),,2026-10-28,2026-11-05
+2025,North York General Hospital - General Site - 3N,Hospital-Acute Care,Respiratory,Enterovirus/ Rhinovirus,,2025-04-30,2025-05-07
+2025,North York General Hospital - General Site - 3N,Hospital-Acute Care,Respiratory,COVID-19,,2025-04-30,2025-05-07
+2020,Queens Estate Retirement Residence,Retirement Home,Enteric,Unable to identify,,2020-04-01,2020-04-10
+2020,Queens Estate Retirement Residence,Retirement Home,Respiratory,COVID-19,,2020-04-01,2020-05-19
+2022,Scarborough Health Network - General Hospital -,Hospital-Acute Care,Respiratory,COVID-19,,2022-01-04,2022-01-16
+2022,Scarborough Health Network - General Hospital -,Hospital-Acute Care,Respiratory,COVID-19,,2022-01-04,2022-01-18
+2025,Scarborough Health Network - General Hospital - Tower 7,Hospital-Acute Care,Respiratory,COVID-19,,2025-01-14,2025-01-23
+2025,Scarborough Health Network - General Hospital - Tower 7,Hospital-Acute Care,Respiratory,Respiratory syncytial virus,,2025-01-14,2025-01-31
+2022,Scarborough Health Network - Scarborough General -,Hospital-Acute Care,Respiratory,COVID-19,,2022-01-08,2022-02-01
+2022,Scarborough Health Network - Scarborough General -,Hospital-Acute Care,Respiratory,COVID-19,,2022-01-08,2022-01-26
+2022,Scarborough Health Network - Scarborough General -,Hospital-Acute Care,Respiratory,COVID-19,,2022-01-19,2022-02-02
+2022,Scarborough Health Network - Scarborough General -,Hospital-Acute Care,Respiratory,COVID-19,,2022-01-19,2022-01-30
+2017,St. Hilda's Towers - Dufferin Tower - Transitional Care Unit,Retirement Home,Enteric,Unable to identify,,2017-01-13,2017-01-24
+2017,St. Hilda's Towers - Dufferin Tower - Transitional Care Unit,Retirement Home,Respiratory,Coronavirus,,2017-01-13,2017-01-23
+2025,TEHN - Michael Garron Hospital - J5,Hospital-Acute Care,Enteric,Unable to identify,,2025-01-07,2025-01-16
+2025,TEHN - Michael Garron Hospital - J5,Hospital-Acute Care,Respiratory,COVID-19,,2025-01-07,2025-01-16
+2025,Unity Health Toronto - Providence Healthcare - A4,Hospital-Chronic Care,Respiratory,COVID-19,,2025-12-10,2026-01-05
+2025,Unity Health Toronto - Providence Healthcare - A4,Hospital-Chronic Care,Respiratory,Influenza A (Not subtyped),,2025-12-10,2025-12-22
+2025,Unity Health Toronto - St. Joseph's Health Centre - 4M,Hospital-Acute Care,Respiratory,COVID-19,,2025-02-18,2025-02-24
+2025,Unity Health Toronto - St. Joseph's Health Centre - 4M,Hospital-Acute Care,Respiratory,Influenza A (Not subtyped),,2025-02-18,2025-02-24
+2025,Village of Humber Heights - Williamsburg East,Retirement Home,Respiratory,COVID-19,,2025-02-07,2025-02-16
+2025,Village of Humber Heights - Williamsburg East,Retirement Home,Respiratory,Unable to identify,,2025-02-07,2025-02-15
+2022,West Park Healthcare Centre - 3WF,Hospital-Chronic Care,Respiratory,Respiratory syncytial virus,,2022-11-01,2022-11-08
+2022,West Park Healthcare Centre - 3WF,Hospital-Chronic Care,Respiratory,COVID-19,,2022-11-01,2022-11-15
