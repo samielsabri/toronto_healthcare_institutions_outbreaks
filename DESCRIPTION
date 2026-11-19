@@ -1,0 +1,17 @@
+Package: torontoOutbreaks
+Title: Surveillance of Outbreaks in Toronto Healthcare Institutions
+Version: 0.0.1
+Description: Weekly surveillance pipeline for City of Toronto Open Data on
+    outbreaks in hospitals, long-term care homes and retirement homes.
+Encoding: UTF-8
+Imports:
+    opendatatoronto,
+    dplyr,
+    tidyr,
+    purrr,
+    readr,
+    stringr,
+    lubridate,
+    knitr
+Suggests:
+    testthat

@@ -1,0 +1,21 @@
+# R / RStudio
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# renv: library is restored from renv.lock, not committed
+renv/library/
+renv/local/
+renv/cellar/
+renv/lock/
+renv/python/
+renv/sandbox/
+renv/staging/
+
+# Quarto
+/.quarto/
+/_site/
+*_files/
+
+.DS_Store
