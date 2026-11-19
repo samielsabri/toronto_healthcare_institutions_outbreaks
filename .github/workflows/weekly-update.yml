@@ -1,0 +1,138 @@
+# Weekly surveillance update.
+#
+# The City refreshes the data on Thursdays (data as of Wednesday 2 pm,
+# published around 16:00 UTC). This runs at 18:00 UTC on Thursdays, and can
+# be started by hand from the Actions tab (workflow_dispatch).
+#
+#   1. Download all annual files and save this week's snapshot, then commit
+#      them straight away so a later failure never loses a snapshot.
+#   2. Check inputs (schema, new labels), rebuild the cleaned data, run tests.
+#   3. Render the Quarto site, commit the cleaned data, deploy to Pages.
+#
+# Any failure opens a GitHub issue labelled "pipeline-failure" (or comments
+# on the open one), with the input-check report and the end of the log.
+
+name: Weekly update
+
+on:
+  schedule:
+    - cron: "0 18 * * 4"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: weekly-update
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install system libraries (sf, used by opendatatoronto)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libudunits2-dev libgdal-dev libgeos-dev libproj-dev libcurl4-openssl-dev
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "4.6.2"   # keep in step with renv.lock
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-renv@v2
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Download data and save snapshot
+        run: Rscript scripts/weekly_fetch.R 2>&1 | tee -a pipeline.log
+
+      - name: Commit raw data and snapshot
+        run: |
+          git add data/raw data/snapshots
+          if ! git diff --cached --quiet; then
+            refresh=$(tail -n 1 data/raw/manifest.csv | awk -F, '{print $NF}')
+            git commit -m "Data: City refresh ${refresh}"
+            git push
+          else
+            echo "No new data since the last run." | tee -a pipeline.log
+          fi
+
+      - name: Check inputs (schema and labels)
+        run: Rscript scripts/check_inputs.R 2>&1 | tee -a pipeline.log
+
+      - name: Build cleaned data
+        run: Rscript scripts/03_clean.R 2>&1 | tee -a pipeline.log
+
+      - name: Run tests
+        run: Rscript tests/run_tests.R 2>&1 | tee -a pipeline.log
+
+      - name: Render site
+        run: quarto render 2>&1 | tee -a pipeline.log
+
+      - name: Commit cleaned data
+        run: |
+          git add data/clean reports/tables
+          if ! git diff --cached --quiet; then
+            git commit -m "Build: cleaned data for City refresh $(tail -n 1 data/raw/manifest.csv | awk -F, '{print $NF}')"
+            git push
+          fi
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Open or update a GitHub issue on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          if grep -q "### Failures" pipeline_check.md 2>/dev/null; then
+            title="Weekly update stopped: input check failed (schema or label change)"
+          else
+            title="Weekly update failed"
+          fi
+          {
+            echo "The weekly update failed on $(date -u +%F). Run: ${RUN_URL}"
+            echo
+            if [ -s pipeline_check.md ]; then cat pipeline_check.md; echo; fi
+            echo "<details><summary>Last 80 lines of the log</summary>"
+            echo
+            echo '```'
+            tail -n 80 pipeline.log 2>/dev/null || echo "(no log)"
+            echo '```'
+            echo "</details>"
+          } > issue_body.md
+          gh label create pipeline-failure --color B60205 \
+            --description "Automated: the weekly update failed" --force
+          open_issue=$(gh issue list --label pipeline-failure --state open --json number --jq '.[0].number')
+          if [ -n "$open_issue" ]; then
+            gh issue comment "$open_issue" --body-file issue_body.md
+          else
+            gh issue create --title "$title" --label pipeline-failure --body-file issue_body.md
+          fi
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,26 @@
+# Run the test suite on every push and pull request (no download, no deploy).
+name: Tests
+
+on:
+  push:
+    paths-ignore:
+      - "data/raw/**"
+      - "data/snapshots/**"
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install system libraries (sf, used by opendatatoronto)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libudunits2-dev libgdal-dev libgeos-dev libproj-dev libcurl4-openssl-dev
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "4.6.2"   # keep in step with renv.lock
+          use-public-rspm: true
+      - uses: r-lib/actions/setup-renv@v2
+      - name: Run tests
+        run: Rscript tests/run_tests.R
