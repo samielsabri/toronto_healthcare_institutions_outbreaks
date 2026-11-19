@@ -19,6 +19,5 @@ Imports:
     curl,
     tibble,
     rlang,
-    rmarkdown
-Suggests:
+    rmarkdown,
     testthat
