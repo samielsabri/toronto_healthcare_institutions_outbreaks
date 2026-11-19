@@ -75,6 +75,12 @@ jobs:
 
       - name: Commit raw data and snapshot
         run: |
+          # If no data file changed, drop the manifest's new download time so
+          # unchanged weeks do not produce a commit.
+          if git diff --quiet -- 'data/raw/*.csv' ':!data/raw/manifest.csv' \
+             && [ -z "$(git status --porcelain data/snapshots)" ]; then
+            git checkout -- data/raw/manifest.csv
+          fi
           git add data/raw data/snapshots
           if ! git diff --cached --quiet; then
             refresh=$(tail -n 1 data/raw/manifest.csv | awk -F, '{print $NF}')
