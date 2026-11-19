@@ -19,3 +19,7 @@ renv/staging/
 
 .DS_Store
 pipeline_check.md
+
+**/*.quarto_ipynb
+pipeline.log
+issue_body.md
