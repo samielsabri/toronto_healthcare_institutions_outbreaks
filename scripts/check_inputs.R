@@ -15,4 +15,7 @@ report <- format_check_report(result, refreshed)
 writeLines(report, "pipeline_check.md")
 message(report)
 
+if (length(result$warnings)) {
+  cat(paste0("- ", result$warnings, "\n"), file = "pipeline_warnings.md", append = TRUE, sep = "")
+}
 if (length(result$failures)) quit(status = 1)

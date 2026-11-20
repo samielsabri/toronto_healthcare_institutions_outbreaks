@@ -100,6 +100,11 @@ jobs:
       - name: Build cleaned data
         run: Rscript scripts/03_clean.R 2>&1 | tee -a pipeline.log
 
+      - name: Geocode new facility addresses
+        run: |
+          Rscript scripts/geocode_facilities.R 2>&1 | tee -a pipeline.log
+          Rscript scripts/03_clean.R 2>&1 | tee -a pipeline.log   # attach any new coordinates
+
       - name: Run tests
         run: Rscript tests/run_tests.R 2>&1 | tee -a pipeline.log
 
@@ -109,7 +114,7 @@ jobs:
       - name: Commit cleaned data
         run: |
           {
-          git add data/clean reports/tables
+          git add data/clean reports/tables data/reference/facility_geocodes.csv
           if ! git diff --cached --quiet; then
             git commit -m "Build: cleaned data for City refresh $(tail -n 1 data/raw/manifest.csv | awk -F, '{print $NF}')"
             git pull --rebase origin "${GITHUB_REF_NAME}"
@@ -120,6 +125,26 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+
+      - name: Report warnings as a GitHub issue
+        if: success() && hashFiles('pipeline_warnings.md') != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          {
+            echo "The weekly update ran and deployed, with warnings, on $(date -u +%F). Run: ${RUN_URL}"
+            echo
+            cat pipeline_warnings.md
+          } > warn_body.md
+          gh label create pipeline-warning --color FBCA04 \
+            --description "Automated: the weekly update needs attention" --force
+          open_issue=$(gh issue list --label pipeline-warning --state open --json number --jq '.[0].number')
+          if [ -n "$open_issue" ]; then
+            gh issue comment "$open_issue" --body-file warn_body.md
+          else
+            gh issue create --title "Weekly update: warnings" --label pipeline-warning --body-file warn_body.md
+          fi
 
       - name: Open or update a GitHub issue on failure
         if: failure()
