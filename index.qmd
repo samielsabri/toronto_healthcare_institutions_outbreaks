@@ -101,6 +101,45 @@ weekly |>
   tbl()
 ```
 
+# Map
+
+```{r}
+#| include: false
+facilities_tbl <- readr::read_csv("data/clean/facilities.csv", show_col_types = FALSE)
+map_d <- facility_map_data(clean, facilities_tbl, current)
+```
+
+## Row {height="150px"}
+
+::: {.card title="Where are this season's outbreaks?"}
+
+Each dot is a facility (physical site) with at least one outbreak in
+`r current$season`, coloured by setting; a **dark ring** marks an outbreak
+still open on `r format(info$as_of, "%e %B %Y")`. Click a dot for details.
+All dots are the same size: without bed counts, facility totals cannot be
+compared fairly. Locations come from the City of Toronto address register.
+
+:::
+
+## Row {height="680px"}
+
+### Column {.tabset}
+
+```{r}
+#| title: Map
+facility_map(map_d)
+```
+
+```{r}
+#| title: Table
+map_d |>
+  arrange(desc(open_now > 0), setting_group, facility_name) |>
+  transmute(Facility = facility_name, Setting = setting_group, Neighbourhood = neighbourhood,
+            `Outbreaks this season` = outbreaks, Episodes = episodes, `Open now` = open_now,
+            `Most recent onset` = latest_onset, Pathogens = agents) |>
+  tbl()
+```
+
 # Agents
 
 ## Row {height="190px"}
