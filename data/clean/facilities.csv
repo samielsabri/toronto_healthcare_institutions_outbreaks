@@ -1,233 +1,232 @@
-facility_id,facility_name,facility_address,setting_group,n_outbreaks,n_setting_reassigned,n_units,n_address_spellings,first_onset,last_onset
-3560-bathurst-st--hospital,Baycrest Hospital,3560 BATHURST ST,Hospital,84,0,51,3,2016-12-16,2026-11-18
-300-silver-star-blvd--hospital,Carefirst Transitional Care Centre,300 SILVER STAR BLVD,Hospital,2,0,1,2,2022-04-29,2023-09-13
-119-isabella-st--hospital,Casey House,119 ISABELLA ST,Hospital,1,0,1,1,2025-01-15,2025-01-15
-9-huntley-st--hospital,Casey House,9 HUNTLEY ST,Hospital,1,0,1,1,2016-04-01,2016-04-01
-520-markham-rd--hospital,Cedarbrook Lodge - Transitional Care Unit,520 MARKHAM RD,Hospital,8,0,7,1,2022-05-04,2024-10-24
-1001-queen-st-w--hospital,Centre For Addiction And Mental Health,1001 QUEEN ST W,Hospital,122,0,75,22,2016-03-14,2026-11-10
-250-college-st--hospital,Centre For Addiction And Mental Health,250 COLLEGE ST,Hospital,4,0,4,3,2017-12-10,2020-11-05
-47-austin-terr--hospital,Hillcrest Reactivation Centre,47 AUSTIN TERR,Hospital,19,0,12,2,2016-01-25,2026-10-23
-150-kilgour-rd--hospital,Holland Bloorview Kids Rehabilitation Hospital,150 KILGOUR RD,Hospital,19,0,15,2,2016-01-28,2025-12-10
-1235-wilson-ave--hospital,Humber River Hospital - Wilson,1235 WILSON AVE,Hospital,27,0,22,2,2020-11-06,2026-11-03
-38-major-st--hospital,Kensington Hospice,38 MAJOR ST,Hospital,1,0,1,1,2021-11-28,2021-11-28
-555-finch-ave-w--hospital,North York General Hospital - Branson Site,555 FINCH AVE W,Hospital,7,0,6,3,2023-01-01,2026-01-01
-4001-leslie-st--hospital,North York General Hospital - General Site,4001 LESLIE ST,Hospital,82,0,41,4,2016-03-29,2026-10-28
-1035-eglinton-ave-w--hospital,Pine Villa Seniors Transitional Care,1035 EGLINTON AVE W,Hospital,10,1,7,2,2020-01-06,2024-10-15
-200-church-st--hospital,Rcc - Church Site - St. Joseph's Health Centre,200 CHURCH ST,Hospital,62,0,49,3,2019-08-14,2026-10-22
-625-runnymede-rd--hospital,Runnymede Healthcare Centre,625 RUNNYMEDE RD,Hospital,61,0,19,2,2016-01-28,2026-11-12
-650-church-st--hospital,Salvation Army Toronto Grace Health Centre,650 CHURCH ST,Hospital,15,0,11,2,2018-01-12,2026-03-25
-3030-birchmount-rd--hospital,Scarborough Health Network - Birchmount,3030 BIRCHMOUNT RD,Hospital,35,0,25,4,2017-01-03,2025-03-07
-2867-ellesmere-rd--hospital,Scarborough Health Network - Centenary,2867 ELLESMERE RD,Hospital,35,0,27,5,2016-02-26,2026-11-16
-3050-lawrence-ave-e--hospital,Scarborough Health Network - General Hospital,3050 LAWRENCE AVE E,Hospital,78,0,38,14,2016-04-02,2026-03-16
-1029-mcnicoll-ave--hospital,Scarborough Health Network - Scarborough General,1029 MCNICOLL AVE,Hospital,1,0,1,1,2022-12-22,2022-12-22
-43-wellesley-st-e--hospital,Shsc - Holland Orthopaedic & Arthritic Centre,43 WELLESLEY ST E,Hospital,7,0,7,4,2017-01-19,2025-09-05
-1-bridgepoint-dr--hospital,Sinai Health System - Hennick Bridgepoint,1 BRIDGEPOINT DR,Hospital,43,0,37,3,2016-12-29,2026-09-26
-600-university-ave--hospital,Sinai Health System - Mount Sinai,600 UNIVERSITY AVE,Hospital,35,0,26,4,2016-02-08,2026-11-06
-2-o-connor-dr--hospital,Sisters Of St. Joseph,2 O CONNOR DR,Hospital,3,0,3,1,2024-06-28,2025-03-10
-2111-finch-ave-w--hospital,Southlake Regional Health Centre - Rcc Finch Site,2111 FINCH AVE W,Hospital,62,0,56,8,2018-01-16,2026-02-13
-2075-bayview-ave--hospital,Sunnybrook Health Sciences Centre - Bayview Campus,2075 BAYVIEW AVE,Hospital,77,0,38,5,2016-04-14,2026-06-26
-285-cummer-ave--hospital,Sunnybrook Health Sciences Centre - St. John's Rehab,285 CUMMER AVE,Hospital,63,0,19,4,2016-01-20,2026-08-19
-500-kingston-rd--hospital,Tehn - Atrium At Kew Beach,500 KINGSTON RD,Hospital,37,1,31,4,2021-01-03,2026-04-27
-825-coxwell-ave--hospital,Tehn - Michael Garron Hospital,825 COXWELL AVE,Hospital,62,0,35,4,2016-11-13,2026-01-14
-555-university-ave--hospital,The Hospital For Sick Children,555 UNIVERSITY AVE,Hospital,23,0,14,3,2016-02-01,2026-04-08
-650-dixon-rd--hospital,The Salvation Army,650 DIXON RD,Hospital,1,0,1,1,2022-03-05,2022-03-05
-1020-mcnicoll-ave--hospital,The Salvation Army - Toronto Grace Health Centre - Specialized Care Centre,1020 MCNICOLL AVE,Hospital,8,0,6,1,2022-09-24,2026-02-14
-140-sherway-dr--hospital,Trillium Health Partners - Mccall Centre For Continuing Care,140 SHERWAY DR,Hospital,60,0,25,2,2016-02-29,2026-05-19
-150-sherway-dr--hospital,Trillium Health Partners - Queensway,150 SHERWAY DR,Hospital,8,0,8,4,2018-01-29,2025-12-18
-610-university-ave--hospital,Uhn - Princess Margaret Hospital,610 UNIVERSITY AVE,Hospital,18,0,15,3,2017-02-02,2026-10-26
-170-emmett-ave--hospital,Uhn - West Park Healthcare Centre,170 EMMETT AVE,Hospital,4,0,4,1,2025-01-21,2026-01-25
-3276-st-clair-ave-e--hospital,Unity Health Toronto - Providence,3276 ST CLAIR AVE E,Hospital,89,0,44,7,2016-03-07,2026-09-09
-30-the-queensway--hospital,Unity Health Toronto - St. Joseph's,30 THE QUEENSWAY,Hospital,150,0,48,3,2016-01-28,2026-11-04
-30-bond-st--hospital,Unity Health Toronto - St. Michael's,30 BOND ST,Hospital,56,0,46,3,2016-03-02,2024-10-09
-130-dunn-ave--hospital,University Health Network - Bickle Centre,130 DUNN AVE,Hospital,37,0,29,3,2016-02-03,2026-07-10
-520-sutherland-dr--hospital,University Health Network - Lyndhurst,520 SUTHERLAND DR,Hospital,5,0,5,2,2020-01-03,2023-11-17
-200-elizabeth-st--hospital,University Health Network - Toronto General,200 ELIZABETH ST,Hospital,59,0,42,11,2016-02-23,2026-05-22
-399-bathurst-st--hospital,University Health Network - Toronto Western,399 BATHURST ST,Hospital,78,0,38,4,2016-02-24,2026-10-09
-265-queens-dr--hospital,University Health Network - Transitional Care Program - Queens Estate,265 QUEENS DR,Hospital,3,0,2,1,2022-12-18,2023-10-23
-550-university-ave--hospital,University Health Network - University Centre,550 UNIVERSITY AVE,Hospital,16,0,13,5,2016-01-28,2026-06-25
-82-buttonwood-ave--hospital,West Park Healthcare Centre,82 BUTTONWOOD AVE,Hospital,98,0,33,3,2016-02-05,2026-10-29
-101-humber-college-blvd--hospital,William Osler Health System,101 HUMBER COLLEGE BLVD,Hospital,76,0,51,5,2017-01-17,2026-11-09
-340-mccowan-rd--ltch,Age Care Trilogy,340 MCCOWAN RD,LTCH,52,0,42,5,2016-03-07,2026-09-17
-705-707-ellesmere-rd--ltch,Alexis Lodge Retirement Home,705-707 ELLESMERE RD,LTCH,1,0,1,1,2021-01-11,2021-01-11
-92-island-rd--ltch,Altamont Care Community,92 ISLAND RD,LTCH,42,0,20,2,2016-01-11,2026-09-03
-3560-bathurst-st--ltch,Baycrest Apotex Centre - Jewish Home For The Aged,3560 BATHURST ST,LTCH,115,0,70,1,2016-11-28,2026-11-09
-221-milner-ave--ltch,Bayshore,221 MILNER AVE,LTCH,3,0,3,1,2022-06-24,2024-01-12
-55-belmont-st--ltch,Belmont House,55 BELMONT ST,LTCH,64,0,31,2,2016-02-04,2026-04-15
-2920-lawrence-ave-e--ltch,Bendale Acres,2920 LAWRENCE AVE E,LTCH,56,0,34,4,2016-09-15,2026-03-09
-1-overland-dr--ltch,Better Living At Thompson House,1 OVERLAND DR,LTCH,43,0,13,2,2016-04-17,2026-05-31
-300-silver-star-blvd--ltch,Carefirst Transitional Care Centre,300 SILVER STAR BLVD,LTCH,2,0,2,1,2022-07-05,2022-07-28
-306-finch-ave-e--ltch,Carefree Lodge,306 FINCH AVE E,LTCH,46,0,17,4,2016-03-18,2026-07-27
-351-christie-st--ltch,Castleview Wychwood Towers,351 CHRISTIE ST,LTCH,79,0,43,1,2016-02-01,2026-09-24
-520-markham-rd--ltch,Cedarbrook Lodge Retirement Residence,520 MARKHAM RD,LTCH,4,0,4,2,2022-03-10,2026-02-09
-429-walmer-rd--ltch,Cedarvale Terrace,429 WALMER RD,LTCH,27,0,13,3,2016-09-19,2024-01-12
-1925-steeles-ave-e--ltch,Chartwell Gibson Long Term Care Residence,1925 STEELES AVE E,LTCH,64,0,34,4,2016-03-14,2026-10-31
-495-the-w-mall--ltch,Chartwell Westbury Long Term Care Residence,495 THE W MALL,LTCH,53,0,37,2,2016-02-12,2026-10-31
-138-dowling-ave--ltch,Chartwell White Eagle Long Term Care Residence,138 DOWLING AVE,LTCH,11,0,8,1,2018-01-13,2024-05-20
-5935-bathurst-st--ltch,Cheltenham Care Community,5935 BATHURST ST,LTCH,47,0,16,5,2017-01-06,2026-03-11
-3555-danforth-ave--ltch,Chester Village,3555 DANFORTH AVE,LTCH,41,0,30,2,2016-01-19,2026-07-06
-66-roncesvalles-ave--ltch,Copernicus Lodge,66 RONCESVALLES AVE,LTCH,54,1,38,5,2017-01-25,2026-10-17
-102-craiglee-dr--ltch,Craiglee Nursing Home,102 CRAIGLEE DR,LTCH,53,0,33,3,2016-03-11,2026-09-21
-205-cummer-ave--ltch,Cummer Lodge,205 CUMMER AVE,LTCH,85,0,47,4,2016-03-14,2026-11-01
-70-humberline-dr--ltch,Deerwood Creek Care Community,70 HUMBERLINE DR,LTCH,63,0,38,5,2016-01-04,2026-08-04
-52-neilson-dr--ltch,Dom Lipa,52 NEILSON DR,LTCH,29,0,17,3,2017-01-11,2026-01-09
-3595-keele-st--ltch,Downsview Long Term Care Centre,3595 KEELE ST,LTCH,41,0,27,3,2017-02-06,2025-12-29
-420-the-e-mall--ltch,Eatonville Care Centre,420 THE E MALL,LTCH,61,0,18,3,2016-01-22,2026-11-11
-40-old-kingston-rd--ltch,Ehatare Nursing Home,40 OLD KINGSTON RD,LTCH,24,0,3,2,2016-01-07,2026-07-22
-35-elm-grove-ave--ltch,Elm Grove Living Centre,35 ELM GROVE AVE,LTCH,30,0,10,3,2016-01-06,2024-09-06
-550-cummer-ave--ltch,Extendicare Bayview,550 CUMMER AVE,LTCH,40,0,20,2,2016-02-02,2026-10-01
-60-guildwood-pkwy--ltch,Extendicare Guildwood,60 GUILDWOOD PKWY,LTCH,37,0,15,5,2017-01-28,2026-08-04
-551-conlins-rd--ltch,Extendicare Rouge Valley,551 CONLINS RD,LTCH,46,0,34,2,2016-03-09,2026-04-22
-3830-lawrence-ave-e--ltch,Extendicare Scarborough,3830 LAWRENCE AVE E,LTCH,41,0,12,3,2016-03-29,2026-08-13
-14-cross-st--ltch,Fairview Nursing Home,14 CROSS ST,LTCH,32,0,12,2,2016-01-03,2026-08-12
-1000-ellesmere-rd--ltch,Fieldstone Commons Care Community,1000 ELLESMERE RD,LTCH,49,0,25,2,2017-01-14,2026-05-07
-439-sherbourne-st--ltch,Fudger House,439 SHERBOURNE ST,LTCH,54,0,34,1,2016-02-17,2026-11-17
-1-sand-beach-rd--ltch,Garden Court Nursing Home,1 SAND BEACH RD,LTCH,2,0,2,1,2020-05-27,2021-12-29
-1800-o-connor-dr--ltch,Harmony Hills Care Community,1800 O CONNOR DR,LTCH,88,0,56,3,2016-09-29,2026-11-11
-1-northwestern-ave--ltch,Harold And Grace Baker Centre,1 NORTHWESTERN AVE,LTCH,44,0,23,1,2017-01-18,2026-10-25
-2045-finch-ave-w--ltch,Hawthorne Place Care Centre,2045 FINCH AVE W,LTCH,39,0,24,4,2016-02-05,2026-01-03
-215-tyrrel-ave--ltch,Hellenic Care For Seniors,215 TYRREL AVE,LTCH,20,0,4,4,2016-01-22,2026-03-02
-2411-lawrence-ave-e--ltch,Hellenic Home,2411 LAWRENCE AVE E,LTCH,43,0,32,3,2016-08-03,2026-06-22
-2109-finch-ave-w--ltch,Humber Meadows,2109 FINCH AVE W,LTCH,37,0,35,2,2023-06-17,2026-09-22
-95-humber-college-blvd--ltch,Humber Valley Terrace,95 HUMBER COLLEGE BLVD,LTCH,34,0,11,2,2016-11-23,2025-11-10
-40-bell-estate-rd--ltch,Ina Grafton Gage Home,40 BELL ESTATE RD,LTCH,34,0,14,3,2016-12-09,2026-10-01
-155-millwood-rd--ltch,Isabel And Arthur Meighen Manor,155 MILLWOOD RD,LTCH,27,0,24,4,2016-01-15,2026-10-28
-767-royal-york-rd--ltch,Ivan Franko Home,767 ROYAL YORK RD,LTCH,25,0,17,1,2017-03-14,2026-11-08
-1400-kennedy-rd--ltch,Kennedy Lodge,1400 KENNEDY RD,LTCH,47,0,35,2,2016-03-04,2026-09-09
-2233-kipling-ave--ltch,Kipling Acres,2233 KIPLING AVE,LTCH,56,0,51,2,2016-12-02,2026-10-07
-5-resurrection-rd--ltch,Labdara Lithuanian Nursing Home,5 RESURRECTION RD,LTCH,39,0,11,8,2016-05-19,2026-11-02
-3197-lakeshore-blvd-w--ltch,Lakeshore Lodge,3197 LAKESHORE BLVD W,LTCH,32,0,19,3,2016-01-13,2026-03-23
-150-dunn-ave--ltch,Lakeside Long Term Care Centre,150 DUNN AVE,LTCH,41,0,20,3,2017-03-07,2026-02-12
-33-hahn-pl--ltch,Les Centres D'accueil Heritage,33 HAHN PL,LTCH,1,0,1,1,2022-01-14,2022-01-14
-77-main-st--ltch,Main Street Terrace,77 MAIN ST,LTCH,26,0,6,2,2016-02-24,2026-08-27
-28-halton-st--ltch,Maynard Nursing Home,28 HALTON ST,LTCH,25,0,7,3,2018-04-03,2026-09-15
-140-sherway-dr--ltch,Mccall Centre Long Term Care Interim Unit,140 SHERWAY DR,LTCH,9,0,8,4,2018-01-16,2025-01-10
-130-midland-ave--ltch,Midland Gardens Care Community,130 MIDLAND AVE,LTCH,67,0,26,1,2016-01-11,2026-10-13
-36-d-arcy-st--ltch,Mon Sheong Home For The Aged,36 D ARCY ST,LTCH,25,1,11,2,2016-04-04,2026-08-01
-56-d-arcy-st--ltch,Mon Sheong Home For The Aged,56 D ARCY ST,LTCH,1,0,1,1,2026-11-13,2026-11-13
-2030-mcnicoll-ave--ltch,Mon Sheong Scarborough Long Term Care Centre,2030 MCNICOLL AVE,LTCH,52,1,41,3,2016-09-22,2026-11-16
-740-pape-ave--ltch,Nisbet Lodge,740 PAPE AVE,LTCH,44,0,26,2,2017-01-02,2026-11-18
-22-norfinch-dr--ltch,Norfinch Care Community,22 NORFINCH DR,LTCH,49,0,29,3,2016-04-11,2026-11-17
-450-rustic-rd--ltch,North Park Nursing Home,450 RUSTIC RD,LTCH,16,0,4,2,2016-11-26,2024-08-14
-2-buchan-crt--ltch,North York General Hospital - Seniors' Health Centre,2 BUCHAN CRT,LTCH,52,2,22,4,2016-12-30,2026-09-22
-122-tyndall-ave--ltch,Norwood Nursing Home,122 TYNDALL AVE,LTCH,22,0,6,2,2017-04-26,2026-03-13
-1-3-kenton-dr--ltch,One Kenton Place,1-3 KENTON DR,LTCH,4,0,4,3,2020-11-19,2024-01-08
-1035-eglinton-ave-w--ltch,Pine Villa Transitional Care,1035 EGLINTON AVE W,LTCH,2,0,1,1,2020-06-05,2020-09-06
-3015-lawrence-ave-e--ltch,Rockcliffe Care Community,3015 LAWRENCE AVE E,LTCH,68,0,19,2,2016-03-01,2026-09-25
-17-maplewood-ave--ltch,Rose Of Sharon Korean Long Term Care,17 MAPLEWOOD AVE,LTCH,11,0,8,1,2016-12-22,2026-09-26
-621-runnymede-rd--ltch,Runnymede Long Term Care,621 RUNNYMEDE RD,LTCH,8,0,8,1,2025-12-11,2026-10-15
-9-neilson-rd--ltch,Seven Oaks,9 NEILSON RD,LTCH,75,0,25,4,2016-01-27,2026-10-26
-3760-sheppard-ave-e--ltch,Shepherd Lodge,3760 SHEPPARD AVE E,LTCH,52,1,40,5,2017-01-06,2026-11-12
-3758-sheppard-ave-e--ltch,Shepherd Terrace Retirement Home,3758 SHEPPARD AVE E,LTCH,1,0,1,1,2020-12-16,2020-12-16
-345-sherbourne-st--ltch,Sherbourne Place,345 SHERBOURNE ST,LTCH,32,0,22,3,2016-10-16,2026-10-27
-2-o-connor-dr--ltch,Sisters Of St. Joseph,2 O CONNOR DR,LTCH,2,0,2,2,2020-04-13,2021-04-01
-2701-st-clair-ave-e--ltch,St. Clair O'connor Community Nursing Home,2701 ST CLAIR AVE E,LTCH,22,0,8,8,2016-02-22,2026-04-11
-225-st-george-st--ltch,St. George Care Community,225 ST GEORGE ST,LTCH,43,0,11,4,2016-03-11,2026-10-06
-2075-bayview-ave--ltch,Sunnybrook Health Sciences Centre - Sunnybrook Veterans Centre,2075 BAYVIEW AVE,LTCH,139,0,48,8,2016-01-11,2026-11-05
-795-eglinton-ave-e--ltch,Suomi Koti Nursing Home,795 EGLINTON AVE E,LTCH,19,0,6,2,2016-05-04,2026-06-09
-1020-mcnicoll-ave--ltch,Tendercare Living Centre,1020 MCNICOLL AVE,LTCH,50,0,22,3,2016-03-14,2026-05-19
-1195-queen-st-e--ltch,The Heritage Nursing Home,1195 QUEEN ST E,LTCH,48,0,14,2,2016-01-04,2025-08-14
-25-brunswick-ave--ltch,The Kensington Gardens,25 BRUNSWICK AVE,LTCH,64,0,60,5,2017-01-04,2026-09-16
-45-brunswick-ave--ltch,The Kensington Gardens (North Building),45 BRUNSWICK AVE,LTCH,45,0,40,2,2016-03-04,2026-04-20
-921-millwood-rd--ltch,The Millwood,921 MILLWOOD RD,LTCH,2,0,1,1,2021-12-22,2023-11-02
-33-christie-st--ltch,The O'neill Centre,33 CHRISTIE ST,LTCH,45,0,17,2,2016-01-19,2026-01-12
-2245-lawrence-ave-w--ltch,The Village Of Humber Heights,2245 LAWRENCE AVE W,LTCH,61,0,52,6,2016-09-09,2026-09-25
-1860-lawrence-ave-e--ltch,The Wexford,1860 LAWRENCE AVE E,LTCH,64,0,23,2,2016-02-02,2026-08-30
-59-lawson-rd--ltch,Tony Stacey Centre For Veterans' Care,59 LAWSON RD,LTCH,37,0,10,5,2016-03-02,2026-04-20
-200-dawes-rd--ltch,True Davidson Acres,200 DAWES RD,LTCH,47,1,26,3,2016-03-15,2026-07-08
-150-emmett-ave--ltch,Uhn - West Park Long Term Care Centre,150 EMMETT AVE,LTCH,13,0,11,2,2024-07-09,2026-09-08
-60-richview-rd--ltch,Ukrainian Canadian Care Centre,60 RICHVIEW RD,LTCH,32,0,11,2,2017-12-18,2026-09-28
-3276-st-clair-ave-e--ltch,Unity Health Toronto - Houses Of Providence,3276 ST CLAIR AVE E,LTCH,93,0,82,11,2016-02-21,2026-11-02
-541-finch-ave-w--ltch,Valleyview Residence,541 FINCH AVE W,LTCH,46,2,24,5,2016-01-20,2026-11-02
-914-bathurst-st--ltch,Vermont Square,914 BATHURST ST,LTCH,10,0,6,2,2017-01-12,2021-01-28
-40-playfair-ave--ltch,Villa Colombo Homes For The Aged,40 PLAYFAIR AVE,LTCH,102,0,77,3,2016-01-14,2026-11-15
-160-wellesley-st-e--ltch,Wellesley Central Place,160 WELLESLEY ST E,LTCH,34,0,29,3,2016-01-25,2026-11-16
-400-the-w-mall--ltch,Wesburn Manor,400 THE W MALL,LTCH,54,1,33,2,2016-01-08,2026-11-12
-82-buttonwood-ave--ltch,West Park Long Term Care Centre,82 BUTTONWOOD AVE,LTCH,35,0,23,5,2016-01-08,2024-05-15
-2005-lawrence-ave-w--ltch,Weston Terrace Care Community,2005 LAWRENCE AVE W,LTCH,63,0,39,5,2017-02-06,2026-11-02
-1145-albion-rd--ltch,Westside,1145 ALBION RD,LTCH,49,0,18,1,2016-03-10,2025-12-29
-60-scottfield-dr--ltch,Yee Hong Centre - Scarborough Finch,60 SCOTTFIELD DR,LTCH,49,0,31,7,2016-07-11,2026-02-01
-2311-mcnicoll-ave--ltch,Yee Hong Centre - Scarborough Mcnicoll,2311 MCNICOLL AVE,LTCH,34,0,25,4,2017-01-18,2026-11-09
-34-middleport-cres--retirement-home,A Better Way Retirement Home,34 MIDDLEPORT CRES,Retirement home,1,0,1,1,2024-02-26,2024-02-26
-705-707-ellesmere-rd--retirement-home,Alexis Lodge Retirement Residence,705-707 ELLESMERE RD,Retirement home,4,0,4,2,2021-10-19,2024-08-09
-155-balmoral-ave--retirement-home,Amica At The Balmoral Club,155 BALMORAL AVE,Retirement home,4,0,2,1,2016-04-18,2020-11-23
-19-rean-dr--retirement-home,Amica Bayview Gardens,19 REAN DR,Retirement home,34,2,20,3,2016-12-30,2026-02-20
-15-barberry-pl--retirement-home,Amica Bayview Village,15 BARBERRY PL,Retirement home,19,1,11,3,2017-03-01,2026-06-03
-1066-ave-rd--retirement-home,Amica On The Avenue,1066 AVE RD,Retirement home,24,0,14,3,2017-01-12,2026-03-05
-8-snowy-owl-way--retirement-home,Arul Oli Senior Centre,8 SNOWY OWL WAY,Retirement home,1,0,1,1,2020-11-16,2020-11-16
-866-sheppard-ave-w--retirement-home,Aspira Kensington Place Retirement Living,866 SHEPPARD AVE W,Retirement home,29,2,16,4,2016-05-06,2026-03-30
-500-kingston-rd--retirement-home,Atrium At Kew Beach,500 KINGSTON RD,Retirement home,7,0,1,1,2016-05-26,2020-10-13
-505-kingston-rd--retirement-home,Beach Arms Retirement Residence,505 KINGSTON RD,Retirement home,4,0,1,1,2018-02-12,2020-01-09
-52-mcmurrich-st--retirement-home,Belmont House,52 MCMURRICH ST,Retirement home,1,0,1,1,2023-09-05,2023-09-05
-55-belmont-st--retirement-home,Belmont House,55 BELMONT ST,Retirement home,12,0,7,2,2018-05-02,2026-01-19
-4-partridge-ln--retirement-home,Bethseda Home,4 PARTRIDGE LN,Retirement home,3,0,2,1,2022-01-11,2025-01-09
-67-belgreen-ave--retirement-home,Bethseda Home,67 BELGREEN AVE,Retirement home,4,0,3,1,2016-10-11,2023-10-19
-76-silversted-dr--retirement-home,Bethseda Home,76 SILVERSTED DR,Retirement home,4,0,3,1,2022-01-11,2025-12-02
-180-sheridan-ave--retirement-home,Bill Mcmurray Residence,180 SHERIDAN AVE,Retirement home,7,0,5,2,2021-12-29,2024-06-11
-54-foxbar-rd--retirement-home,Bradgate Arms,54 FOXBAR RD,Retirement home,12,1,5,3,2016-02-22,2026-11-04
-1-canterbury-pl--retirement-home,Canterbury Place Retirement Residence,1 CANTERBURY PL,Retirement home,10,0,5,1,2016-10-12,2025-12-15
-300-silver-star-blvd--retirement-home,Carefirst Transitional Care Centre,300 SILVER STAR BLVD,Retirement home,3,0,1,1,2018-01-05,2024-08-26
-520-markham-rd--retirement-home,Cedarbrook Lodge Retirement Residence,520 MARKHAM RD,Retirement home,34,0,22,2,2016-04-23,2026-10-04
-2601-bayview-ave--retirement-home,Cedarhurst Dementia Care Home,2601 BAYVIEW AVE,Retirement home,10,0,9,2,2016-07-25,2025-12-19
-25-centennial-park-rd--retirement-home,Centennial Park Place,25 CENTENNIAL PARK RD,Retirement home,15,0,3,1,2016-12-19,2026-08-13
-1238-queen-st-e--retirement-home,Chartwell Avondale Retirement Residence,1238 QUEEN ST E,Retirement home,8,0,6,3,2017-02-07,2024-04-17
-1955-steeles-ave-e--retirement-home,Chartwell Gibson Retirement Residence,1955 STEELES AVE E,Retirement home,23,1,9,1,2016-05-02,2026-10-29
-2100-bloor-st-w--retirement-home,Chartwell Grenadier Retirement Residence,2100 BLOOR ST W,Retirement home,28,2,23,7,2017-01-06,2026-07-06
-65-livingston-rd--retirement-home,Chartwell Guildwood Retirement Residence,65 LIVINGSTON RD,Retirement home,23,0,15,4,2016-04-13,2026-03-29
-10-senlac-rd--retirement-home,Chartwell Lansing Retirement Residence,10 SENLAC RD,Retirement home,16,1,6,2,2016-10-04,2024-06-30
-4005-eglinton-ave-w--retirement-home,Chartwell Scarlett Heights Retirement Residence,4005 EGLINTON AVE W,Retirement home,37,1,22,5,2016-11-23,2026-04-02
-600-melita-cres--retirement-home,Christie Gardens,600 MELITA CRES,Retirement home,21,2,20,2,2016-12-08,2025-12-28
-877-yonge-st--retirement-home,Davenhill Senior Living - 4th Fl,877 YONGE ST,Retirement home,1,0,1,1,2019-05-21,2019-05-21
-5351-yonge-st--retirement-home,Delmanor Northtown,5351 YONGE ST,Retirement home,10,0,8,1,2016-12-28,2026-04-21
-4180-dundas-st-w--retirement-home,Delmanor Prince Edward,4180 DUNDAS ST W,Retirement home,16,1,11,3,2016-12-23,2024-12-30
-187-wynford-dr--retirement-home,Delmanor Wynford,187 WYNFORD DR,Retirement home,17,0,11,2,2018-03-20,2026-05-05
-52-neilson-dr--retirement-home,Dom Lipa,52 NEILSON DR,Retirement home,4,0,3,1,2022-04-23,2026-01-16
-2-green-belt-dr--retirement-home,Don Mills Retirement Residence,2 GREEN BELT DR,Retirement home,10,0,8,1,2023-08-06,2026-01-06
-1055-1057-don-mills-rd--retirement-home,Don Mills Seniors' Apartments,1055-1057 DON MILLS RD,Retirement home,1,0,1,1,2022-10-18,2022-10-18
-8-the-donway-e--retirement-home,Donway Place,8 THE DONWAY E,Retirement home,28,1,16,6,2017-02-21,2025-12-27
-124-dowling-ave--retirement-home,Dowling Residence,124 DOWLING AVE,Retirement home,2,0,2,1,2020-05-28,2020-11-26
-40-old-kingston-rd--retirement-home,Ehatare Retirement Home,40 OLD KINGSTON RD,Retirement home,12,0,4,2,2016-07-09,2025-03-10
-3838-bloor-st-w--retirement-home,Elim Springs Retirement Residence,3838 BLOOR ST W,Retirement home,1,0,1,1,2017-01-17,2017-01-17
-10-fairfield-ave--retirement-home,Fairfield Residence,10 FAIRFIELD AVE,Retirement home,2,0,2,1,2022-04-22,2023-10-18
-645-castlefield-ave--retirement-home,Forest Hill Place,645 CASTLEFIELD AVE,Retirement home,18,1,7,1,2016-12-21,2026-02-23
-537-finch-ave-w--retirement-home,Forestview Retirement Residence,537 FINCH AVE W,Retirement home,15,1,10,3,2020-04-16,2026-09-14
-880-lawrence-ave-e--retirement-home,Greenview Lodge,880 LAWRENCE AVE E,Retirement home,21,1,9,2,2016-03-11,2026-04-12
-1-northwestern-ave--retirement-home,Harold And Grace Baker Centre,1 NORTHWESTERN AVE,Retirement home,18,0,10,2,2017-07-24,2026-09-28
-111-ave-rd--retirement-home,Hazelton Place Retirement Residence,111 AVE RD,Retirement home,41,2,15,4,2016-08-22,2026-02-09
-4251-dundas-st-w--retirement-home,Kingsway,4251 DUNDAS ST W,Retirement home,21,1,16,3,2016-12-11,2026-01-30
-718-sheppard-ave-w--retirement-home,L'chaim Retirement Home,718 SHEPPARD AVE W,Retirement home,8,0,5,3,2017-01-31,2025-01-17
-10-14-william-morgan-dr--retirement-home,Leaside Retirement Residence,10-14 WILLIAM MORGAN DR,Retirement home,35,1,29,9,2017-12-25,2025-03-24
-2881-eglinton-ave-e--retirement-home,Mccowan Retirement Residence,2881 EGLINTON AVE E,Retirement home,21,2,10,4,2017-01-09,2026-04-07
-1020-mcnicoll-ave--retirement-home,Mcnicoll Manor/Moll Berczy Haus,1020 MCNICOLL AVE,Retirement home,9,0,7,1,2017-02-07,2024-08-28
-84-davisville-ave--retirement-home,Meighen Retirement Residence,84 DAVISVILLE AVE,Retirement home,10,0,4,1,2016-03-09,2025-12-23
-3555-kingston-rd--retirement-home,Momiji Health Care Society,3555 KINGSTON RD,Retirement home,1,0,1,1,2017-01-13,2017-01-13
-1140-bloor-st-w--retirement-home,New Horizons Tower,1140 BLOOR ST W,Retirement home,24,1,16,1,2016-03-09,2025-10-15
-1-3-kenton-dr--retirement-home,One Kenton Place,1-3 KENTON DR,Retirement home,23,0,14,3,2019-04-12,2026-10-15
-4650-eglinton-ave-w--retirement-home,Parkland On Eglinton West,4650 EGLINTON AVE W,Retirement home,15,1,13,3,2020-12-07,2025-12-18
-61-fairfax-cres--retirement-home,Presentation Manor,61 FAIRFAX CRES,Retirement home,18,1,11,2,2020-05-22,2026-08-22
-265-queens-dr--retirement-home,Queens Estate Retirement Residence,265 QUEENS DR,Retirement home,17,0,12,2,2020-04-01,2026-01-31
-1340-york-mills-rd--retirement-home,Rayoak Place,1340 YORK MILLS RD,Retirement home,17,0,6,1,2017-01-27,2026-03-31
-2121-kingston-rd--retirement-home,Retirement Suites By The Lake,2121 KINGSTON RD,Retirement home,21,1,8,2,2016-02-29,2025-11-22
-147-elder-st--retirement-home,Sage Care Retirement Home,147 ELDER ST,Retirement home,14,0,13,2,2017-10-31,2026-01-19
-148-markham-rd--retirement-home,Scarborough Retirement Residence,148 MARKHAM RD,Retirement home,27,0,14,2,2016-12-19,2026-10-03
-3758-sheppard-ave-e--retirement-home,Shepherd Terrace Retirement Residence,3758 SHEPPARD AVE E,Retirement home,8,0,5,3,2017-01-21,2024-09-13
-685-finch-ave-w--retirement-home,St. Bernard's Residence,685 FINCH AVE W,Retirement home,12,1,4,3,2016-01-25,2025-02-09
-2339-dufferin-st--retirement-home,St. Hilda's Towers,2339 DUFFERIN ST,Retirement home,12,1,10,4,2017-01-13,2022-07-29
-2-o-connor-dr--retirement-home,St. Joseph's Infirmary And Private Hospital,2 O CONNOR DR,Retirement home,1,0,1,1,2022-07-12,2022-07-12
-221-milner-ave--retirement-home,Sts. Peter And Paul Residence,221 MILNER AVE,Retirement home,24,2,14,1,2016-02-16,2026-11-03
-15-summerland-terr--retirement-home,Tapestry At Village Gate West,15 SUMMERLAND TERR,Retirement home,14,0,10,3,2019-03-28,2025-05-07
-3705-bathurst-st--retirement-home,Terrace Gardens,3705 BATHURST ST,Retirement home,4,0,3,1,2017-02-09,2021-10-07
-55-ameer-ave--retirement-home,Terraces Of Baycrest,55 AMEER AVE,Retirement home,26,1,21,2,2020-11-20,2025-12-12
-123-spadina-rd--retirement-home,The Annex,123 SPADINA RD,Retirement home,21,0,14,2,2017-01-27,2026-02-12
-700-720-mount-pleasant-rd--retirement-home,The Briton House,700-720 MOUNT PLEASANT RD,Retirement home,22,0,19,8,2016-02-29,2026-03-02
-305-balliol-st--retirement-home,The Claremont,305 BALLIOL ST,Retirement home,18,0,12,2,2017-01-05,2026-05-11
-77-dunfield-ave--retirement-home,The Dunfield Retirement Residence,77 DUNFIELD AVE,Retirement home,20,0,14,2,2020-05-09,2026-02-20
-921-millwood-rd--retirement-home,The Millwood,921 MILLWOOD RD,Retirement home,9,0,6,4,2018-01-08,2026-05-03
-262-st-clair-ave-w--retirement-home,The Russell Hill Retirement Residence,262 ST CLAIR AVE W,Retirement home,15,0,8,4,2017-01-09,2026-09-14
-146-sumach-st--retirement-home,The Sumach By Chartwell,146 SUMACH ST,Retirement home,2,0,2,1,2022-12-13,2023-01-20
-4-teddington-park-ave--retirement-home,The Teddington,4 TEDDINGTON PARK AVE,Retirement home,23,0,13,3,2016-02-04,2026-09-23
-2245-lawrence-ave-w--retirement-home,The Village Of Humber Heights,2245 LAWRENCE AVE W,Retirement home,34,0,30,4,2018-01-11,2026-09-14
-1860-lawrence-ave-e--retirement-home,The Wexford,1860 LAWRENCE AVE E,Retirement home,3,0,2,1,2025-04-30,2026-06-10
-8-bridlington-st--retirement-home,V Care Retirement Home,8 BRIDLINGTON ST,Retirement home,1,0,1,1,2018-02-28,2018-02-28
-602-brimley-rd--retirement-home,Villa Karuna Home For Seniors,602 BRIMLEY RD,Retirement home,1,0,1,1,2022-01-14,2022-01-14
-303-queens-dr--retirement-home,Weston Gardens Retirement Residence,303 QUEENS DR,Retirement home,38,3,17,2,2018-01-19,2026-09-08
-339-george-st--shelter,Seaton House,339 GEORGE ST,Shelter,3,0,3,1,2016-03-17,2018-03-05
+facility_id,facility_name,facility_address,setting_group,n_outbreaks,n_setting_reassigned,n_units,n_address_spellings,first_onset,last_onset,lon,lat,neighbourhood_id,neighbourhood
+3560-bathurst-st--hospital,Baycrest Hospital,3560 BATHURST ST,Hospital,84,0,51,3,2016-12-16,2026-11-18,-79.4341433053897,43.7300556063562,32,Englemount-Lawrence
+300-silver-star-blvd--hospital,Carefirst Transitional Care Centre,300 SILVER STAR BLVD,Hospital,2,0,1,2,2022-04-29,2023-09-13,-79.2955649415402,43.8123787918746,130,Milliken
+119-isabella-st--hospital,Casey House,119 ISABELLA ST,Hospital,1,0,1,1,2025-01-15,2025-01-15,-79.3782947643909,43.6689614827991,74,North St.James Town
+9-huntley-st--hospital,Casey House,9 HUNTLEY ST,Hospital,1,0,1,1,2016-04-01,2016-04-01,-79.3776379110867,43.6687261708819,74,North St.James Town
+520-markham-rd--hospital,Cedarbrook Lodge - Transitional Care Unit,520 MARKHAM RD,Hospital,8,0,7,1,2022-05-04,2024-10-24,-79.2249147113661,43.754867803652,141,Golfdale-Cedarbrae-Woburn
+1001-queen-st-w--hospital,Centre For Addiction And Mental Health,1001 QUEEN ST W,Hospital,122,0,75,22,2016-03-14,2026-11-10,-79.4200754696452,43.6425878584913,162,West Queen West
+250-college-st--hospital,Centre For Addiction And Mental Health,250 COLLEGE ST,Hospital,4,0,4,3,2017-12-10,2020-11-05,-79.3991144282257,43.658575367493,79,University
+47-austin-terr--hospital,Hillcrest Reactivation Centre,47 AUSTIN TERR,Hospital,19,0,12,2,2016-01-25,2026-10-23,-79.4159432484274,43.6781146350222,96,Casa Loma
+150-kilgour-rd--hospital,Holland Bloorview Kids Rehabilitation Hospital,150 KILGOUR RD,Hospital,19,0,15,2,2016-01-28,2025-12-10,-79.3739021230378,43.7184968700495,41,Bridle Path-Sunnybrook-York Mills
+1235-wilson-ave--hospital,Humber River Hospital - Wilson,1235 WILSON AVE,Hospital,27,0,22,2,2020-11-06,2026-11-03,-79.4892156206195,43.7242581886028,154,Oakdale-Beverley Heights
+38-major-st--hospital,Kensington Hospice,38 MAJOR ST,Hospital,1,0,1,1,2021-11-28,2021-11-28,-79.4037277517824,43.6591404087819,79,University
+555-finch-ave-w--hospital,North York General Hospital - Branson Site,555 FINCH AVE W,Hospital,7,0,6,3,2023-01-01,2026-01-01,-79.4473785309205,43.7716018263441,35,Westminster-Branson
+4001-leslie-st--hospital,North York General Hospital - General Site,4001 LESLIE ST,Hospital,82,0,41,4,2016-03-29,2026-10-28,-79.3624533320053,43.7696185530351,52,Bayview Village
+1035-eglinton-ave-w--hospital,Pine Villa Seniors Transitional Care,1035 EGLINTON AVE W,Hospital,10,1,7,2,2020-01-06,2024-10-15,-79.4322708134267,43.6992873254681,106,Humewood-Cedarvale
+200-church-st--hospital,Rcc - Church Site - St. Joseph's Health Centre,200 CHURCH ST,Hospital,62,0,49,3,2019-08-14,2026-10-22,-79.3770105195848,43.655477880842,168,Downtown Yonge East
+625-runnymede-rd--hospital,Runnymede Healthcare Centre,625 RUNNYMEDE RD,Hospital,61,0,19,2,2016-01-28,2026-11-12,-79.4811148967795,43.6646625919724,90,Junction Area
+650-church-st--hospital,Salvation Army Toronto Grace Health Centre,650 CHURCH ST,Hospital,15,0,11,2,2018-01-12,2026-03-25,-79.3832016614596,43.6703259825844,167,Church-Wellesley
+3030-birchmount-rd--hospital,Scarborough Health Network - Birchmount,3030 BIRCHMOUNT RD,Hospital,35,0,25,4,2017-01-03,2025-03-07,-79.3090539578538,43.8018913558206,148,East L'Amoreaux
+2867-ellesmere-rd--hospital,Scarborough Health Network - Centenary,2867 ELLESMERE RD,Hospital,35,0,27,5,2016-02-26,2026-11-16,-79.2049610137016,43.7800813724694,135,Morningside
+3050-lawrence-ave-e--hospital,Scarborough Health Network - General Hospital,3050 LAWRENCE AVE E,Hospital,78,0,38,14,2016-04-02,2026-03-16,-79.2475019116653,43.7561481372145,156,Bendale-Glen Andrew
+1029-mcnicoll-ave--hospital,Scarborough Health Network - Scarborough General,1029 MCNICOLL AVE,Hospital,1,0,1,1,2022-12-22,2022-12-22,-79.3348343752365,43.8037954534632,116,Steeles
+43-wellesley-st-e--hospital,Shsc - Holland Orthopaedic & Arthritic Centre,43 WELLESLEY ST E,Hospital,7,0,7,4,2017-01-19,2025-09-05,-79.3823608002787,43.6650421389631,167,Church-Wellesley
+1-bridgepoint-dr--hospital,Sinai Health System - Hennick Bridgepoint,1 BRIDGEPOINT DR,Hospital,43,0,37,3,2016-12-29,2026-09-26,-79.3552166658976,43.6661712273782,68,North Riverdale
+600-university-ave--hospital,Sinai Health System - Mount Sinai,600 UNIVERSITY AVE,Hospital,35,0,26,4,2016-02-08,2026-11-06,-79.3904418582054,43.6575278279799,78,Kensington-Chinatown
+2-o-connor-dr--hospital,Sisters Of St. Joseph,2 O CONNOR DR,Hospital,3,0,3,1,2024-06-28,2025-03-10,-79.3559744168149,43.692490524052,57,Broadview North
+2111-finch-ave-w--hospital,Southlake Regional Health Centre - Rcc Finch Site,2111 FINCH AVE W,Hospital,62,0,56,8,2018-01-16,2026-02-13,-79.5258313548805,43.7544543695983,25,Glenfield-Jane Heights
+2075-bayview-ave--hospital,Sunnybrook Health Sciences Centre - Bayview Campus,2075 BAYVIEW AVE,Hospital,77,0,38,5,2016-04-14,2026-06-26,-79.377875369794907,43.721937654413,41,Bridle Path-Sunnybrook-York Mills
+285-cummer-ave--hospital,Sunnybrook Health Sciences Centre - St. John's Rehab,285 CUMMER AVE,Hospital,63,0,19,4,2016-01-20,2026-08-19,-79.4041483878354,43.7877124250508,50,Newtonbrook East
+500-kingston-rd--hospital,Tehn - Atrium At Kew Beach,500 KINGSTON RD,Hospital,37,1,31,4,2021-01-03,2026-04-27,-79.3027263968335,43.6777210013966,62,East End-Danforth
+825-coxwell-ave--hospital,Tehn - Michael Garron Hospital,825 COXWELL AVE,Hospital,62,0,35,4,2016-11-13,2026-01-14,-79.3249507812501,43.6898234105127,59,Danforth East York
+555-university-ave--hospital,The Hospital For Sick Children,555 UNIVERSITY AVE,Hospital,23,0,14,3,2016-02-01,2026-04-08,-79.3882443367206,43.6572389537758,170,Yonge-Bay Corridor
+650-dixon-rd--hospital,The Salvation Army,650 DIXON RD,Hospital,1,0,1,1,2022-03-05,2022-03-05,-79.5781677897396,43.6908976721485,1,West Humber-Clairville
+1020-mcnicoll-ave--hospital,The Salvation Army - Toronto Grace Health Centre - Specialized Care Centre,1020 MCNICOLL AVE,Hospital,8,0,6,1,2022-09-24,2026-02-14,-79.3360097735751,43.805763124703,116,Steeles
+140-sherway-dr--hospital,Trillium Health Partners - Mccall Centre For Continuing Care,140 SHERWAY DR,Hospital,60,0,25,2,2016-02-29,2026-05-19,-79.5621268703017,43.6100023476942,159,Etobicoke City Centre
+150-sherway-dr--hospital,Trillium Health Partners - Queensway,150 SHERWAY DR,Hospital,8,0,8,4,2018-01-29,2025-12-18,-79.5628102244035,43.6092934901006,159,Etobicoke City Centre
+610-university-ave--hospital,Uhn - Princess Margaret Hospital,610 UNIVERSITY AVE,Hospital,18,0,15,3,2017-02-02,2026-10-26,-79.3904050478335,43.6581212336151,78,Kensington-Chinatown
+170-emmett-ave--hospital,Uhn - West Park Healthcare Centre,170 EMMETT AVE,Hospital,4,0,4,1,2025-01-21,2026-01-25,-79.5089579810603,43.6888907895762,115,Mount Dennis
+3276-st-clair-ave-e--hospital,Unity Health Toronto - Providence,3276 ST CLAIR AVE E,Hospital,89,0,44,7,2016-03-07,2026-09-09,-79.2851962354035,43.7139593948895,120,Clairlea-Birchmount
+30-the-queensway--hospital,Unity Health Toronto - St. Joseph's,30 THE QUEENSWAY,Hospital,150,0,48,3,2016-01-28,2026-11-04,-79.4502374816575,43.6395561831833,87,High Park-Swansea
+30-bond-st--hospital,Unity Health Toronto - St. Michael's,30 BOND ST,Hospital,56,0,46,3,2016-03-02,2024-10-09,-79.3776792804321,43.6536468859287,168,Downtown Yonge East
+130-dunn-ave--hospital,University Health Network - Bickle Centre,130 DUNN AVE,Hospital,37,0,29,3,2016-02-03,2026-07-10,-79.4333101414867,43.6351993180537,85,South Parkdale
+520-sutherland-dr--hospital,University Health Network - Lyndhurst,520 SUTHERLAND DR,Hospital,5,0,5,2,2020-01-03,2023-11-17,-79.3697947972693,43.7192618991686,41,Bridle Path-Sunnybrook-York Mills
+200-elizabeth-st--hospital,University Health Network - Toronto General,200 ELIZABETH ST,Hospital,59,0,42,11,2016-02-23,2026-05-22,-79.3880553746039,43.659050065179,170,Yonge-Bay Corridor
+399-bathurst-st--hospital,University Health Network - Toronto Western,399 BATHURST ST,Hospital,78,0,38,4,2016-02-24,2026-10-09,-79.405688478991,43.6530947911825,78,Kensington-Chinatown
+265-queens-dr--hospital,University Health Network - Transitional Care Program - Queens Estate,265 QUEENS DR,Hospital,3,0,2,1,2022-12-18,2023-10-23,-79.5043027690903,43.7071468737779,28,Rustic
+550-university-ave--hospital,University Health Network - University Centre,550 UNIVERSITY AVE,Hospital,16,0,13,5,2016-01-28,2026-06-25,-79.3899546234031,43.6566616191466,78,Kensington-Chinatown
+82-buttonwood-ave--hospital,West Park Healthcare Centre,82 BUTTONWOOD AVE,Hospital,98,0,33,3,2016-02-05,2026-10-29,-79.5093784552448,43.6898433904002,115,Mount Dennis
+101-humber-college-blvd--hospital,William Osler Health System,101 HUMBER COLLEGE BLVD,Hospital,76,0,51,5,2017-01-17,2026-11-09,-79.598696585788,43.7297834434975,1,West Humber-Clairville
+340-mccowan-rd--ltch,Age Care Trilogy,340 MCCOWAN RD,LTCH,52,0,42,5,2016-03-07,2026-09-17,-79.238427206367,43.7383136359833,138,Eglinton East
+705-707-ellesmere-rd--ltch,Alexis Lodge Retirement Home,705-707 ELLESMERE RD,LTCH,1,0,1,1,2021-01-11,2021-01-11,-79.2887897976653,43.7635840047755,126,Dorset Park
+92-island-rd--ltch,Altamont Care Community,92 ISLAND RD,LTCH,42,0,20,2,2016-01-11,2026-09-03,-79.1400297279744,43.7988512141561,143,West Rouge
+3560-bathurst-st--ltch,Baycrest Apotex Centre - Jewish Home For The Aged,3560 BATHURST ST,LTCH,115,0,70,1,2016-11-28,2026-11-09,-79.4341433053897,43.7300556063562,32,Englemount-Lawrence
+221-milner-ave--ltch,Bayshore,221 MILNER AVE,LTCH,3,0,3,1,2022-06-24,2024-01-12,-79.2401276987724,43.7883389094795,128,Agincourt South-Malvern West
+55-belmont-st--ltch,Belmont House,55 BELMONT ST,LTCH,64,0,31,2,2016-02-04,2026-04-15,-79.3909635734646,43.6746709835347,95,Annex
+2920-lawrence-ave-e--ltch,Bendale Acres,2920 LAWRENCE AVE E,LTCH,56,0,34,4,2016-09-15,2026-03-09,-79.2521559684256,43.7548865005979,156,Bendale-Glen Andrew
+1-overland-dr--ltch,Better Living At Thompson House,1 OVERLAND DR,LTCH,43,0,13,2,2016-04-17,2026-05-31,-79.346919033059,43.732441981254,42,Banbury-Don Mills
+300-silver-star-blvd--ltch,Carefirst Transitional Care Centre,300 SILVER STAR BLVD,LTCH,2,0,2,1,2022-07-05,2022-07-28,-79.2955649415402,43.8123787918746,130,Milliken
+306-finch-ave-e--ltch,Carefree Lodge,306 FINCH AVE E,LTCH,46,0,17,4,2016-03-18,2026-07-27,-79.3940326440731,43.785013159398,50,Newtonbrook East
+351-christie-st--ltch,Castleview Wychwood Towers,351 CHRISTIE ST,LTCH,79,0,43,1,2016-02-01,2026-09-24,-79.4211697542671,43.6733808286229,94,Wychwood
+520-markham-rd--ltch,Cedarbrook Lodge Retirement Residence,520 MARKHAM RD,LTCH,4,0,4,2,2022-03-10,2026-02-09,-79.2249147113661,43.754867803652,141,Golfdale-Cedarbrae-Woburn
+429-walmer-rd--ltch,Cedarvale Terrace,429 WALMER RD,LTCH,27,0,13,3,2016-09-19,2024-01-12,-79.412374147243,43.6854463851801,101,Forest Hill South
+1925-steeles-ave-e--ltch,Chartwell Gibson Long Term Care Residence,1925 STEELES AVE E,LTCH,64,0,34,4,2016-03-14,2026-10-31,-79.3738873405469,43.8076555703043,49,Bayview Woods-Steeles
+495-the-w-mall--ltch,Chartwell Westbury Long Term Care Residence,495 THE W MALL,LTCH,53,0,37,2,2016-02-12,2026-10-31,-79.5677606034952,43.6482590169576,13,Etobicoke West Mall
+138-dowling-ave--ltch,Chartwell White Eagle Long Term Care Residence,138 DOWLING AVE,LTCH,11,0,8,1,2018-01-13,2024-05-20,-79.4392161360252,43.6371736438238,85,South Parkdale
+5935-bathurst-st--ltch,Cheltenham Care Community,5935 BATHURST ST,LTCH,47,0,16,5,2017-01-06,2026-03-11,-79.4445204231892,43.7819005126533,36,Newtonbrook West
+3555-danforth-ave--ltch,Chester Village,3555 DANFORTH AVE,LTCH,41,0,30,2,2016-01-19,2026-07-06,-79.2747342784802,43.6937782843194,121,Oakridge
+66-roncesvalles-ave--ltch,Copernicus Lodge,66 RONCESVALLES AVE,LTCH,54,1,38,5,2017-01-25,2026-10-17,-79.4473043306913,43.6401908790957,87,High Park-Swansea
+102-craiglee-dr--ltch,Craiglee Nursing Home,102 CRAIGLEE DR,LTCH,53,0,33,3,2016-03-11,2026-09-21,-79.2530714519831,43.706902203957,122,Birchcliffe-Cliffside
+205-cummer-ave--ltch,Cummer Lodge,205 CUMMER AVE,LTCH,85,0,47,4,2016-03-14,2026-11-01,-79.4075100838189,43.7882498358048,50,Newtonbrook East
+70-humberline-dr--ltch,Deerwood Creek Care Community,70 HUMBERLINE DR,LTCH,63,0,38,5,2016-01-04,2026-08-04,-79.6173819239608,43.7319280221797,1,West Humber-Clairville
+52-neilson-dr--ltch,Dom Lipa,52 NEILSON DR,LTCH,29,0,17,3,2017-01-11,2026-01-09,-79.5652801574271,43.6291556984902,12,Markland Wood
+3595-keele-st--ltch,Downsview Long Term Care Centre,3595 KEELE ST,LTCH,41,0,27,3,2017-02-06,2025-12-29,-79.4857697834648,43.7511233755832,27,York University Heights
+420-the-e-mall--ltch,Eatonville Care Centre,420 THE E MALL,LTCH,61,0,18,3,2016-01-22,2026-11-11,-79.5606933670659,43.6474696882985,158,Islington
+40-old-kingston-rd--ltch,Ehatare Nursing Home,40 OLD KINGSTON RD,LTCH,24,0,3,2,2016-01-07,2026-07-22,-79.183129521103,43.7755413825282,136,West Hill
+35-elm-grove-ave--ltch,Elm Grove Living Centre,35 ELM GROVE AVE,LTCH,30,0,10,3,2016-01-06,2024-09-06,-79.4307442554247,43.6403252580193,85,South Parkdale
+550-cummer-ave--ltch,Extendicare Bayview,550 CUMMER AVE,LTCH,40,0,20,2,2016-02-02,2026-10-01,-79.3909214142819,43.7936640103335,49,Bayview Woods-Steeles
+60-guildwood-pkwy--ltch,Extendicare Guildwood,60 GUILDWOOD PKWY,LTCH,37,0,15,5,2017-01-28,2026-08-04,-79.2031493645053,43.7469080281275,140,Guildwood
+551-conlins-rd--ltch,Extendicare Rouge Valley,551 CONLINS RD,LTCH,46,0,34,2,2016-03-09,2026-04-22,-79.1889757053881,43.8037303285047,143,West Rouge
+3830-lawrence-ave-e--ltch,Extendicare Scarborough,3830 LAWRENCE AVE E,LTCH,41,0,12,3,2016-03-29,2026-08-13,-79.2105886656586,43.7635817214633,141,Golfdale-Cedarbrae-Woburn
+14-cross-st--ltch,Fairview Nursing Home,14 CROSS ST,LTCH,32,0,12,2,2016-01-03,2026-08-12,-79.4284352010634,43.6480203859031,84,Little Portugal
+1000-ellesmere-rd--ltch,Fieldstone Commons Care Community,1000 ELLESMERE RD,LTCH,49,0,25,2,2017-01-14,2026-05-07,-79.2778454677259,43.7670786390231,126,Dorset Park
+439-sherbourne-st--ltch,Fudger House,439 SHERBOURNE ST,LTCH,54,0,34,1,2016-02-17,2026-11-17,-79.3736914853626,43.6662710314256,71,Cabbagetown-South St.James Town
+1-sand-beach-rd--ltch,Garden Court Nursing Home,1 SAND BEACH RD,LTCH,2,0,2,1,2020-05-27,2021-12-29,-79.4969009721464,43.6019346949507,160,Mimico-Queensway
+1800-o-connor-dr--ltch,Harmony Hills Care Community,1800 O CONNOR DR,LTCH,88,0,56,3,2016-09-29,2026-11-11,-79.3047709203132,43.7203704968727,43,Victoria Village
+1-northwestern-ave--ltch,Harold And Grace Baker Centre,1 NORTHWESTERN AVE,LTCH,44,0,23,1,2017-01-18,2026-10-25,-79.4699231960423,43.6978509866004,112,Beechborough-Greenbrook
+2045-finch-ave-w--ltch,Hawthorne Place Care Centre,2045 FINCH AVE W,LTCH,39,0,24,4,2016-02-05,2026-01-03,-79.5214208659012,43.756067890448,25,Glenfield-Jane Heights
+215-tyrrel-ave--ltch,Hellenic Care For Seniors,215 TYRREL AVE,LTCH,20,0,4,4,2016-01-22,2026-03-02,-79.4303132283052,43.6762353088426,94,Wychwood
+2411-lawrence-ave-e--ltch,Hellenic Home,2411 LAWRENCE AVE E,LTCH,43,0,32,3,2016-08-03,2026-06-22,-79.2743686233671,43.7492923762038,126,Dorset Park
+2109-finch-ave-w--ltch,Humber Meadows,2109 FINCH AVE W,LTCH,37,0,35,2,2023-06-17,2026-09-22,-79.5246579027773,43.7547276890724,25,Glenfield-Jane Heights
+95-humber-college-blvd--ltch,Humber Valley Terrace,95 HUMBER COLLEGE BLVD,LTCH,34,0,11,2,2016-11-23,2025-11-10,-79.5965970494236,43.7272168600843,1,West Humber-Clairville
+40-bell-estate-rd--ltch,Ina Grafton Gage Home,40 BELL ESTATE RD,LTCH,34,0,14,3,2016-12-09,2026-10-01,-79.2770757042598,43.7055680166755,120,Clairlea-Birchmount
+155-millwood-rd--ltch,Isabel And Arthur Meighen Manor,155 MILLWOOD RD,LTCH,27,0,24,4,2016-01-15,2026-10-28,-79.3924297320799,43.6997436100236,174,South Eglinton-Davisville
+767-royal-york-rd--ltch,Ivan Franko Home,767 ROYAL YORK RD,LTCH,25,0,17,1,2017-03-14,2026-11-08,-79.5067273625209,43.6377418043243,16,Stonegate-Queensway
+1400-kennedy-rd--ltch,Kennedy Lodge,1400 KENNEDY RD,LTCH,47,0,35,2,2016-03-04,2026-09-09,-79.2806330260974,43.7626707459236,126,Dorset Park
+2233-kipling-ave--ltch,Kipling Acres,2233 KIPLING AVE,LTCH,56,0,51,2,2016-12-02,2026-10-07,-79.5716124040195,43.7250347195711,4,Rexdale-Kipling
+5-resurrection-rd--ltch,Labdara Lithuanian Nursing Home,5 RESURRECTION RD,LTCH,39,0,11,8,2016-05-19,2026-11-02,-79.5309435166034,43.6438692189194,159,Etobicoke City Centre
+3197-lakeshore-blvd-w--ltch,Lakeshore Lodge,3197 LAKESHORE BLVD W,LTCH,32,0,19,3,2016-01-13,2026-03-23,-79.5185574424511,43.5973456821482,18,New Toronto
+150-dunn-ave--ltch,Lakeside Long Term Care Centre,150 DUNN AVE,LTCH,41,0,20,3,2017-03-07,2026-02-12,-79.4335770612012,43.6365923115963,85,South Parkdale
+33-hahn-pl--ltch,Les Centres D'accueil Heritage,33 HAHN PL,LTCH,1,0,1,1,2022-01-14,2022-01-14,-79.3626970037207,43.6494025106859,166,St Lawrence-East Bayfront-The Islands
+77-main-st--ltch,Main Street Terrace,77 MAIN ST,LTCH,26,0,6,2,2016-02-24,2026-08-27,-79.298787353347,43.6815886425324,62,East End-Danforth
+28-halton-st--ltch,Maynard Nursing Home,28 HALTON ST,LTCH,25,0,7,3,2018-04-03,2026-09-15,-79.4191507308392,43.6489383665722,81,Trinity-Bellwoods
+140-sherway-dr--ltch,Mccall Centre Long Term Care Interim Unit,140 SHERWAY DR,LTCH,9,0,8,4,2018-01-16,2025-01-10,-79.5621268703017,43.6100023476942,159,Etobicoke City Centre
+130-midland-ave--ltch,Midland Gardens Care Community,130 MIDLAND AVE,LTCH,67,0,26,1,2016-01-11,2026-10-13,-79.2477699306239,43.7083283826928,122,Birchcliffe-Cliffside
+36-d-arcy-st--ltch,Mon Sheong Home For The Aged,36 D ARCY ST,LTCH,26,1,11,3,2016-04-04,2026-11-13,-79.3931437006886,43.6551553789903,78,Kensington-Chinatown
+2030-mcnicoll-ave--ltch,Mon Sheong Scarborough Long Term Care Centre,2030 MCNICOLL AVE,LTCH,52,1,41,3,2016-09-22,2026-11-16,-79.300207715201,43.8130596277619,130,Milliken
+740-pape-ave--ltch,Nisbet Lodge,740 PAPE AVE,LTCH,44,0,26,2,2017-01-02,2026-11-18,-79.3456512581489,43.6802832920349,67,Playter Estates-Danforth
+22-norfinch-dr--ltch,Norfinch Care Community,22 NORFINCH DR,LTCH,49,0,29,3,2016-04-11,2026-11-17,-79.5261760872728,43.7568095978259,24,Black Creek
+450-rustic-rd--ltch,North Park Nursing Home,450 RUSTIC RD,LTCH,16,0,4,2,2016-11-26,2024-08-14,-79.4822215194684,43.7175997833821,29,Maple Leaf
+2-buchan-crt--ltch,North York General Hospital - Seniors' Health Centre,2 BUCHAN CRT,LTCH,52,2,22,4,2016-12-30,2026-09-22,-79.359940901533,43.7728941236884,47,Don Valley Village
+122-tyndall-ave--ltch,Norwood Nursing Home,122 TYNDALL AVE,LTCH,22,0,6,2,2017-04-26,2026-03-13,-79.4293233533503,43.6375431602739,85,South Parkdale
+1-3-kenton-dr--ltch,One Kenton Place,1-3 KENTON DR,LTCH,4,0,4,3,2020-11-19,2024-01-08,-79.4436632571074,43.7779374513056,36,Newtonbrook West
+1035-eglinton-ave-w--ltch,Pine Villa Transitional Care,1035 EGLINTON AVE W,LTCH,2,0,1,1,2020-06-05,2020-09-06,-79.4322708134267,43.6992873254681,106,Humewood-Cedarvale
+3015-lawrence-ave-e--ltch,Rockcliffe Care Community,3015 LAWRENCE AVE E,LTCH,68,0,19,2,2016-03-01,2026-09-25,-79.2479483733203,43.7546666264273,157,Bendale South
+17-maplewood-ave--ltch,Rose Of Sharon Korean Long Term Care,17 MAPLEWOOD AVE,LTCH,11,0,8,1,2016-12-22,2026-09-26,-79.4216497596875,43.6858274745108,106,Humewood-Cedarvale
+621-runnymede-rd--ltch,Runnymede Long Term Care,621 RUNNYMEDE RD,LTCH,8,0,8,1,2025-12-11,2026-10-15,-79.4811017087896,43.6640930750641,90,Junction Area
+9-neilson-rd--ltch,Seven Oaks,9 NEILSON RD,LTCH,75,0,25,4,2016-01-27,2026-10-26,-79.2035757142747,43.7816381013174,135,Morningside
+3760-sheppard-ave-e--ltch,Shepherd Lodge,3760 SHEPPARD AVE E,LTCH,52,1,40,5,2017-01-06,2026-11-12,-79.2937672893674,43.782487286387,118,Tam O'Shanter-Sullivan
+3758-sheppard-ave-e--ltch,Shepherd Terrace Retirement Home,3758 SHEPPARD AVE E,LTCH,1,0,1,1,2020-12-16,2020-12-16,-79.294690468121,43.7823304022037,118,Tam O'Shanter-Sullivan
+345-sherbourne-st--ltch,Sherbourne Place,345 SHERBOURNE ST,LTCH,32,0,22,3,2016-10-16,2026-10-27,-79.3724232708811,43.6626985943005,73,Moss Park
+2-o-connor-dr--ltch,Sisters Of St. Joseph,2 O CONNOR DR,LTCH,2,0,2,2,2020-04-13,2021-04-01,-79.3559744168149,43.692490524052,57,Broadview North
+2701-st-clair-ave-e--ltch,St. Clair O'connor Community Nursing Home,2701 ST CLAIR AVE E,LTCH,22,0,8,8,2016-02-22,2026-04-11,-79.3118535366198,43.7054402645903,54,O'Connor-Parkview
+225-st-george-st--ltch,St. George Care Community,225 ST GEORGE ST,LTCH,43,0,11,4,2016-03-11,2026-10-06,-79.4014588747892,43.6725291153022,95,Annex
+2075-bayview-ave--ltch,Sunnybrook Health Sciences Centre - Sunnybrook Veterans Centre,2075 BAYVIEW AVE,LTCH,139,0,48,8,2016-01-11,2026-11-05,-79.377875369794907,43.721937654413,41,Bridle Path-Sunnybrook-York Mills
+795-eglinton-ave-e--ltch,Suomi Koti Nursing Home,795 EGLINTON AVE E,LTCH,19,0,6,2,2016-05-04,2026-06-09,-79.3661848151,43.7130026580059,56,Leaside-Bennington
+1020-mcnicoll-ave--ltch,Tendercare Living Centre,1020 MCNICOLL AVE,LTCH,50,0,22,3,2016-03-14,2026-05-19,-79.3360097735751,43.805763124703,116,Steeles
+1195-queen-st-e--ltch,The Heritage Nursing Home,1195 QUEEN ST E,LTCH,48,0,14,2,2016-01-04,2025-08-14,-79.331213737111,43.6628200083284,70,South Riverdale
+25-brunswick-ave--ltch,The Kensington Gardens,25 BRUNSWICK AVE,LTCH,64,0,60,5,2017-01-04,2026-09-16,-79.403942729053,43.6580890701948,79,University
+45-brunswick-ave--ltch,The Kensington Gardens (North Building),45 BRUNSWICK AVE,LTCH,45,0,40,2,2016-03-04,2026-04-20,-79.4043053744797,43.6587838823517,79,University
+921-millwood-rd--ltch,The Millwood,921 MILLWOOD RD,LTCH,2,0,1,1,2021-12-22,2023-11-02,-79.3636190339423,43.7029233978324,56,Leaside-Bennington
+33-christie-st--ltch,The O'neill Centre,33 CHRISTIE ST,LTCH,45,0,17,2,2016-01-19,2026-01-12,-79.4185979090029,43.6647779570063,95,Annex
+2245-lawrence-ave-w--ltch,The Village Of Humber Heights,2245 LAWRENCE AVE W,LTCH,61,0,52,6,2016-09-09,2026-09-25,-79.5259571571852,43.6971266186373,8,Humber Heights-Westmount
+1860-lawrence-ave-e--ltch,The Wexford,1860 LAWRENCE AVE E,LTCH,64,0,23,2,2016-02-02,2026-08-30,-79.3030774247849,43.7440620052931,119,Wexford/Maryvale
+59-lawson-rd--ltch,Tony Stacey Centre For Veterans' Care,59 LAWSON RD,LTCH,37,0,10,5,2016-03-02,2026-04-20,-79.1633156425112,43.7833019256177,133,Centennial Scarborough
+200-dawes-rd--ltch,True Davidson Acres,200 DAWES RD,LTCH,47,1,26,3,2016-03-15,2026-07-08,-79.2982691003024,43.6958366309129,54,O'Connor-Parkview
+150-emmett-ave--ltch,Uhn - West Park Long Term Care Centre,150 EMMETT AVE,LTCH,13,0,11,2,2024-07-09,2026-09-08,-79.5093611190684,43.6897993754693,115,Mount Dennis
+60-richview-rd--ltch,Ukrainian Canadian Care Centre,60 RICHVIEW RD,LTCH,32,0,11,2,2017-12-18,2026-09-28,-79.5189520742635,43.6844886159765,8,Humber Heights-Westmount
+3276-st-clair-ave-e--ltch,Unity Health Toronto - Houses Of Providence,3276 ST CLAIR AVE E,LTCH,93,0,82,11,2016-02-21,2026-11-02,-79.2851962354035,43.7139593948895,120,Clairlea-Birchmount
+541-finch-ave-w--ltch,Valleyview Residence,541 FINCH AVE W,LTCH,46,2,24,5,2016-01-20,2026-11-02,-79.4462441842616,43.7709054450107,35,Westminster-Branson
+914-bathurst-st--ltch,Vermont Square,914 BATHURST ST,LTCH,10,0,6,2,2017-01-12,2021-01-28,-79.41280084012,43.6683068320379,95,Annex
+40-playfair-ave--ltch,Villa Colombo Homes For The Aged,40 PLAYFAIR AVE,LTCH,102,0,77,3,2016-01-14,2026-11-15,-79.4564682137523,43.7106249829076,31,Yorkdale-Glen Park
+160-wellesley-st-e--ltch,Wellesley Central Place,160 WELLESLEY ST E,LTCH,34,0,29,3,2016-01-25,2026-11-16,-79.3754732451702,43.6670003481202,74,North St.James Town
+400-the-w-mall--ltch,Wesburn Manor,400 THE W MALL,LTCH,54,1,33,2,2016-01-08,2026-11-12,-79.5673668365273,43.6437738950605,13,Etobicoke West Mall
+82-buttonwood-ave--ltch,West Park Long Term Care Centre,82 BUTTONWOOD AVE,LTCH,35,0,23,5,2016-01-08,2024-05-15,-79.5093784552448,43.6898433904002,115,Mount Dennis
+2005-lawrence-ave-w--ltch,Weston Terrace Care Community,2005 LAWRENCE AVE W,LTCH,63,0,39,5,2017-02-06,2026-11-02,-79.5099125938884,43.7010999625739,113,Weston
+1145-albion-rd--ltch,Westside,1145 ALBION RD,LTCH,49,0,18,1,2016-03-10,2025-12-29,-79.5677584881448,43.7372912491487,3,Thistletown-Beaumond Heights
+60-scottfield-dr--ltch,Yee Hong Centre - Scarborough Finch,60 SCOTTFIELD DR,LTCH,49,0,31,7,2016-07-11,2026-02-01,-79.2545373739443,43.8087034390153,129,Agincourt North
+2311-mcnicoll-ave--ltch,Yee Hong Centre - Scarborough Mcnicoll,2311 MCNICOLL AVE,LTCH,34,0,25,4,2017-01-18,2026-11-09,-79.2904907518539,43.8143593771015,130,Milliken
+34-middleport-cres--retirement-home,A Better Way Retirement Home,34 MIDDLEPORT CRES,Retirement home,1,0,1,1,2024-02-26,2024-02-26,-79.2170573668515,43.8154837899804,146,Malvern East
+705-707-ellesmere-rd--retirement-home,Alexis Lodge Retirement Residence,705-707 ELLESMERE RD,Retirement home,4,0,4,2,2021-10-19,2024-08-09,-79.2887897976653,43.7635840047755,126,Dorset Park
+155-balmoral-ave--retirement-home,Amica At The Balmoral Club,155 BALMORAL AVE,Retirement home,4,0,2,1,2016-04-18,2020-11-23,-79.3999125315402,43.6842580622945,97,Yonge-St.Clair
+19-rean-dr--retirement-home,Amica Bayview Gardens,19 REAN DR,Retirement home,34,2,20,3,2016-12-30,2026-02-20,-79.3823939257018,43.767162931541,52,Bayview Village
+15-barberry-pl--retirement-home,Amica Bayview Village,15 BARBERRY PL,Retirement home,19,1,11,3,2017-03-01,2026-06-03,-79.3840372529346,43.7664032641401,52,Bayview Village
+1066-ave-rd--retirement-home,Amica On The Avenue,1066 AVE RD,Retirement home,24,0,14,3,2017-01-12,2026-03-05,-79.4101326642694,43.7057728416369,103,Lawrence Park South
+8-snowy-owl-way--retirement-home,Arul Oli Senior Centre,8 SNOWY OWL WAY,Retirement home,1,0,1,1,2020-11-16,2020-11-16,-79.2344233907611,43.8320634235747,144,Morningside Heights
+866-sheppard-ave-w--retirement-home,Aspira Kensington Place Retirement Living,866 SHEPPARD AVE W,Retirement home,29,2,16,4,2016-05-06,2026-03-30,-79.4539282096317,43.7524868400623,34,Bathurst Manor
+500-kingston-rd--retirement-home,Atrium At Kew Beach,500 KINGSTON RD,Retirement home,7,0,1,1,2016-05-26,2020-10-13,-79.3027263968335,43.6777210013966,62,East End-Danforth
+505-kingston-rd--retirement-home,Beach Arms Retirement Residence,505 KINGSTON RD,Retirement home,4,0,1,1,2018-02-12,2020-01-09,-79.3023356462734,43.6772472982304,63,The Beaches
+52-mcmurrich-st--retirement-home,Belmont House,52 MCMURRICH ST,Retirement home,1,0,1,1,2023-09-05,2023-09-05,-79.3904731809571,43.6748199456653,95,Annex
+55-belmont-st--retirement-home,Belmont House,55 BELMONT ST,Retirement home,12,0,7,2,2018-05-02,2026-01-19,-79.3909635734646,43.6746709835347,95,Annex
+4-partridge-ln--retirement-home,Bethseda Home,4 PARTRIDGE LN,Retirement home,3,0,2,1,2022-01-11,2025-01-09,-79.2991907108712,43.7989928864873,148,East L'Amoreaux
+67-belgreen-ave--retirement-home,Bethseda Home,67 BELGREEN AVE,Retirement home,4,0,3,1,2016-10-11,2023-10-19,-79.2903465326506,43.7952195656773,118,Tam O'Shanter-Sullivan
+76-silversted-dr--retirement-home,Bethseda Home,76 SILVERSTED DR,Retirement home,4,0,3,1,2022-01-11,2025-12-02,-79.2662276323949,43.8018297926657,129,Agincourt North
+180-sheridan-ave--retirement-home,Bill Mcmurray Residence,180 SHERIDAN AVE,Retirement home,7,0,5,2,2021-12-29,2024-06-11,-79.4346945823749,43.651612003927,84,Little Portugal
+54-foxbar-rd--retirement-home,Bradgate Arms,54 FOXBAR RD,Retirement home,12,1,5,3,2016-02-22,2026-11-04,-79.4005915953486,43.6857479029179,97,Yonge-St.Clair
+1-canterbury-pl--retirement-home,Canterbury Place Retirement Residence,1 CANTERBURY PL,Retirement home,10,0,5,1,2016-10-12,2025-12-15,-79.4144926957101,43.7721445907138,37,Willowdale West
+300-silver-star-blvd--retirement-home,Carefirst Transitional Care Centre,300 SILVER STAR BLVD,Retirement home,3,0,1,1,2018-01-05,2024-08-26,-79.2955649415402,43.8123787918746,130,Milliken
+520-markham-rd--retirement-home,Cedarbrook Lodge Retirement Residence,520 MARKHAM RD,Retirement home,34,0,22,2,2016-04-23,2026-10-04,-79.2249147113661,43.754867803652,141,Golfdale-Cedarbrae-Woburn
+2601-bayview-ave--retirement-home,Cedarhurst Dementia Care Home,2601 BAYVIEW AVE,Retirement home,10,0,9,2,2016-07-25,2025-12-19,-79.3839724532237,43.7514557611381,40,St.Andrew-Windfields
+25-centennial-park-rd--retirement-home,Centennial Park Place,25 CENTENNIAL PARK RD,Retirement home,15,0,3,1,2016-12-19,2026-08-13,-79.5820535063341,43.6532568470092,11,Eringate-Centennial-West Deane
+1238-queen-st-e--retirement-home,Chartwell Avondale Retirement Residence,1238 QUEEN ST E,Retirement home,8,0,6,3,2017-02-07,2024-04-17,-79.329735808341,43.6635719397629,70,South Riverdale
+1955-steeles-ave-e--retirement-home,Chartwell Gibson Retirement Residence,1955 STEELES AVE E,Retirement home,23,1,9,1,2016-05-02,2026-10-29,-79.3730122797662,43.807741237069,49,Bayview Woods-Steeles
+2100-bloor-st-w--retirement-home,Chartwell Grenadier Retirement Residence,2100 BLOOR ST W,Retirement home,28,2,23,7,2017-01-06,2026-07-06,-79.4709961227375,43.6526035625785,88,High Park North
+65-livingston-rd--retirement-home,Chartwell Guildwood Retirement Residence,65 LIVINGSTON RD,Retirement home,23,0,15,4,2016-04-13,2026-03-29,-79.1980944127297,43.7458913606361,140,Guildwood
+10-senlac-rd--retirement-home,Chartwell Lansing Retirement Residence,10 SENLAC RD,Retirement home,16,1,6,2,2016-10-04,2024-06-30,-79.4234057229642,43.7594470260082,38,Lansing-Westgate
+4005-eglinton-ave-w--retirement-home,Chartwell Scarlett Heights Retirement Residence,4005 EGLINTON AVE W,Retirement home,37,1,22,5,2016-11-23,2026-04-02,-79.5197407162081,43.6826670586639,9,Edenbridge-Humber Valley
+600-melita-cres--retirement-home,Christie Gardens,600 MELITA CRES,Retirement home,21,2,20,2,2016-12-08,2025-12-28,-79.4226898373082,43.6731812452544,94,Wychwood
+877-yonge-st--retirement-home,Davenhill Senior Living - 4th Fl,877 YONGE ST,Retirement home,1,0,1,1,2019-05-21,2019-05-21,-79.3879725966837,43.6742489538649,98,Rosedale-Moore Park
+5351-yonge-st--retirement-home,Delmanor Northtown,5351 YONGE ST,Retirement home,10,0,8,1,2016-12-28,2026-04-21,-79.4141489250405,43.7753927817353,151,Yonge-Doris
+4180-dundas-st-w--retirement-home,Delmanor Prince Edward,4180 DUNDAS ST W,Retirement home,16,1,11,3,2016-12-23,2024-12-30,-79.5101377551082,43.6610969568195,9,Edenbridge-Humber Valley
+187-wynford-dr--retirement-home,Delmanor Wynford,187 WYNFORD DR,Retirement home,17,0,11,2,2018-03-20,2026-05-05,-79.32612397779,43.7247438705144,42,Banbury-Don Mills
+52-neilson-dr--retirement-home,Dom Lipa,52 NEILSON DR,Retirement home,4,0,3,1,2022-04-23,2026-01-16,-79.5652801574271,43.6291556984902,12,Markland Wood
+2-green-belt-dr--retirement-home,Don Mills Retirement Residence,2 GREEN BELT DR,Retirement home,10,0,8,1,2023-08-06,2026-01-06,-79.3404403623492,43.7280319768224,42,Banbury-Don Mills
+1055-1057-don-mills-rd--retirement-home,Don Mills Seniors' Apartments,1055-1057 DON MILLS RD,Retirement home,1,0,1,1,2022-10-18,2022-10-18,-79.342031574645,43.7338891645886,42,Banbury-Don Mills
+8-the-donway-e--retirement-home,Donway Place,8 THE DONWAY E,Retirement home,28,1,16,6,2017-02-21,2025-12-27,-79.3404529903826,43.7347124115475,42,Banbury-Don Mills
+124-dowling-ave--retirement-home,Dowling Residence,124 DOWLING AVE,Retirement home,2,0,2,1,2020-05-28,2020-11-26,-79.438996497406,43.6368992637159,85,South Parkdale
+40-old-kingston-rd--retirement-home,Ehatare Retirement Home,40 OLD KINGSTON RD,Retirement home,12,0,4,2,2016-07-09,2025-03-10,-79.183129521103,43.7755413825282,136,West Hill
+3838-bloor-st-w--retirement-home,Elim Springs Retirement Residence,3838 BLOOR ST W,Retirement home,1,0,1,1,2017-01-17,2017-01-17,-79.5388933300057,43.641346135998504,158,Islington
+10-fairfield-ave--retirement-home,Fairfield Residence,10 FAIRFIELD AVE,Retirement home,2,0,2,1,2022-04-22,2023-10-18,-79.5234905491865,43.5979151785108,19,Long Branch
+645-castlefield-ave--retirement-home,Forest Hill Place,645 CASTLEFIELD AVE,Retirement home,18,1,7,1,2016-12-21,2026-02-23,-79.4252345860141,43.7062446813392,102,Forest Hill North
+537-finch-ave-w--retirement-home,Forestview Retirement Residence,537 FINCH AVE W,Retirement home,15,1,10,3,2020-04-16,2026-09-14,-79.4445875682884,43.7702693602061,35,Westminster-Branson
+880-lawrence-ave-e--retirement-home,Greenview Lodge,880 LAWRENCE AVE E,Retirement home,21,1,9,2,2016-03-11,2026-04-12,-79.3487615047106,43.7363620560257,42,Banbury-Don Mills
+1-northwestern-ave--retirement-home,Harold And Grace Baker Centre,1 NORTHWESTERN AVE,Retirement home,18,0,10,2,2017-07-24,2026-09-28,-79.4699231960423,43.6978509866004,112,Beechborough-Greenbrook
+111-ave-rd--retirement-home,Hazelton Place Retirement Residence,111 AVE RD,Retirement home,41,2,15,4,2016-08-22,2026-02-09,-79.3954798446308,43.6731922341701,95,Annex
+4251-dundas-st-w--retirement-home,Kingsway,4251 DUNDAS ST W,Retirement home,21,1,16,3,2016-12-11,2026-01-30,-79.5144508226801,43.6588720532978,15,Kingsway South
+718-sheppard-ave-w--retirement-home,L'chaim Retirement Home,718 SHEPPARD AVE W,Retirement home,8,0,5,3,2017-01-31,2025-01-17,-79.4453320688104,43.7543730154358,34,Bathurst Manor
+10-14-william-morgan-dr--retirement-home,Leaside Retirement Residence,10-14 WILLIAM MORGAN DR,Retirement home,35,1,29,9,2017-12-25,2025-03-24,-79.3417658388151,43.7093700120647,55,Thorncliffe Park
+2881-eglinton-ave-e--retirement-home,Mccowan Retirement Residence,2881 EGLINTON AVE E,Retirement home,21,2,10,4,2017-01-09,2026-04-07,-79.2396357475764,43.738271164194,138,Eglinton East
+1020-mcnicoll-ave--retirement-home,Mcnicoll Manor/Moll Berczy Haus,1020 MCNICOLL AVE,Retirement home,9,0,7,1,2017-02-07,2024-08-28,-79.3360097735751,43.805763124703,116,Steeles
+84-davisville-ave--retirement-home,Meighen Retirement Residence,84 DAVISVILLE AVE,Retirement home,10,0,4,1,2016-03-09,2025-12-23,-79.3931960484964,43.6995181083716,174,South Eglinton-Davisville
+3555-kingston-rd--retirement-home,Momiji Health Care Society,3555 KINGSTON RD,Retirement home,1,0,1,1,2017-01-13,2017-01-13,-79.2153312030506,43.7393615288612,139,Scarborough Village
+1140-bloor-st-w--retirement-home,New Horizons Tower,1140 BLOOR ST W,Retirement home,24,1,16,1,2016-03-09,2025-10-15,-79.4360195434559,43.6599346925934,171,Junction-Wallace Emerson
+1-3-kenton-dr--retirement-home,One Kenton Place,1-3 KENTON DR,Retirement home,23,0,14,3,2019-04-12,2026-10-15,-79.4436632571074,43.7779374513056,36,Newtonbrook West
+4650-eglinton-ave-w--retirement-home,Parkland On Eglinton West,4650 EGLINTON AVE W,Retirement home,15,1,13,3,2020-12-07,2025-12-18,-79.5475597057526,43.678424444499,7,Willowridge-Martingrove-Richview
+61-fairfax-cres--retirement-home,Presentation Manor,61 FAIRFAX CRES,Retirement home,18,1,11,2,2020-05-22,2026-08-22,-79.28435697166,43.715526967694,120,Clairlea-Birchmount
+265-queens-dr--retirement-home,Queens Estate Retirement Residence,265 QUEENS DR,Retirement home,17,0,12,2,2020-04-01,2026-01-31,-79.5043027690903,43.7071468737779,28,Rustic
+1340-york-mills-rd--retirement-home,Rayoak Place,1340 YORK MILLS RD,Retirement home,17,0,6,1,2017-01-27,2026-03-31,-79.3201729640119,43.7631125879403,150,Fenside-Parkwoods
+2121-kingston-rd--retirement-home,Retirement Suites By The Lake,2121 KINGSTON RD,Retirement home,21,1,8,2,2016-02-29,2025-11-22,-79.2541098370096,43.7006564698101,122,Birchcliffe-Cliffside
+147-elder-st--retirement-home,Sage Care Retirement Home,147 ELDER ST,Retirement home,14,0,13,2,2017-10-31,2026-01-19,-79.4540147326653,43.762722841039,34,Bathurst Manor
+148-markham-rd--retirement-home,Scarborough Retirement Residence,148 MARKHAM RD,Retirement home,27,0,14,2,2016-12-19,2026-10-03,-79.2186719831482,43.7408975315419,139,Scarborough Village
+3758-sheppard-ave-e--retirement-home,Shepherd Terrace Retirement Residence,3758 SHEPPARD AVE E,Retirement home,8,0,5,3,2017-01-21,2024-09-13,-79.294690468121,43.7823304022037,118,Tam O'Shanter-Sullivan
+685-finch-ave-w--retirement-home,St. Bernard's Residence,685 FINCH AVE W,Retirement home,12,1,4,3,2016-01-25,2025-02-09,-79.4568832100286,43.770513587072,34,Bathurst Manor
+2339-dufferin-st--retirement-home,St. Hilda's Towers,2339 DUFFERIN ST,Retirement home,12,1,10,4,2017-01-13,2022-07-29,-79.4494871638143,43.6947597251448,107,Oakwood Village
+2-o-connor-dr--retirement-home,St. Joseph's Infirmary And Private Hospital,2 O CONNOR DR,Retirement home,1,0,1,1,2022-07-12,2022-07-12,-79.3559744168149,43.692490524052,57,Broadview North
+221-milner-ave--retirement-home,Sts. Peter And Paul Residence,221 MILNER AVE,Retirement home,24,2,14,1,2016-02-16,2026-11-03,-79.2401276987724,43.7883389094795,128,Agincourt South-Malvern West
+15-summerland-terr--retirement-home,Tapestry At Village Gate West,15 SUMMERLAND TERR,Retirement home,14,0,10,3,2019-03-28,2025-05-07,-79.5322693355008,43.6440356747713,159,Etobicoke City Centre
+3705-bathurst-st--retirement-home,Terrace Gardens,3705 BATHURST ST,Retirement home,4,0,3,1,2017-02-09,2021-10-07,-79.4331322398527,43.7353031780318,39,Bedford Park-Nortown
+55-ameer-ave--retirement-home,Terraces Of Baycrest,55 AMEER AVE,Retirement home,26,1,21,2,2020-11-20,2025-12-12,-79.4403795961792,43.7289149452557,32,Englemount-Lawrence
+123-spadina-rd--retirement-home,The Annex,123 SPADINA RD,Retirement home,21,0,14,2,2017-01-27,2026-02-12,-79.4055012589074,43.671741843018,95,Annex
+700-720-mount-pleasant-rd--retirement-home,The Briton House,700-720 MOUNT PLEASANT RD,Retirement home,22,0,19,8,2016-02-29,2026-03-02,-79.3896434842299,43.7061409342897,174,South Eglinton-Davisville
+305-balliol-st--retirement-home,The Claremont,305 BALLIOL ST,Retirement home,18,0,12,2,2017-01-05,2026-05-11,-79.386947695848,43.6989606357587,174,South Eglinton-Davisville
+77-dunfield-ave--retirement-home,The Dunfield Retirement Residence,77 DUNFIELD AVE,Retirement home,20,0,14,2,2020-05-09,2026-02-20,-79.3949415929514,43.7067719740276,174,South Eglinton-Davisville
+921-millwood-rd--retirement-home,The Millwood,921 MILLWOOD RD,Retirement home,9,0,6,4,2018-01-08,2026-05-03,-79.3636190339423,43.7029233978324,56,Leaside-Bennington
+262-st-clair-ave-w--retirement-home,The Russell Hill Retirement Residence,262 ST CLAIR AVE W,Retirement home,15,0,8,4,2017-01-09,2026-09-14,-79.4083613254312,43.6855144389704,96,Casa Loma
+146-sumach-st--retirement-home,The Sumach By Chartwell,146 SUMACH ST,Retirement home,2,0,2,1,2022-12-13,2023-01-20,-79.3599398123782,43.6587676851863,72,Regent Park
+4-teddington-park-ave--retirement-home,The Teddington,4 TEDDINGTON PARK AVE,Retirement home,23,0,13,3,2016-02-04,2026-09-23,-79.4039098252465,43.7334577350608,105,Lawrence Park North
+2245-lawrence-ave-w--retirement-home,The Village Of Humber Heights,2245 LAWRENCE AVE W,Retirement home,34,0,30,4,2018-01-11,2026-09-14,-79.5259571571852,43.6971266186373,8,Humber Heights-Westmount
+1860-lawrence-ave-e--retirement-home,The Wexford,1860 LAWRENCE AVE E,Retirement home,3,0,2,1,2025-04-30,2026-06-10,-79.3030774247849,43.7440620052931,119,Wexford/Maryvale
+8-bridlington-st--retirement-home,V Care Retirement Home,8 BRIDLINGTON ST,Retirement home,1,0,1,1,2018-02-28,2018-02-28,-79.2395807366807,43.7708419345894,142,Woburn North
+602-brimley-rd--retirement-home,Villa Karuna Home For Seniors,602 BRIMLEY RD,Retirement home,1,0,1,1,2022-01-14,2022-01-14,-79.2508463773659,43.7416474478148,138,Eglinton East
+303-queens-dr--retirement-home,Weston Gardens Retirement Residence,303 QUEENS DR,Retirement home,38,3,17,2,2018-01-19,2026-09-08,-79.5022114374531,43.7075719013872,28,Rustic
+339-george-st--shelter,Seaton House,339 GEORGE ST,Shelter,3,0,3,1,2016-03-17,2018-03-05,-79.374261956555,43.6599474627779,73,Moss Park
