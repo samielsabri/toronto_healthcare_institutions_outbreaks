@@ -23,3 +23,8 @@ pipeline_check.md
 **/*.quarto_ipynb
 pipeline.log
 issue_body.md
+
+# Large downloaded reference files (re-downloadable)
+/data/cache/
+pipeline_warnings.md
+warn_body.md
