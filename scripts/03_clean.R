@@ -27,6 +27,12 @@ clean <- clean_outbreaks(
   address_crosswalk = load_address_crosswalk()
 )
 facilities <- summarise_facilities(clean)
+geo_path <- "data/reference/facility_geocodes.csv"
+if (file.exists(geo_path)) {
+  geo <- read_csv(geo_path, show_col_types = FALSE) |>
+    select(facility_address, lon, lat, neighbourhood_id, neighbourhood)
+  facilities <- left_join(facilities, geo, by = "facility_address")
+}
 
 dir.create("data/clean", showWarnings = FALSE)
 nanoparquet::write_parquet(

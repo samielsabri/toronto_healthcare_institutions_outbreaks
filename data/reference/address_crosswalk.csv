@@ -156,3 +156,4 @@ addr_norm,addr_canonical,reason
 390 MILLWOOD RD,921 MILLWOOD RD,same facility name (The Millwood); street number uncertain
 991 MILLWOOD RD,921 MILLWOOD RD,same facility name (The Millwood); street number uncertain
 95 HUMBER BLVD E,95 HUMBER COLLEGE BLVD,"spelling, street-type or direction variant"
+56 D ARCY ST,36 D ARCY ST,street-number typo (no 56 D'Arcy St in the City address register; Mon Sheong Home for the Aged is at 36)
