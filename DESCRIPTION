@@ -25,4 +25,6 @@ Imports:
     ggsurvfit,
     ggiraph,
     scales,
-    mem
+    mem,
+    leaflet,
+    htmltools
