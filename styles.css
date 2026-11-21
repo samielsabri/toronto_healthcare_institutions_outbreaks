@@ -1,14 +1,32 @@
 .freshness-banner {
+  display: block !important;  /* the dashboard adds a flex class that would stack its parts */
   border-left: 4px solid #2e7d32;
   background: #f1f8f2;
-  padding: 0.6rem 0.9rem;
-  margin: 0 0 1.25rem 0;
+  padding: 0.35rem 0.7rem;
   border-radius: 4px;
+  font-size: 0.85rem;
+  line-height: 1.35;
 }
 .freshness-banner.is-stale {
   border-left-color: #b26a00;
   background: #fff6e5;
 }
+.freshness-source {
+  color: #52514e;
+  font-size: 0.75rem;
+}
+
+/* Compact value boxes for the right-hand panel (no icons: they crowd narrow boxes) */
+.bslib-value-box .value-box-showcase { display: none !important; }
+.bslib-value-box .value-box-title { font-size: 0.8rem !important; line-height: 1.25; margin-bottom: 0.2rem; }
+.bslib-value-box .value-box-value { font-size: 1.8rem !important; line-height: 1.1; }
+
+/* The freshness line sits in its own small card */
+.card:has(.freshness-banner) .card-body { padding: 0.4rem 0.6rem; overflow: hidden; }
+
+/* Notes and tables in the right-hand panel */
+.card-body { font-size: 0.88rem; }
+.card-body .table { font-size: 0.82rem; }
 
 /* Interactive charts (ggiraph) fill their dashboard card; without this the
    widget falls back to its 300px default width inside the flex layout. */

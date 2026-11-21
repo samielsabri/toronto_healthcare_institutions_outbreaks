@@ -109,6 +109,8 @@ jobs:
         run: Rscript tests/run_tests.R 2>&1 | tee -a pipeline.log
 
       - name: Render site
+        env:
+          CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}   # basemap key (repository secret)
         run: quarto render 2>&1 | tee -a pipeline.log
 
       - name: Commit cleaned data
