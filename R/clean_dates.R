@@ -94,3 +94,7 @@ add_season <- function(df) {
   df$period <- comparison_period(df$season_start_year, df$season_week)
   df
 }
+
+#' ISO week number for a season week on the 52-week axis (1 = ISO week 35;
+#' 18 = ISO week 52, which also holds ISO week 53 under decision D7).
+iso_week_of_season_week <- function(w) ((w + 34 - 1) %% 52) + 1

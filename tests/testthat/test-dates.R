@@ -47,3 +47,7 @@ test_that("freshness info reads the refresh time and derives the as-of date", {
   expect_true(info$as_of < as.Date(info$refreshed))
   expect_match(freshness_banner_html(info), format(info$as_of, "%Y-%m-%d"))
 })
+
+test_that("season weeks map back to ISO week labels", {
+  expect_equal(iso_week_of_season_week(c(1, 18, 19, 52)), c(35, 52, 1, 34))
+})
