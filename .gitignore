@@ -28,3 +28,4 @@ issue_body.md
 /data/cache/
 pipeline_warnings.md
 warn_body.md
+.Renviron

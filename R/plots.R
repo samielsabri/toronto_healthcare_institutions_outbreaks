@@ -43,8 +43,6 @@ season_week_axis <- function() {
 }
 
 girafe_dash <- function(p, width = 9, height = 6) {
-  # The widget keeps the plot's aspect ratio, so give its container a height
-  # matching the plot (about 100 px per inch); otherwise it renders tiny.
   w <- ggiraph::girafe(
     ggobj = p, width_svg = width, height_svg = height,
     options = list(
@@ -56,7 +54,8 @@ girafe_dash <- function(p, width = 9, height = 6) {
       ggiraph::opts_sizing(rescale = TRUE)
     )
   )
-  w$height <- paste0(round(height * 100), "px")
+  # Fill the dashboard card; the SVG keeps the width:height aspect given above.
+  w$height <- "100%"
   w
 }
 
@@ -94,9 +93,8 @@ plot_current_vs_baseline <- function(weekly, ranges, current, type, provisional_
     season_week_axis() +
     ggplot2::scale_y_continuous(breaks = scales::breaks_extended(n = 4), limits = c(0, NA)) +
     ggplot2::labs(x = "Week of onset (ISO week)", y = NULL,
-                  caption = paste0("Blue: ", current$season, " so far. Grey band: lowest to highest weekly count ",
-                                   "across the comparison seasons; grey line: median. ",
-                                   "Shaded: last ", provisional_weeks, " weeks, provisional (late reports still arriving).")) +
+                  caption = paste0("Blue: ", current$season, ". Grey band: lowest to highest weekly count; line: median. ",
+                                   "Shaded: last ", provisional_weeks, " weeks, provisional.")) +
     theme_dash() +
     ggplot2::theme(strip.placement = "outside", strip.text.y.left = ggplot2::element_text(angle = 0, hjust = 1))
 }

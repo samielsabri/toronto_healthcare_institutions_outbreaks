@@ -52,11 +52,31 @@ facility_popup <- function(d) {
   )
 }
 
+#' Add the basemap. CARTO basemaps now need an API key, read from the
+#' CARTO_API_KEY environment variable (a GitHub Actions secret in the weekly
+#' build; never committed). Without a key, OpenStreetMap's standard tiles are
+#' used so the map still works.
+add_basemap <- function(m, key = Sys.getenv("CARTO_API_KEY")) {
+  if (nzchar(key)) {
+    leaflet::addTiles(
+      m, urlTemplate = paste0("https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png?key=",
+                              utils::URLencode(key, reserved = TRUE)),
+      attribution = paste('&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                          'contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'),
+      options = leaflet::tileOptions(maxZoom = 19))
+  } else {
+    leaflet::addTiles(
+      m, urlTemplate = "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+      attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      options = leaflet::tileOptions(maxZoom = 19))
+  }
+}
+
 #' Leaflet map of facilities with an outbreak this season.
 facility_map <- function(d) {
   pal <- leaflet::colorFactor(unname(SETTING_COLOURS), levels = names(SETTING_COLOURS))
   m <- leaflet::leaflet(d, options = leaflet::leafletOptions(minZoom = 9)) |>
-    leaflet::addProviderTiles(leaflet::providers$CartoDB.Positron) |>
+    add_basemap() |>
     leaflet::setView(lng = -79.38, lat = 43.71, zoom = 11)
   for (s in names(SETTING_COLOURS)) {
     ds <- d[d$setting_group == s, ]
