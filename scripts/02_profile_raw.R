@@ -1,5 +1,5 @@
 # Phase 1, steps 2-3: profile the raw annual files and tabulate label drift.
-# Writes CSV tables to reports/tables/ that back reports/01_eda.md.
+# Writes the profiling tables to reports/tables/.
 # Run from the project root:  Rscript scripts/02_profile_raw.R
 
 suppressPackageStartupMessages({

@@ -1,7 +1,6 @@
 # Methodological decisions log
 
 Decisions D1–D7 were made after exploring the data, D8–D10 while building the dashboard.
-Evidence for each is reproducible with [`scripts/decision_aids.R`](../scripts/decision_aids.R).
 
 | # | Question | Decision | Rationale |
 |---|---|---|---|
