@@ -7,7 +7,8 @@
 #   1. Download all annual files and save this week's snapshot, then commit
 #      them straight away so a later failure never loses a snapshot.
 #   2. Check inputs (schema, new labels), rebuild the cleaned data, run tests.
-#   3. Render the Quarto site, commit the cleaned data, deploy to Pages.
+#   3. Build the dashboard (one self-contained HTML file), commit the
+#      cleaned data, deploy to Pages.
 #
 # Any failure opens a GitHub issue labelled "pipeline-failure" (or comments
 # on the open one), with the input-check report and the end of the log.
@@ -23,9 +24,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "index.qmd"
-      - "_quarto.yml"
-      - "styles.css"
+      - "dashboard/**"
       - "R/**"
       - "scripts/**"
       - "data/reference/**"
@@ -62,8 +61,6 @@ jobs:
           use-public-rspm: true
 
       - uses: r-lib/actions/setup-renv@v2
-
-      - uses: quarto-dev/quarto-actions/setup@v2
 
       - name: Configure git
         run: |
@@ -108,10 +105,10 @@ jobs:
       - name: Run tests
         run: Rscript tests/run_tests.R 2>&1 | tee -a pipeline.log
 
-      - name: Render site
+      - name: Build dashboard
         env:
           CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}   # basemap key (repository secret)
-        run: quarto render 2>&1 | tee -a pipeline.log
+        run: Rscript scripts/04_build_dashboard.R 2>&1 | tee -a pipeline.log
 
       - name: Commit cleaned data
         run: |
