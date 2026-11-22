@@ -8,188 +8,225 @@
 <script>/*__LEAFLETJS__*/</script>
 <style>/*__LEAFLETCSS__*/</style>
 <style>
-/* Layout: one screen, no page scroll on desktop: the map on the left and a
-   tabbed panel on the right (same design as the project's other surveillance
-   dashboards). */
+/* A short weekly report: a sticky bar with the section links and filters,
+   then sections that each lead with one finding, written from the data. */
 :root {
   color-scheme: light;
-  --bg: #f4f4f2; --surface: #ffffff; --border: #dedcd7; --grid: #eeede9;
-  --text: #111110; --text-2: #52514e; --text-3: #7a7974;
-  --accent: #2a78d6; --outline: #2b2b2a; --missing: #e4e3df; --signal: #d9480f;
-  --band: #898781; --stale: #b26a00; --ok: #2e7d32;
+  --bg: #f7f6f3; --surface: #ffffff; --border: #e1e0d9; --grid: #eeede9;
+  --text: #111110; --text-2: #4a4945; --text-3: #75746e;
+  --ink: #1d3a5f; --accent: #2a78d6; --outline: #2b2b2a; --signal: #d9480f;
+  --band: #898781; --stale: #9a5b00; --ok: #006300;
+  --up-bg: #fbe9e1; --up: #9a3412; --down-bg: #e5f2e5; --down: #006300; --same-bg: #efeee9; --same: #4a4945;
+  --top-h: 104px;
 }
 * { box-sizing: border-box; }
-html, body { height: 100%; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--top-h) + 8px); }
 body { margin: 0; background: var(--bg); color: var(--text);
-       font: 13px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
-       display: grid; grid-template-rows: auto minmax(0, 1fr); overflow: hidden; }
-
-/* Header: a fixed grid so switching filters never moves anything.
-   Row 1: title | season | setting | type; row 2: the week slider. */
-header { display: grid; grid-template-columns: minmax(0, 1fr) 150px auto auto;
-         grid-template-rows: auto auto; align-items: center; gap: 8px 12px;
-         padding: 10px 16px; background: var(--surface); border-bottom: 1px solid var(--border); }
-.brand { display: flex; flex-direction: column; min-width: 0; }
-.brand b, .brand > span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.brand b { font-size: 15px; }
-.brand > span { color: var(--text-3); font-size: 11px; }
-.fresh { font-weight: 600; }
-.fresh.ok { color: var(--ok); } .fresh.stale { color: var(--stale); }
-#season { width: 100%; }
+       font: 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+a { color: var(--accent); }
 select, button { font: inherit; color: var(--text); background: var(--surface);
-                 border: 1px solid var(--border); border-radius: 6px; padding: 5px 8px; }
+                 border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; }
+button { cursor: pointer; }
+
+/* ── sticky bar ── */
+.top { position: sticky; top: 0; z-index: 1000; background: var(--surface); border-bottom: 1px solid var(--border); }
+.bar { max-width: 1240px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 8px 16px; flex-wrap: wrap; }
+.bar1 { padding-top: 10px; }
+.brand { display: flex; flex-direction: column; min-width: 0; margin-right: auto; }
+.brand b { font-size: 15px; color: var(--ink); }
+.brand span { font-size: 12px; color: var(--text-3); }
+.fresh { font-weight: 600; } .fresh.ok { color: var(--ok); } .fresh.stale { color: var(--stale); }
+nav.links { display: flex; gap: 2px; overflow-x: auto; max-width: 100%; }
+nav.links a { text-decoration: none; color: var(--text-2); padding: 6px 9px; border-radius: 6px; white-space: nowrap; font-size: 13px; }
+nav.links a.on { color: var(--ink); background: var(--same-bg); font-weight: 600; }
+.bar2 { padding-top: 8px; padding-bottom: 10px; font-size: 13px; }
+.bar2 label { color: var(--text-3); display: flex; align-items: center; gap: 6px; }
 .seg { display: inline-flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
-.seg button { border: 0; border-radius: 0; cursor: pointer; white-space: nowrap; }
-.seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
-.week { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; }
-.week input { flex: 1; accent-color: var(--accent); }
-.week output { font-variant-numeric: tabular-nums; font-weight: 600; font-size: 14px; min-width: 21ch; }
-#play { width: 32px; cursor: pointer; }
+.seg button { border: 0; border-radius: 0; white-space: nowrap; padding: 4px 9px; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+.wkstep { display: inline-flex; align-items: center; gap: 4px; }
+.wkstep button { width: 30px; padding: 4px 0; }
+.wkstep button:disabled { opacity: .35; cursor: default; }
+.wkstep output { font-weight: 600; min-width: 19ch; text-align: center; font-variant-numeric: tabular-nums; }
 
-main { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-       gap: 12px; padding: 12px; min-height: 0; }
-.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-        min-height: 0; display: flex; flex-direction: column; }
+/* ── page ── */
+main { max-width: 1240px; margin: 0 auto; padding: 8px 20px 48px; }
+.intro { padding: 20px 0 4px; max-width: 860px; }
+.intro h1 { font-size: 26px; line-height: 1.25; margin: 0 0 8px; color: var(--ink); letter-spacing: -.01em; }
+.intro p { margin: 0 0 6px; color: var(--text-2); }
+section.sec { padding-top: 26px; }
+.kicker { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); margin: 0 0 4px; }
+.finding { font-size: 19px; line-height: 1.4; font-weight: 600; margin: 0 0 4px; max-width: 980px; }
+.sub { color: var(--text-3); font-size: 12.5px; margin: 0 0 12px; max-width: 980px; }
+.grid { display: grid; gap: 14px; }
+.g2 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.g32 { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; min-width: 0; }
+.card h3 { margin: 0; font-size: 14px; }
+.hint { color: var(--text-3); font-size: 12px; margin: 2px 0 0; }
+.chart { position: relative; height: 300px; margin-top: 8px; }
+.chart.tall { height: 360px; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.chips button { padding: 2px 9px; font-size: 12px; border-radius: 999px; }
+.chips button[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); font-weight: 600; }
+.row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.row .grow { flex: 1; }
 
-/* left: stats + map */
-.stats { display: flex; gap: 0; border-bottom: 1px solid var(--grid); }
-.stat { flex: 1; padding: 8px 12px; border-right: 1px solid var(--grid); min-width: 0; }
-.stat:last-child { border-right: 0; }
-.stat .k { color: var(--text-3); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.stat .v { font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.stat .d { color: var(--text-3); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.maphead { padding: 8px 12px 0; font-weight: 600; }
-#mapwrap { flex: 1; min-height: 0; padding: 4px 8px; position: relative; }
-#lmap { width: 100%; height: 100%; border-radius: 6px; background: var(--grid); }
-.leaflet-container { font: inherit; }
-.legend { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 6px 12px 8px;
-          font-size: 11px; color: var(--text-2); border-top: 1px solid var(--grid); }
-.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: -1px;
-       margin-right: 4px; border: 1.5px solid #fff; box-shadow: 0 0 0 1px var(--border); }
+/* summary cards */
+.agent { display: flex; flex-direction: column; gap: 6px; border-top: 3px solid var(--c, var(--border)); }
+.agent .name { font-weight: 600; font-size: 13px; color: var(--text-2); }
+.agent .big { font-size: 34px; font-weight: 600; line-height: 1.1; }
+.agent .big small { font-size: 13px; font-weight: 400; color: var(--text-3); margin-left: 6px; }
+.dir { display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; font-weight: 600;
+       padding: 2px 8px; border-radius: 999px; width: fit-content; }
+.dir.up { background: var(--up-bg); color: var(--up); }
+.dir.down { background: var(--down-bg); color: var(--down); }
+.dir.same { background: var(--same-bg); color: var(--same); }
+.dir.na { background: var(--same-bg); color: var(--text-3); font-weight: 500; }
+.agent dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 1px 10px; font-size: 12.5px; }
+.agent dt { color: var(--text-3); } .agent dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+.spark { height: 46px; position: relative; }
+.note { font-size: 12px; color: var(--text-3); margin-top: 10px; }
+
+/* map + facility panel */
+#lmap { height: 470px; border-radius: 8px; background: var(--grid); margin-top: 8px; }
+.leaflet-container { font: inherit; font-size: 12px; }
+.legend { display: flex; flex-wrap: wrap; gap: 2px 14px; margin-top: 8px; font-size: 12px; color: var(--text-2); }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: -1px; margin-right: 5px;
+       border: 1.5px solid #fff; box-shadow: 0 0 0 1px var(--border); }
 .dot.ring { border: 2.5px solid var(--outline); box-shadow: none; }
-.sw { display: inline-block; width: 13px; height: 9px; vertical-align: -1px; margin-right: 4px; border-radius: 2px; }
-
-/* right: tabs */
-.tabs { display: flex; gap: 2px; padding: 6px 8px 0; border-bottom: 1px solid var(--border); overflow-x: auto; }
-.tabs button { border: 0; border-bottom: 2px solid transparent; border-radius: 0; background: none;
-               padding: 7px 9px; cursor: pointer; color: var(--text-2); font-weight: 500; white-space: nowrap; }
-.tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); }
-.panel { flex: 1; min-height: 0; padding: 10px 12px; display: none; flex-direction: column; }
-.panel.on { display: flex; }
-.panel h2 { margin: 0 0 2px; font-size: 13px; font-weight: 600; }
-.hint { color: var(--text-3); font-size: 11px; }
-.chart { flex: 1; min-height: 0; position: relative; margin-top: 6px; }
-.scroll { flex: 1; min-height: 0; overflow: auto; margin-top: 6px; }
-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
-th, td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+.sw { display: inline-block; width: 12px; height: 9px; vertical-align: -1px; margin-right: 5px; border-radius: 2px; }
+.scroll { max-height: 360px; overflow: auto; margin-top: 8px; }
+.fac-panel .scroll { max-height: 470px; }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 5px 6px; border-bottom: 1px solid var(--grid); vertical-align: top; }
 th { color: var(--text-2); font-weight: 600; position: sticky; top: 0; background: var(--surface); }
 td.n, th.n { text-align: right; }
 td.nw { white-space: nowrap; }
-.chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
-.chips button { padding: 2px 8px; font-size: 11px; cursor: pointer; border-radius: 999px; }
-.chips button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); font-weight: 600; }
-.row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
-.row .grow { flex: 1; }
-.dl { font-size: 11px; padding: 3px 8px; cursor: pointer; }
-.src { color: var(--text-3); font-size: 11px; }
+tr.pick { cursor: pointer; } tr.pick:hover td { background: #f6f5f1; }
 .open { color: var(--signal); font-weight: 600; }
-a { color: var(--accent); }
-#about h3 { font-size: 12px; margin: 14px 0 4px; text-transform: uppercase; letter-spacing: .04em; color: var(--text-2); }
-#about h3:first-child { margin-top: 0; }
-#about p { margin: 4px 0; color: var(--text-2); }
-#about ul { margin: 4px 0 0; padding-left: 18px; color: var(--text-2); }
-#about li { margin-bottom: 4px; }
-.status { display: flex; gap: 8px; margin-top: 6px; }
-.status > div { flex: 1; border: 1px solid var(--grid); border-radius: 8px; padding: 6px 8px; }
-.status .v { font-size: 16px; font-weight: 600; }
+.back { font-size: 12px; padding: 2px 8px; }
+.dl { font-size: 12px; padding: 3px 9px; }
 
-#tip { position: fixed; pointer-events: none; background: var(--surface); border: 1px solid var(--border);
-       border-radius: 8px; padding: 7px 9px; font-size: 12px; box-shadow: 0 4px 14px rgba(0,0,0,.12);
-       display: none; z-index: 1000; max-width: 300px; }
+/* methods */
+.methods h4 { font-size: 12px; margin: 14px 0 4px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-2); }
+.methods h4:first-child { margin-top: 0; }
+.methods p, .methods li { color: var(--text-2); font-size: 13px; }
+.methods p { margin: 4px 0; } .methods ul { margin: 4px 0 0; padding-left: 18px; } .methods li { margin-bottom: 4px; }
+footer { max-width: 1240px; margin: 0 auto; padding: 0 20px 32px; color: var(--text-3); font-size: 12px; }
 
-@media (max-width: 900px) {   /* phones / narrow windows: stack and scroll */
-  body { overflow: auto; display: block; }
-  main { grid-template-columns: minmax(0, 1fr); }
-  #mapwrap { height: 60vh; flex: none; }
-  .card:last-child { height: 75vh; }
-  header { grid-template-columns: minmax(0, 1fr); }
-  .brand b, .brand > span { white-space: normal; }
-  .seg { display: flex; width: 100%; }
-  .seg button { flex: 1 1 0; padding: 5px 4px; }
-  .week output { min-width: 0; font-size: 12px; }
-  .stats { flex-wrap: wrap; }
-  .stat { flex: 1 1 50%; border-bottom: 1px solid var(--grid); }
-  .maphead { font-size: 12px; }
+@media (max-width: 1000px) {
+  .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g2, .g32 { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  :root { --top-h: 0px; }
+  .top { position: static; }
+  .bar { padding: 0 12px; } main { padding: 4px 12px 40px; } footer { padding: 0 12px 24px; }
+  .g4 { grid-template-columns: minmax(0, 1fr); }
+  .intro h1 { font-size: 21px; } .finding { font-size: 17px; }
+  .seg { display: flex; width: 100%; } .seg button { flex: 1 1 0; padding: 4px 2px; }
+  .bar2 label { flex: 1; } #season { flex: 1; }
+  #lmap { height: 380px; }
 }
 </style>
 </head>
 <body>
-<header>
-  <div class="brand"><b>Outbreaks in Toronto healthcare institutions</b>
-    <span id="brand-sub"></span></div>
-  <select id="season" aria-label="Respiratory season"></select>
-  <div class="seg" role="group" aria-label="Setting" id="seg-setting"></div>
-  <div class="seg" role="group" aria-label="Outbreak type" id="seg-type"></div>
-  <div class="week">
-    <button id="play" aria-label="Play weeks">▶</button>
-    <input id="wk" type="range" step="1" aria-label="Week of the season">
-    <output id="wklab"></output>
+<header class="top">
+  <div class="bar bar1">
+    <div class="brand"><b>Toronto institutional outbreaks</b><span id="asof"></span></div>
+    <nav class="links" id="nav">
+      <a href="#summary">This week</a><a href="#trends">Trends</a><a href="#pathogens">Pathogens</a>
+      <a href="#facilities">Facilities</a><a href="#duration">Duration &amp; repeats</a><a href="#data">Data &amp; methods</a>
+    </nav>
+  </div>
+  <div class="bar bar2">
+    <label>Season <select id="season"></select></label>
+    <div class="wkstep"><button id="wprev" aria-label="Previous week">‹</button><output id="wklab"></output><button id="wnext" aria-label="Next week">›</button></div>
+    <div class="seg" role="group" aria-label="Setting" id="seg-setting"></div>
+    <div class="seg" role="group" aria-label="Outbreak type" id="seg-type"></div>
   </div>
 </header>
 
 <main>
-  <section class="card">
-    <div class="stats">
-      <div class="stat"><div class="k" id="k-new"></div><div class="v" id="t-new">–</div><div class="d" id="t-new-d"></div></div>
-      <div class="stat"><div class="k" id="k-act"></div><div class="v" id="t-act">–</div><div class="d" id="t-act-d"></div></div>
-      <div class="stat"><div class="k" id="k-std"></div><div class="v" id="t-std">–</div><div class="d" id="t-std-d"></div></div>
-      <div class="stat"><div class="k">Influenza season</div><div class="v" id="t-flu">–</div><div class="d" id="t-flu-d"></div></div>
-    </div>
-    <div class="maphead" id="map-title"></div>
-    <div id="mapwrap"><div id="lmap"></div></div>
-    <div class="legend" id="legend"></div>
+  <div class="intro">
+    <h1>Outbreaks in Toronto hospitals, long-term care and retirement homes</h1>
+    <p id="lede"></p>
+  </div>
+
+  <section class="sec" id="summary">
+    <p class="kicker">This week · respiratory outbreaks, all settings</p>
+    <p class="finding" id="f-summary"></p>
+    <p class="sub" id="s-summary"></p>
+    <div class="grid g4" id="cards"></div>
+    <p class="note" id="n-summary"></p>
   </section>
 
-  <section class="card">
-    <div class="tabs" role="tablist">
-      <button role="tab" data-tab="trend" aria-selected="true">Trend</button>
-      <button role="tab" data-tab="agents" aria-selected="false">Pathogens</button>
-      <button role="tab" data-tab="onset" aria-selected="false">Season onset</button>
-      <button role="tab" data-tab="duration" aria-selected="false">Duration</button>
-      <button role="tab" data-tab="recur" aria-selected="false">Repeat outbreaks</button>
-      <button role="tab" data-tab="facility" aria-selected="false">Facility</button>
-      <button role="tab" data-tab="table" aria-selected="false">Table</button>
-      <button role="tab" data-tab="about" aria-selected="false">Methods</button>
+  <section class="sec" id="trends">
+    <p class="kicker">Trends</p>
+    <p class="finding" id="f-trends"></p>
+    <p class="sub">Click a week on either chart to select it.</p>
+    <div class="grid g2">
+      <div class="card"><h3 id="tr-title"></h3><p class="hint" id="tr-hint"></p>
+        <div class="chips" id="tr-chips"></div><div class="chart"><canvas id="c-trend"></canvas></div></div>
+      <div class="card"><h3 id="on-title"></h3><p class="hint" id="on-hint"></p>
+        <div class="chips" id="on-chips"></div><div class="chart"><canvas id="c-onset"></canvas></div></div>
     </div>
-    <div class="panel on" id="p-trend"><h2 id="tr-title"></h2><div class="hint" id="tr-hint"></div>
-      <div class="chips" id="tr-chips"></div>
-      <div class="chart"><canvas id="c-trend"></canvas></div></div>
-    <div class="panel" id="p-agents"><h2 id="ag-title"></h2><div class="hint" id="ag-hint"></div>
-      <div class="chips" id="ag-chips"></div>
-      <div class="chart"><canvas id="c-agents"></canvas></div></div>
-    <div class="panel" id="p-onset"><h2 id="on-title"></h2><div class="hint" id="on-hint"></div>
-      <div class="chips" id="on-chips"></div>
-      <div class="status" id="on-status"></div>
-      <div class="chart"><canvas id="c-onset"></canvas></div></div>
-    <div class="panel" id="p-duration"><h2 id="du-title"></h2><div class="hint" id="du-hint"></div>
-      <div class="chips" id="du-chips"></div>
-      <div class="chart" style="flex:0 0 55%"><canvas id="c-duration"></canvas></div>
-      <div class="scroll"><table id="du-tbl"></table></div></div>
-    <div class="panel" id="p-recur"><h2>Facilities with repeat outbreak episodes</h2><div class="hint" id="re-hint"></div>
-      <div class="chart" style="flex:0 0 55%"><canvas id="c-recur"></canvas></div>
-      <div class="scroll"><table id="re-tbl"></table></div></div>
-    <div class="panel" id="p-facility"><h2 id="fa-title"></h2><div class="hint" id="fa-hint"></div>
-      <div class="chart" style="flex:0 0 38%"><canvas id="c-facility"></canvas></div>
-      <div class="scroll"><table id="fa-tbl"></table></div></div>
-    <div class="panel" id="p-table">
-      <div class="row"><h2 id="tb-title" class="grow"></h2>
-        <button class="dl" id="dl-sel">CSV: this selection</button><button class="dl" id="dl-all">CSV: all outbreaks</button></div>
-      <div class="src" id="tb-src"></div>
-      <div class="scroll"><table id="tbl"></table></div></div>
-    <div class="panel" id="p-about"><div class="scroll" id="about"></div></div>
+  </section>
+
+  <section class="sec" id="pathogens">
+    <p class="kicker">Pathogens</p>
+    <p class="finding" id="f-path"></p>
+    <p class="sub">Each outbreak is counted once here; several pathogens found = <i>Multiple agents</i>. <i>Unknown</i> means none was identified, often because testing was not done or was negative, so it reflects testing as much as the virus.</p>
+    <div class="grid g32">
+      <div class="card"><h3 id="ag-title"></h3><div class="chips" id="ag-chips"></div>
+        <div class="chart tall"><canvas id="c-agents"></canvas></div></div>
+      <div class="card"><h3 id="pt-title"></h3><p class="hint">Season to the selected week, under the filters.</p>
+        <div class="scroll"><table id="pt-tbl"></table></div></div>
+    </div>
+  </section>
+
+  <section class="sec" id="facilities">
+    <p class="kicker">Facilities</p>
+    <p class="finding" id="f-fac"></p>
+    <p class="sub">A facility is a physical site (one address, split by setting where a long-term care home and a retirement home share it). Wards affected together count as one <b>episode</b>; a repeat is a later, separate episode.</p>
+    <div class="grid g32">
+      <div class="card"><h3 id="map-title"></h3>
+        <div id="lmap"></div><div class="legend" id="legend"></div></div>
+      <div class="card fac-panel" id="fac-panel"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="duration">
+    <p class="kicker">Duration &amp; repeat outbreaks</p>
+    <p class="finding" id="f-dur"></p>
+    <p class="sub">Duration: outbreaks beginning 2022/23 onward, reflecting current practice. Neither chart follows the filters.</p>
+    <div class="grid g2">
+      <div class="card"><h3>How long outbreaks last</h3>
+        <p class="hint">Share still ongoing by day since onset (Kaplan–Meier); open outbreaks are censored at the data-as-of date.</p>
+        <div class="chips" id="du-chips"></div><div class="chart"><canvas id="c-duration"></canvas></div>
+        <table id="du-tbl" style="margin-top:8px"></table></div>
+      <div class="card"><h3>Facilities with repeat outbreak episodes</h3>
+        <p class="hint">Share of facilities with an outbreak in a season that had 2 or more separate episodes. Complete seasons only.</p>
+        <div class="chart"><canvas id="c-recur"></canvas></div>
+        <div class="scroll" style="max-height:220px"><table id="re-tbl"></table></div></div>
+    </div>
+  </section>
+
+  <section class="sec" id="data">
+    <p class="kicker">Data &amp; methods</p>
+    <p class="finding" id="f-data"></p>
+    <p class="sub">Download what you see, or everything: one row per affected unit, pathogens as published plus the harmonized group.</p>
+    <div class="grid g2">
+      <div class="card"><div class="row"><h3 id="tb-title" class="grow"></h3>
+          <button class="dl" id="dl-sel">CSV: this selection</button><button class="dl" id="dl-all">CSV: all outbreaks</button></div>
+        <div class="scroll" style="max-height:560px"><table id="tbl"></table></div></div>
+      <div class="card methods" id="about"></div>
+    </div>
   </section>
 </main>
-<div id="tip" role="tooltip"></div>
+<footer id="foot"></footer>
 
 <script>
 const DATA = /*__DATA__*/null;
@@ -199,39 +236,45 @@ const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
 const fmt = (v, d = 0) => v == null || !isFinite(v) ? "–"
   : v.toLocaleString("en-CA", {maximumFractionDigits: d, minimumFractionDigits: d});
-const store = {get: k => { try { return localStorage.getItem(k); } catch { return null; } },
-               set: (k, v) => { try { localStorage.setItem(k, v); } catch {} }};
+const pct = (a, b) => b ? Math.round(100 * a / b) + "%" : "–";
 const day = s => s ? Date.parse(s + "T00:00:00") : null;
 const fdate = ms => new Date(ms).toLocaleDateString("en-CA", {day: "numeric", month: "short", year: "numeric"});
 const fdateShort = ms => new Date(ms).toLocaleDateString("en-CA", {day: "numeric", month: "short"});
+const cap = s => s[0].toUpperCase() + s.slice(1);
 
 // ── data ──────────────────────────────────────────────────────────────────
-const O = DATA.outbreaks, F = DATA.facilities, CUR = DATA.current, CAL = DATA.calendar;
+const O = DATA.outbreaks, F = DATA.facilities, CUR = DATA.current, CAL = DATA.calendar, DIR = DATA.direction;
 const N = O.fac.length, ASOF = day(DATA.as_of);
 const BEGAN = O.began.map(day), OVER = O.over.map(day);
 const SETTINGS = DATA.settings, SCOL = DATA.setting_colours;
 const GROUPS = DATA.agent_groups;                       // bit i of flags = group i
 const gi = name => GROUPS.indexOf(name);
 const has = (i, name) => (O.flags[i] >> gi(name)) & 1;
+const mixCol = name => DATA.mix_colours[DATA.mix_levels.indexOf(name)];
 const ENTERIC_MIX = ["Norovirus", "Other enteric pathogen", "Multiple agents", "Unknown"];
 const ENTERIC_COL = ["#008300", "#6250d6", "#e87ba4", css("--band")];
 const isCurrent = s => s === CUR.season_idx;
 const lastWeek = s => isCurrent(s) ? CUR.week : 52;     // weeks run 1..52 (week 53 merged into 52)
-const isoLabel = (s, w) => "W" + String(CAL[s].wk[w - 1]).padStart(2, "0");
+const isPartial = (s, w) => isCurrent(s) && w === CUR.week;
+const wkLabel = (s, w) => "W" + String(CAL[s].wk[w - 1]).padStart(2, "0");
+const RESP = i => O.type[i] === 0;
+const AGENTS = {
+  influenza: {name: "Influenza", col: mixCol("Influenza"), test: i => RESP(i) && (has(i, "Influenza A") || has(i, "Influenza B"))},
+  covid19: {name: "COVID-19", col: mixCol("COVID-19"), test: i => RESP(i) && has(i, "COVID-19")},
+  rsv: {name: "RSV", col: mixCol("RSV"), test: i => RESP(i) && has(i, "RSV")},
+};
 
-const S = {season: CUR.season_idx, week: CUR.week, setting: -1, type: 0, tab: "trend", sel: null,
+const S = {season: CUR.season_idx, week: Math.max(1, CUR.week - 1), setting: -1, type: 0, sel: null,
            base: "post", agView: "week", onAgent: "influenza", duView: "resp_setting"};
 
-// Does outbreak i match the setting/type filters?
 const inFilter = i => (S.setting < 0 || O.setting[i] === S.setting) && (S.type < 0 || O.type[i] === S.type);
-// Weekly new outbreaks (by week of onset) for season s, under the filters (or a custom test).
+// Weekly new outbreaks (by week of onset) for season s.
 function weekly(s, test = inFilter) {
   const out = new Array(52).fill(0);
   for (let i = 0; i < N; i++) if (O.season[i] === s && test(i)) out[O.week[i] - 1]++;
   return out.map((v, w) => w < lastWeek(s) ? v : null);
 }
-// Lowest, median and highest weekly count across the comparison seasons
-// (decision D6): only season-weeks labelled with the period; never the season shown.
+// Lowest, median and highest weekly count across the comparison seasons (D6).
 function range(period, exclude, test = inFilter) {
   const per = new Map();
   for (let s = 0; s < DATA.seasons.length; s++) {
@@ -254,14 +297,17 @@ function active(s, w, test = inFilter) {
   for (let i = 0; i < N; i++) if (test(i) && BEGAN[i] <= b && (OVER[i] ?? ASOF) >= a) out.push(i);
   return out;
 }
+const seasonToDate = (s, w, test = inFilter) => { const out = []; for (let i = 0; i < N; i++) if (O.season[i] === s && O.week[i] <= w && test(i)) out.push(i); return out; };
 const pathogenLabel = i => O.type[i] === 2 ? "Other (e.g. CPE)"
   : O.type[i] === 1
     ? (O.mix[i] === DATA.mix_levels.indexOf("Multiple agents") ? "Multiple agents"
        : has(i, "Norovirus") ? "Norovirus" : has(i, "Unknown") ? "Unknown" : "Other enteric pathogen")
     : DATA.mix_levels[O.mix[i]];
 const rawAgents = i => [O.a1[i], O.a2[i]].filter(a => a && a !== "None").join(" + ");
+const SET_NAME = () => S.setting < 0 ? "all settings" : SETTINGS[S.setting];
+const TYPE_NAME = () => ["respiratory", "enteric", "other"][S.type] ?? "all";
 
-// ── header ────────────────────────────────────────────────────────────────
+// ── bar: freshness, filters, week stepper, section links ──────────────────
 function freshness() {
   const asOf = new Date(ASOF), today = new Date(); today.setHours(0, 0, 0, 0);
   const back = ((today.getDay() - 3 + 7) % 7) || 7, exp = new Date(today); exp.setDate(today.getDate() - back);
@@ -269,8 +315,7 @@ function freshness() {
   return wk <= 0 ? `<span class="fresh ok">up to date</span>`
     : `<span class="fresh stale">${wk} week${wk === 1 ? "" : "s"} behind the weekly refresh</span>`;
 }
-$("brand-sub").innerHTML = `City of Toronto Open Data · data as of ${fdate(ASOF)} · ${freshness()} · ` +
-  `Open Government Licence – Toronto · unofficial`;
+$("asof").innerHTML = `City of Toronto Open Data · as of ${fdate(ASOF)} · ${freshness()}`;
 DATA.seasons.forEach((s, i) => { const o = document.createElement("option"); o.value = i;
   o.textContent = s + (isCurrent(i) ? " (current)" : ""); $("season").append(o); });
 function seg(id, items, key) {
@@ -280,60 +325,23 @@ function seg(id, items, key) {
 }
 seg("seg-setting", [[-1, "All settings"], ...SETTINGS.map((s, i) => [i, s === "Retirement home" ? "Retirement" : s])], "setting");
 seg("seg-type", [[0, "Respiratory"], [1, "Enteric"], [-1, "All types"]], "type");
-$("season").onchange = e => { S.season = +e.target.value; S.week = Math.min(S.week, lastWeek(S.season)); render(); };
-$("wk").oninput = e => { S.week = +e.target.value; render(); };
-let timer = null;
-$("play").onclick = () => {
-  if (timer) { clearInterval(timer); timer = null; $("play").textContent = "▶"; return; }
-  $("play").textContent = "❚❚";
-  if (S.week >= lastWeek(S.season)) S.week = 1;
-  timer = setInterval(() => { if (S.week >= lastWeek(S.season)) { $("play").click(); return; } S.week++; render(); }, 700);
-};
-function showTab(tb) {
-  S.tab = tb;
-  document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === tb));
-  document.querySelectorAll(".panel").forEach(p => p.classList.toggle("on", p.id === "p-" + tb));
-  render();
-}
-document.querySelectorAll(".tabs button").forEach(b => b.onclick = () => showTab(b.dataset.tab));
+$("season").onchange = e => { S.season = +e.target.value; S.week = isCurrent(S.season) ? Math.max(1, CUR.week - 1) : 52; render(); };
+$("wprev").onclick = () => { if (S.week > 1) { S.week--; render(); } };
+$("wnext").onclick = () => { if (S.week < lastWeek(S.season)) { S.week++; render(); } };
 function chips(id, items, key) {
   $(id).innerHTML = items.map(([v, l]) => `<button data-v="${v}" aria-pressed="${S[key] === v}">${l}</button>`).join("");
   $(id).querySelectorAll("button").forEach(b => b.onclick = () => { S[key] = b.dataset.v; render(); });
 }
+const navLinks = [...document.querySelectorAll("#nav a")];
+const spy = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting)
+  navLinks.forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + e.target.id)); }),
+  {rootMargin: "-35% 0px -60% 0px"});
+document.querySelectorAll("section.sec").forEach(sec => spy.observe(sec));
 
-// ── map ───────────────────────────────────────────────────────────────────
-const map = L.map("lmap", {zoomControl: true, minZoom: 9, maxZoom: 18}).setView([43.715, -79.38], 11);
-L.tileLayer(TILES.url, {attribution: TILES.attribution, maxZoom: 19}).addTo(map);
-const layer = L.layerGroup().addTo(map);
-map.fitBounds(L.latLngBounds(F.lat.map((la, k) => [la, F.lon[k]]).filter(p => p[0] != null)), {padding: [12, 12]});
-new ResizeObserver(() => map.invalidateSize()).observe($("lmap"));
-function drawMap(s, w) {
-  layer.clearLayers();
-  const act = active(s, w), byFac = new Map();
-  for (const i of act) (byFac.get(O.fac[i]) || byFac.set(O.fac[i], []).get(O.fac[i])).push(i);
-  // facilities with outbreaks earlier this season but none active now: faint context
-  const earlier = new Set();
-  for (let i = 0; i < N; i++) if (O.season[i] === s && inFilter(i) && O.week[i] <= w && !byFac.has(O.fac[i])) earlier.add(O.fac[i]);
-  for (const f of earlier) if (F.lat[f] != null)
-    L.circleMarker([F.lat[f], F.lon[f]], {radius: 3, color: css("--band"), weight: 1, fillColor: css("--band"),
-      fillOpacity: 0.35, interactive: false}).addTo(layer);
-  const ws = day(CAL[s].start[w - 1]);
-  for (const [f, ids] of byFac) {
-    if (F.lat[f] == null) continue;
-    const isNew = ids.some(i => BEGAN[i] >= ws);
-    const m = L.circleMarker([F.lat[f], F.lon[f]], {radius: 7, weight: isNew ? 3 : 1.5, opacity: 1,
-      color: isNew ? css("--outline") : "#fff", fillColor: SCOL[F.setting[f]], fillOpacity: 0.95}).addTo(layer);
-    m.bindTooltip(`<b>${esc(F.name[f])}</b><br><span style="color:var(--text-3)">${esc(SETTINGS[F.setting[f]])} · ${esc(F.hood[f])}</span><br>` +
-      ids.map(i => `${esc(O.unit[i])}: ${esc(pathogenLabel(i))}, from ${fdateShort(BEGAN[i])}${OVER[i] == null ? ' <span class="open">open</span>' : ""}`).join("<br>") +
-      `<br><span style="color:var(--text-3)">Click for this facility's history</span>`, {sticky: true});
-    m.on("click", () => { S.sel = f; showTab("facility"); });
-  }
-  return {act, nFac: byFac.size};
-}
-$("legend").innerHTML = SETTINGS.map((s, i) => `<span><i class="dot" style="background:${SCOL[i]}"></i>${esc(s)}</span>`).join("") +
-  `<span><i class="dot ring" style="background:#fff"></i>outbreak began this week</span>` +
-  `<span><i class="dot" style="background:${css("--band")};opacity:.5;width:7px;height:7px"></i>outbreak earlier this season</span>` +
-  `<span>All dots the same size: no bed counts to compare facilities fairly.</span>`;
+$("lede").innerHTML = `An independent, weekly-updated analysis of the outbreak data Toronto Public Health (TPH) publishes on the City's open data portal. ` +
+  `It reproduces TPH's weekly outbreak counts and assessment, then adds what the official dashboard does not show: ` +
+  `<b>which settings and facilities</b> are affected, <b>repeat outbreaks</b>, <b>how long outbreaks last</b>, ` +
+  `an <b>RSV season-onset signal</b>, and every season since 2016 for comparison.`;
 
 // ── charts ────────────────────────────────────────────────────────────────
 Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
@@ -353,6 +361,7 @@ function baseOpts(yTitle) {
   };
 }
 function upsert(key, cfg) { if (charts[key]) charts[key].destroy(); charts[key] = new Chart($(key), cfg); }
+function drop(key) { if (charts[key]) { charts[key].destroy(); delete charts[key]; } }
 // Shaded provisional weeks and a rule at the selected week.
 const weekMarks = {
   id: "weekMarks",
@@ -363,7 +372,7 @@ const weekMarks = {
       const p0 = x.getPixelForValue(o.provFrom) - half, p1 = x.getPixelForValue(o.provTo) + half;
       ctx.fillStyle = "rgba(137,135,129,0.12)"; ctx.fillRect(p0, a.top, p1 - p0, a.bottom - a.top);
       ctx.fillStyle = css("--text-3"); ctx.font = "10px " + Chart.defaults.font.family;
-      ctx.fillText("provisional", Math.max(a.left, p0 - 2) , a.top + 10);
+      ctx.textAlign = "left"; ctx.fillText("provisional", p1 + 3, a.top + 10);
     }
     if (o.sel != null) {
       const px = x.getPixelForValue(o.sel);
@@ -373,11 +382,44 @@ const weekMarks = {
     ctx.restore();
   },
 };
-const labels52 = s => Array.from({length: 52}, (_, w) => isoLabel(s, w + 1));
+const labels52 = s => Array.from({length: 52}, (_, w) => wkLabel(s, w + 1));
 const pick = (c, s) => { const w = c?.[0]?.index; if (w != null && w < lastWeek(s)) { S.week = w + 1; render(); } };
 
-const SET_NAME = () => S.setting < 0 ? "all settings" : SETTINGS[S.setting];
-const TYPE_NAME = () => ["respiratory", "enteric", "other"][S.type] ?? "all";
+// ── map ───────────────────────────────────────────────────────────────────
+const map = L.map("lmap", {zoomControl: true, minZoom: 9, maxZoom: 18, scrollWheelZoom: false}).setView([43.715, -79.38], 11);
+L.tileLayer(TILES.url, {attribution: TILES.attribution, maxZoom: 19}).addTo(map);
+const layer = L.layerGroup().addTo(map);
+map.fitBounds(L.latLngBounds(F.lat.map((la, k) => [la, F.lon[k]]).filter(p => p[0] != null)), {padding: [12, 12]});
+new ResizeObserver(() => map.invalidateSize()).observe($("lmap"));
+function selectFacility(f) { S.sel = f; render(); }
+function drawMap(s, w) {
+  layer.clearLayers();
+  const act = active(s, w), byFac = new Map();
+  for (const i of act) (byFac.get(O.fac[i]) || byFac.set(O.fac[i], []).get(O.fac[i])).push(i);
+  const earlier = new Set();
+  for (let i = 0; i < N; i++) if (O.season[i] === s && inFilter(i) && O.week[i] <= w && !byFac.has(O.fac[i])) earlier.add(O.fac[i]);
+  for (const f of earlier) if (F.lat[f] != null) {
+    const m = L.circleMarker([F.lat[f], F.lon[f]], {radius: 4, color: css("--band"), weight: 1, fillColor: css("--band"), fillOpacity: 0.35}).addTo(layer);
+    m.bindTooltip(`<b>${esc(F.name[f])}</b><br>Outbreak earlier this season · click for history`, {sticky: true});
+    m.on("click", () => selectFacility(f));
+  }
+  const ws = day(CAL[s].start[w - 1]);
+  for (const [f, ids] of byFac) {
+    if (F.lat[f] == null) continue;
+    const isNew = ids.some(i => BEGAN[i] >= ws);
+    const m = L.circleMarker([F.lat[f], F.lon[f]], {radius: 7, weight: isNew ? 3 : 1.5, opacity: 1,
+      color: isNew ? css("--outline") : "#fff", fillColor: SCOL[F.setting[f]], fillOpacity: 0.95}).addTo(layer);
+    m.bindTooltip(`<b>${esc(F.name[f])}</b><br><span style="color:var(--text-3)">${esc(SETTINGS[F.setting[f]])} · ${esc(F.hood[f])}</span><br>` +
+      ids.map(i => `${esc(O.unit[i])}: ${esc(pathogenLabel(i))}, from ${fdateShort(BEGAN[i])}${OVER[i] == null ? ' <span class="open">open</span>' : ""}`).join("<br>") +
+      `<br><span style="color:var(--text-3)">Click for this facility's history</span>`, {sticky: true});
+    m.on("click", () => selectFacility(f));
+  }
+  return {act, nFac: byFac.size};
+}
+$("legend").innerHTML = SETTINGS.map((s, i) => `<span><i class="dot" style="background:${SCOL[i]}"></i>${esc(s)}</span>`).join("") +
+  `<span><i class="dot ring" style="background:#fff"></i>began this week</span>` +
+  `<span><i class="dot" style="background:${css("--band")};opacity:.5;width:8px;height:8px"></i>outbreak earlier this season</span>` +
+  `<span>Equal dot sizes: no bed counts are published to compare facilities fairly.</span>`;
 
 // ── CSV ───────────────────────────────────────────────────────────────────
 const CSV_COLS = ["season", "season_week", "surveillance_week", "facility_id", "facility_name", "facility_address", "neighbourhood",
@@ -402,162 +444,245 @@ $("dl-all").onclick = () => download([...Array(N).keys()], `toronto_outbreaks_al
 
 // ── methods ───────────────────────────────────────────────────────────────
 const REPO = "https://github.com/samielsabri/toronto_healthcare_institutions_outbreaks";
+const RU = DIR.rules;
 $("about").innerHTML = `
-<h3>What this shows</h3>
-<p>Declared outbreaks in Toronto hospitals, long-term care homes (LTCH) and retirement homes, from the City of Toronto's open dataset <i>Outbreaks in Toronto Healthcare Institutions</i>, refreshed by Toronto Public Health every Thursday with data as of Wednesday afternoon. Updated automatically each week. An unofficial, independent summary; not produced or endorsed by Toronto Public Health.</p>
-<h3>Counting</h3>
+<h4>Source</h4>
+<p>City of Toronto Open Data, <i>Outbreaks in Toronto Healthcare Institutions</i>: declared outbreaks in hospitals, long-term care homes (LTCH) and retirement homes, refreshed by Toronto Public Health every Thursday with data as of Wednesday afternoon. This page rebuilds automatically after each refresh. It is an independent analysis, not produced or endorsed by Toronto Public Health.</p>
+<h4>Counting</h4>
 <ul>
-<li>One outbreak per affected unit or ward, as published, by week of onset. Weeks are surveillance (MMWR) weeks, Sunday to Saturday, as used by Toronto Public Health; seasons run from week 35 to week 34, and week 53 is merged into week 52.</li>
-<li>A facility is a physical site (one address, split by setting where an LTCH and a retirement home share it). Locations come from the City's Address Points register.</li>
-<li>Pathogens are harmonized from the source labels. An outbreak with several pathogens counts under each in the season-onset series and as <i>Multiple agents</i> in the pathogen mix. "Coronavirus" in the source means seasonal coronaviruses, not COVID-19.</li>
-<li>No case counts, attack rates or deaths are published, so everything is outbreak-level.</li>
+<li>One outbreak per affected unit or ward, as published, by week of onset. Weeks are surveillance (MMWR) weeks, Sunday to Saturday, as used by TPH and FluWatch; seasons run from week 35 to week 34, and week 53 is merged into week 52.</li>
+<li>Pathogen labels are harmonized. An outbreak with several pathogens counts under each in the per-pathogen series, and once as <i>Multiple agents</i> in the pathogen mix. "Coronavirus" in the source means seasonal coronaviruses, not COVID-19.</li>
+<li>No case counts, hospitalizations or deaths are published, so everything here describes how often outbreaks happen and how long they last, not how severe they are.</li>
 </ul>
-<h3>Comparison ranges</h3>
+<h4>Weekly assessment</h4>
+<p>Toronto Public Health's published rule for institutional outbreaks, comparing the latest complete week with the week before: any move from or to zero counts; below ${RU.influenza.cutoff} outbreaks (influenza) or ${RU.covid19.cutoff} (COVID-19) the previous week, a change of ${RU.influenza.abs_change} or ${RU.covid19.abs_change} is needed; at or above, a change of ${Math.round(100 * RU.influenza.rel_change)}%. TPH does not assess RSV; the influenza rule is applied to it here.</p>
+<h4>Comparison ranges and season onset</h4>
 <ul>
-<li>Testing and reporting changed during the pandemic, so a season is compared with two separate ranges: <b>pre-pandemic</b> (2016/17 to 2018/19, plus 2019/20 to week 10 of 2020) and <b>post-pandemic</b> (2022/23 onward, excluding the current season). The band is the lowest to highest weekly count across those seasons; the line is the median.</li>
+<li>Testing and reporting changed during the pandemic, so a season is compared with two ranges: <b>pre-pandemic</b> (2016/17 to 2018/19, plus 2019/20 to week 10 of 2020) and <b>post-pandemic</b> (2022/23 onward, excluding the current season). The band runs from the lowest to the highest weekly count; the line is the median.</li>
+<li>Season onset for influenza and RSV: moving epidemic method (MEM), default settings, fitted on the post-pandemic seasons. The season starts in the first complete week above the epidemic threshold. Weekly counts are small, so several weeks in a row above it is the stronger signal. COVID-19 has no stable seasonal pattern yet and gets no onset rule.</li>
 <li>The last two weeks of the current season are provisional: outbreaks are reported with a delay.</li>
 </ul>
-<h3>Season onset</h3>
+<h4>Duration and repeats</h4>
 <ul>
-<li>Moving epidemic method (MEM) with default settings, fitted on the post-pandemic seasons, for influenza and RSV. The season starts in the first complete week above the epidemic threshold; higher lines mark medium, high and very high intensity. Weekly counts are small, so consecutive weeks above the threshold are the stronger signal.</li>
-<li>COVID-19 has no stable seasonal pattern yet, so it is compared with the post-pandemic range without an alert.</li>
+<li>Duration: Kaplan–Meier from onset to declared over; open outbreaks are censored at the data-as-of date. Duration also reflects the rules for declaring an outbreak over.</li>
+<li>Episodes: outbreaks of the same type at one facility, each starting within 14 days of the previous one. Facilities that never had an outbreak are not in the data, and counts are not adjusted for facility size.</li>
 </ul>
-<h3>Duration and repeat outbreaks</h3>
-<ul>
-<li>Duration: Kaplan–Meier, onset to declared over, for outbreaks beginning 2022/23 onward; open outbreaks are censored at the data-as-of date. Duration reflects the rules for declaring an outbreak over as well as transmission.</li>
-<li>Repeat outbreaks: wards affected together are one <b>episode</b> (same type, same facility, each within 14 days of the previous one). A repeat is a later, separate episode in the same season. Facilities without any outbreak are not in the data, and counts are not adjusted for facility size.</li>
-</ul>
-<h3>Limitations</h3>
-<ul>
-<li>Outbreak counts reflect testing and reporting practices as well as disease activity. More outbreaks are declared per affected unit since 2020, and far more pathogens are identified.</li>
-<li>Pathogen labels changed over the years (e.g. <i>Norovirus-like</i> to <i>Norovirus</i> in 2023) and were harmonized.</li>
-<li>Recent weeks are incomplete; how much they grow will be quantified from the weekly snapshots as they accumulate.</li>
-</ul>
-<p>Every analytical decision is recorded in the <a href="${REPO}/blob/main/reports/decisions.md" target="_blank" rel="noopener">decisions log</a>; code and data are in the <a href="${REPO}" target="_blank" rel="noopener">project repository</a>.</p>
-<h3>CSV columns</h3>
-<p><code>season</code>, <code>season_week</code>, <code>surveillance_week</code>; <code>facility_*</code> and <code>neighbourhood</code> (derived site); <code>unit</code>, <code>setting</code>, <code>outbreak_type</code>; <code>causative_agent_1/2</code> (as published) and <code>pathogen_group</code> (harmonized); <code>date_began</code>, <code>date_declared_over</code>, <code>open</code>, <code>duration_days</code> (open outbreaks: days to the data-as-of date).</p>
-<h3>Sources and licence</h3>
-<p>Contains information licensed under the <a href="https://open.toronto.ca/open-data-license/" target="_blank" rel="noopener">Open Government Licence – Toronto</a>: <i>Outbreaks in Toronto Healthcare Institutions</i>, <i>Address Points (Municipal)</i> and <i>Neighbourhoods</i>. Basemap: ${TILES.attribution}. Built ${DATA.built}; data as of ${DATA.as_of}.</p>`;
+<p>Every analytical decision is recorded in the <a href="${REPO}/blob/main/reports/decisions.md" target="_blank" rel="noopener">decisions log</a>; code, tests and weekly data snapshots are in the <a href="${REPO}" target="_blank" rel="noopener">project repository</a>.</p>`;
+$("foot").innerHTML = `Contains information licensed under the <a href="https://open.toronto.ca/open-data-license/" target="_blank" rel="noopener">Open Government Licence – Toronto</a>: <i>Outbreaks in Toronto Healthcare Institutions</i>, <i>Address Points (Municipal)</i> and <i>Neighbourhoods</i>. Basemap: ${TILES.attribution}. Built ${DATA.built}; data as of ${DATA.as_of}.`;
+
+// ── summary helpers ───────────────────────────────────────────────────────
+const DIR_CLASS = {Higher: "up", Lower: "down", Similar: "same"};
+const DIR_ICON = {Higher: "▲", Lower: "▼", Similar: "▶"};
+function dirAt(ag, s, w) {
+  const d = DIR[ag][s], k = w - 1;
+  return d && d.dir[k] != null ? {n: d.n[k], prev: d.prev[k], dir: d.dir[k]} : null;
+}
+// Dates of the selected week (53-week seasons: slot 18 is shown as week 53).
+function weekInfo(s, w) {
+  const k = w - 1, d = DIR.weeks[s];
+  if (d && d.wk[k] != null) return {wk: d.wk[k], start: day(d.start[k]), end: day(d.end[k])};
+  return {wk: CAL[s].wk[k], start: day(CAL[s].start[k]), end: isPartial(s, w) ? ASOF : day(CAL[s].end[k])};
+}
+const badge = d => d ? `<span class="dir ${DIR_CLASS[d.dir]}"><span aria-hidden="true">${DIR_ICON[d.dir]}</span>${d.dir}</span>`
+  : `<span class="dir na">no assessment yet</span>`;
+function sparkline(id, s, w, test, col) {
+  const n = isCurrent(s) ? CUR.week - 1 : 52, wk = weekly(s, test).slice(0, n);
+  const o = baseOpts(""); o.scales.x.display = false; o.scales.y.display = false;
+  o.plugins.tooltip = {displayColors: false, callbacks: {title: c => wkLabel(s, c[0].dataIndex + 1), label: c => ` ${c.parsed.y} new`}};
+  upsert(id, {type: "bar", options: o, data: {labels: wk.map((_, k) => k), datasets: [{data: wk,
+    backgroundColor: wk.map((_, k) => k === w - 1 ? col : "rgba(137,135,129,0.35)"), borderRadius: 2, barPercentage: 0.9, categoryPercentage: 1}]}});
+}
 
 // ── render ────────────────────────────────────────────────────────────────
 function render() {
-  const s = S.season, w = Math.min(S.week, lastWeek(s)); S.week = w;
-  const lw = lastWeek(s), cur = isCurrent(s);
+  const s = S.season, w = Math.min(Math.max(S.week, 1), lastWeek(s)); S.week = w;
+  const cur = isCurrent(s), partial = isPartial(s, w), wi = weekInfo(s, w);
+  const wkName = `week ${wi.wk}`;
   $("season").value = s;
-  $("wk").min = 1; $("wk").max = lw; $("wk").value = w;
-  const partial = cur && w === CUR.week;
-  $("wklab").textContent = `${isoLabel(s, w)} · ${fdateShort(day(CAL[s].start[w - 1]))}–${fdateShort(day(CAL[s].end[w - 1]))}${partial ? " (partial)" : ""}`;
-  $("wk").setAttribute("aria-valuetext", $("wklab").textContent);
+  $("wklab").textContent = `Week ${wi.wk} · ${fdateShort(wi.start)}–${fdateShort(wi.end)}`;
+  $("wprev").disabled = w <= 1; $("wnext").disabled = w >= lastWeek(s);
 
-  // stats
-  const wkly = weekly(s), prev = w > 1 ? wkly[w - 2] : null;
-  $("k-new").textContent = `New outbreaks, ${isoLabel(s, w)}`;
-  $("t-new").textContent = fmt(wkly[w - 1]);
-  $("t-new-d").textContent = (prev != null ? `${wkly[w - 1] >= prev ? "▲" : "▼"} from ${fmt(prev)} in ${isoLabel(s, w - 1)}` : "") +
-    (cur && w > CUR.week - 2 ? " · provisional" : "");
-  const {act, nFac} = drawMap(s, w);
-  $("k-act").textContent = `Active in ${isoLabel(s, w)}`;
-  $("t-act").textContent = fmt(act.length);
-  $("t-act-d").textContent = `at ${fmt(nFac)} facilit${nFac === 1 ? "y" : "ies"}`;
-  const std = wkly.slice(0, w).reduce((a, b) => a + (b ?? 0), 0);
-  $("k-std").textContent = `Season to ${isoLabel(s, w)}`;
-  $("t-std").textContent = fmt(std);
-  const sel = selection().filter(i => O.week[i] <= w), unk = sel.filter(i => has(i, "Unknown") && pathogenLabel(i) === "Unknown").length;
-  $("t-std-d").textContent = sel.length ? `${fmt(100 * unk / sel.length)}% with no pathogen identified` : "";
-  const flu = DATA.onset.influenza.status, rsv = DATA.onset.rsv.status;
-  $("t-flu").textContent = cur ? flu.value : "–";
-  $("t-flu-d").textContent = cur ? `RSV: ${rsv.value.toLowerCase()}` : `current season only`;
-  $("map-title").textContent = `Facilities with an outbreak active in ${isoLabel(s, w)} ${DATA.seasons[s]}: ${TYPE_NAME()}, ${SET_NAME()}`;
+  // 1. this week
+  const phrase = ag => { const a = AGENTS[ag], d = dirAt(ag, s, w);
+    if (!d) return null;
+    if (d.n === 0 && d.prev === 0) return `no ${a.name} outbreaks`;
+    return `${a.name} ${d.dir.toLowerCase()} (${d.n}, from ${d.prev})`; };
+  const parts = ["influenza", "covid19", "rsv"].map(phrase);
+  $("f-summary").textContent = parts[0] == null
+    ? `Week ${wi.wk} is still incomplete (data to ${fdate(ASOF)}), so it has no assessment yet.`
+    : `Week ${wi.wk}, ${fdateShort(wi.start)} – ${fdate(wi.end)}: ${parts.join(", ")}.`;
+  $("s-summary").textContent = `Higher / similar / lower: Toronto Public Health's own rule for institutional outbreaks, applied to the open data, so it can be checked against their dashboard. ` +
+    `Outbreaks count under every pathogen detected.`;
+  const cards = [];
+  for (const [ag, a] of Object.entries(AGENTS)) {
+    const d = dirAt(ag, s, w), std = seasonToDate(s, w, a.test).length, st = DATA.onset[ag]?.status;
+    const onsetTxt = ag === "covid19" ? "no onset rule" : cur ? esc(st.value) : "current season only";
+    const n = d ? d.n : weekly(s, a.test)[w - 1];
+    cards.push(`<div class="card agent" style="--c:${a.col}"><div class="name">${a.name}</div>
+      <div class="big">${fmt(n)}<small>new in ${wkName}${partial ? " so far" : ""}</small></div>
+      <div>${badge(d)} <span class="hint">${d ? `from ${fmt(d.prev)} the week before` : ""}</span></div>
+      <div class="spark"><canvas id="sp-${ag}"></canvas></div>
+      <dl><dt>Season to date</dt><dd>${fmt(std)}</dd><dt>Season onset (MEM)</dt><dd title="${cur && st ? esc(st.title) : ""}">${onsetTxt}</dd></dl></div>`);
+  }
+  const wr = weekly(s, RESP), act = active(s, w, RESP), actFac = new Set(act.map(i => O.fac[i])).size;
+  const stdR = seasonToDate(s, w, RESP), unk = stdR.filter(i => pathogenLabel(i) === "Unknown").length;
+  cards.push(`<div class="card agent" style="--c:${css("--ink")}"><div class="name">All respiratory outbreaks</div>
+    <div class="big">${fmt(wr[w - 1])}<small>new in ${wkName}${partial ? " so far" : ""}</small></div>
+    <div class="hint" style="padding:2px 0">${w > 1 ? `${fmt(wr[w - 2])} the week before` : ""}</div>
+    <div class="spark"><canvas id="sp-all"></canvas></div>
+    <dl><dt>Active this week</dt><dd>${fmt(act.length)} at ${fmt(actFac)} facilities</dd><dt>Season to date</dt><dd>${fmt(stdR.length)}</dd>
+    <dt>No pathogen identified</dt><dd>${pct(unk, stdR.length)}</dd></dl></div>`);
+  $("cards").innerHTML = cards.join("");
+  for (const [ag, a] of Object.entries(AGENTS)) sparkline("sp-" + ag, s, w, a.test, a.col);
+  sparkline("sp-all", s, w, RESP, css("--ink"));
+  $("n-summary").textContent = `Bars: new outbreaks per complete week this season, selected week highlighted.` +
+    (cur ? ` The latest weeks are provisional and usually rise as late reports come in.` : "");
 
-  if (S.tab === "trend") {
-    const base = S.base, r = range(base, s), lab = labels52(s);
+  // 2. trends
+  const wkly = weekly(s), r = range(S.base, s), lab = labels52(s);
+  const baseName = S.base === "post" ? "post-pandemic" : "pre-pandemic";
+  {
+    const v = wkly[w - 1], lo = r.lo[w - 1], hi = r.hi[w - 1], rng = `${fmt(lo)}–${fmt(hi)}`;
+    const where = lo == null ? "" : v > hi ? `, above the ${baseName} range for this week (${rng})`
+      : v < lo ? `, below the ${baseName} range for this week (${rng})` : `, within the ${baseName} range for this week (${rng})`;
+    $("f-trends").textContent = `${cap(wkName)}: ${fmt(v)} new ${TYPE_NAME()} outbreaks in ${SET_NAME()}${where}${partial ? " (incomplete week)" : ""}.`;
     $("tr-title").textContent = `New ${TYPE_NAME()} outbreaks per week, ${SET_NAME()}, ${DATA.seasons[s]}`;
-    $("tr-hint").textContent = `Grey band: lowest to highest weekly count across the ${base === "post" ? "post-pandemic (2022/23 onward)" : "pre-pandemic (2016/17 to early 2019/20)"} seasons; line: median. ` +
-      `The post-pandemic range is the fairer comparison: since 2020 more outbreaks are declared per unit and more pathogens identified. Click a week to select it.`;
-    chips("tr-chips", [["post", "vs post-pandemic range"], ["pre", "vs pre-pandemic range"]], "base");
+    $("tr-hint").textContent = `Grey band: lowest to highest weekly count in the ${S.base === "post" ? "post-pandemic seasons (2022/23 onward)" : "pre-pandemic seasons (2016/17 to early 2019/20)"}; grey line: median. ` +
+      `The post-pandemic range is the fairer comparison: since 2020 more outbreaks are declared per unit and more pathogens identified.`;
+    chips("tr-chips", [["post", "vs post-pandemic"], ["pre", "vs pre-pandemic"]], "base");
     const o = baseOpts("New outbreaks");
     o.onClick = (e, els, c) => pick(c.getElementsAtEventForMode(e, "index", {intersect: false}), s);
     o.plugins.weekMarks = {provFrom: cur ? CUR.week - 2 : null, provTo: cur ? CUR.week - 1 : null, sel: w - 1};
     o.plugins.tooltip = {filter: c => c.datasetIndex === 0 || c.datasetIndex === 3, callbacks: {label: c => c.datasetIndex === 0
       ? ` Range ${fmt(r.lo[c.dataIndex])}–${fmt(r.hi[c.dataIndex])} (median ${fmt(r.med[c.dataIndex], 1)}, ${r.n[c.dataIndex]} seasons)`
       : ` ${DATA.seasons[s]}: ${fmt(c.parsed.y)}`}};
-    const acc = css("--accent"), band = "rgba(137,135,129,0.22)";
+    const acc = css("--ink"), band = "rgba(137,135,129,0.22)";
     upsert("c-trend", {type: "line", plugins: [weekMarks], options: o, data: {labels: lab, datasets: [
       {data: r.hi, borderWidth: 0, pointRadius: 0, backgroundColor: band, fill: "+1", spanGaps: false},
       {data: r.lo, borderWidth: 0, pointRadius: 0, fill: false, spanGaps: false},
       {data: r.med, borderColor: css("--band"), borderWidth: 1, pointRadius: 0, fill: false, spanGaps: false},
-      {data: wkly, borderColor: acc, borderWidth: 2, pointRadius: wkly.map((_, i) => i === w - 1 ? 5 : 2.5),
+      {data: wkly, borderColor: acc, borderWidth: 2, pointRadius: wkly.map((_, i) => i === w - 1 ? 5 : 2),
        pointBackgroundColor: acc, pointBorderColor: "#fff", pointBorderWidth: 1, fill: false, spanGaps: false},
     ]}});
   }
-
-  if (S.tab === "agents") {
-    const ent = S.type === 1, levels = ent ? ENTERIC_MIX : DATA.mix_levels, cols = ent ? ENTERIC_COL : DATA.mix_colours;
-    const test = i => (S.setting < 0 || O.setting[i] === S.setting) && O.type[i] === (ent ? 1 : 0);
-    chips("ag-chips", [["week", `Weekly, ${DATA.seasons[s]}`], ["season", "Every season"]], "agView");
-    $("ag-hint").textContent = `Each outbreak counted once; several pathogens found = Multiple agents. Unknown = none identified, often because testing was not done or was negative, so it reflects testing as much as the virus.` +
-      (S.type === -1 ? " Showing respiratory outbreaks (choose Enteric above for enteric)." : "");
-    const o = baseOpts(S.agView === "week" ? "New outbreaks" : "Share of outbreaks");
-    o.scales.x.stacked = o.scales.y.stacked = true;
-    o.plugins.legend = {display: true, position: "top", align: "start", labels: {boxWidth: 10, boxHeight: 10, color: css("--text-2")}};
-    let labelsX, sets;
-    if (S.agView === "week") {
-      $("ag-title").textContent = `${ent ? "Enteric" : "Respiratory"} outbreaks by pathogen and week, ${SET_NAME()}, ${DATA.seasons[s]}`;
-      labelsX = Array.from({length: lw}, (_, k) => isoLabel(s, k + 1));
-      const m = levels.map(() => new Array(lw).fill(0));
-      for (let i = 0; i < N; i++) if (O.season[i] === s && test(i) && O.week[i] <= lw) m[levels.indexOf(pathogenLabel(i))][O.week[i] - 1]++;
-      sets = m;
-      o.onClick = (e, els, c) => pick(c.getElementsAtEventForMode(e, "index", {intersect: false}), s);
-    } else {
-      $("ag-title").textContent = `${ent ? "Enteric" : "Respiratory"} outbreaks by pathogen, every season, ${SET_NAME()}`;
-      labelsX = DATA.seasons;
-      const m = levels.map(() => new Array(DATA.seasons.length).fill(0)), tot = new Array(DATA.seasons.length).fill(0);
-      for (let i = 0; i < N; i++) if (test(i)) { m[levels.indexOf(pathogenLabel(i))][O.season[i]]++; tot[O.season[i]]++; }
-      sets = m.map(r => r.map((v, k) => tot[k] ? 100 * v / tot[k] : 0));
-      o.scales.y.max = 100; o.scales.y.ticks.callback = v => v + "%";
-      o.plugins.tooltip = {callbacks: {label: c => ` ${c.dataset.label}: ${fmt(c.parsed.y)}% (${fmt(m[c.datasetIndex][c.dataIndex])} of ${fmt(tot[c.dataIndex])})`}};
-    }
-    upsert("c-agents", {type: "bar", options: o, data: {labels: labelsX, datasets: levels.map((l, k) => ({
-      label: l, data: sets[k], backgroundColor: cols[k], borderColor: "#fff", borderWidth: 1, barPercentage: 0.85}))}});
-  }
-
-  if (S.tab === "onset") {
-    const ag = S.onAgent, name = {influenza: "Influenza", rsv: "RSV", covid19: "COVID-19"}[ag];
-    const test = ag === "influenza" ? i => O.type[i] === 0 && (has(i, "Influenza A") || has(i, "Influenza B"))
-      : ag === "rsv" ? i => O.type[i] === 0 && has(i, "RSV") : i => O.type[i] === 0 && has(i, "COVID-19");
+  {
+    const ag = S.onAgent, a = AGENTS[ag];
     chips("on-chips", [["influenza", "Influenza"], ["rsv", "RSV"], ["covid19", "COVID-19"]], "onAgent");
-    $("on-title").textContent = `Outbreaks involving ${name} per week, all settings, ${DATA.seasons[s]}`;
-    const wk = weekly(s, test), ref = s > 0 ? weekly(s - 1, test) : null, lab = labels52(s);
+    $("on-title").textContent = `Season onset: outbreaks involving ${a.name}, all settings, ${DATA.seasons[s]}`;
+    const wk = weekly(s, a.test), ref = s > 0 ? weekly(s - 1, a.test) : null;
     const o = baseOpts("Outbreaks");
     o.plugins.weekMarks = {provFrom: cur ? CUR.week - 1 : null, provTo: cur ? CUR.week - 1 : null, sel: w - 1};
     o.onClick = (e, els, c) => pick(c.getElementsAtEventForMode(e, "index", {intersect: false}), s);
-    const acc = name === "Influenza" ? "#eb6834" : name === "RSV" ? "#1baf7a" : "#2a78d6";
-    const ds = [{label: DATA.seasons[s], data: wk, borderColor: acc, borderWidth: 2, pointRadius: 2.5, pointBackgroundColor: acc, fill: false},
+    const ds = [{label: DATA.seasons[s], data: wk, borderColor: a.col, borderWidth: 2, pointRadius: 2, pointBackgroundColor: a.col, fill: false},
                 ...(ref ? [{label: DATA.seasons[s - 1], data: ref, borderColor: "rgba(137,135,129,0.6)", borderWidth: 1, pointRadius: 0, fill: false}] : [])];
     if (ag === "covid19") {
-      const r = range("post", s, test);
-      ds.push({label: "post-pandemic high", data: r.hi, borderWidth: 0, pointRadius: 0, backgroundColor: "rgba(137,135,129,0.22)", fill: "+1"},
-              {label: "post-pandemic low", data: r.lo, borderWidth: 0, pointRadius: 0, fill: false});
-      $("on-hint").textContent = "No formal alert: COVID-19 has no stable seasonal pattern yet. Grey band: post-pandemic range (2022/23 onward). Thin grey line: previous season. Counts all settings, respiratory outbreaks with COVID-19 detected.";
-      $("on-status").innerHTML = "";
+      const rr = range("post", s, a.test);
+      ds.push({label: "post-pandemic high", data: rr.hi, borderWidth: 0, pointRadius: 0, backgroundColor: "rgba(137,135,129,0.22)", fill: "+1"},
+              {label: "post-pandemic low", data: rr.lo, borderWidth: 0, pointRadius: 0, fill: false});
+      $("on-hint").textContent = "No onset rule: COVID-19 has no stable seasonal pattern yet. Grey band: post-pandemic range. Thin grey line: previous season.";
     } else {
       const th = DATA.onset[ag].thresholds, st = DATA.onset[ag].status;
       [["epidemic", "Epidemic threshold"], ["medium", "Medium"], ["high", "High"], ["very_high", "Very high"]].forEach(([k, l], j) =>
         ds.push({label: `${l} (${fmt(th[k], 1)})`, data: new Array(52).fill(th[k]), borderColor: j ? "rgba(82,81,78,0.45)" : css("--signal"),
                  borderWidth: 1, borderDash: [2, 3], pointRadius: 0, fill: false}));
-      $("on-hint").textContent = `Moving epidemic method thresholds, default settings, fitted on ${DATA.onset[ag].seasons.join(", ")}. The season starts in the first complete week above the epidemic threshold (dotted orange); counts are small, so consecutive weeks above it are the stronger signal. Thin grey line: previous season. All settings.`;
-      $("on-status").innerHTML = cur ? `<div><div class="hint">Status now</div><div class="v">${esc(st.value)}</div><div class="hint">${esc(st.title)}</div></div>` : "";
+      $("on-hint").textContent = (cur ? `${st.title}. ` : "") +
+        `Moving epidemic method thresholds fitted on ${DATA.onset[ag].seasons.join(", ")}. Thin grey line: previous season.` +
+        (ag === "rsv" ? " TPH's dashboard does not assess RSV: outside outbreaks it is not reportable, so this is the only Toronto-specific RSV signal." : "");
     }
     o.plugins.legend = {display: true, position: "top", align: "start", labels: {boxWidth: 14, boxHeight: 2, color: css("--text-2"),
       filter: l => !/post-pandemic (high|low)/.test(l.text)}};
     upsert("c-onset", {type: "line", plugins: [weekMarks], options: o, data: {labels: lab, datasets: ds}});
   }
 
-  if (S.tab === "duration") {
-    const v = S.duView, curves = DATA.km[v];
+  // 3. pathogens
+  {
+    const ent = S.type === 1, levels = ent ? ENTERIC_MIX : DATA.mix_levels, cols = ent ? ENTERIC_COL : DATA.mix_colours;
+    const test = i => (S.setting < 0 || O.setting[i] === S.setting) && O.type[i] === (ent ? 1 : 0);
+    const kind = ent ? "enteric" : "respiratory";
+    const std = seasonToDate(s, w, test), cnt = levels.map(l => std.filter(i => pathogenLabel(i) === l).length);
+    const known = levels.map((l, k) => [l, cnt[k]]).filter(([l]) => l !== "Unknown" && l !== "Multiple agents").sort((a, b) => b[1] - a[1]);
+    const uk = cnt[levels.indexOf("Unknown")];
+    $("f-path").textContent = std.length
+      ? `Season to ${wkName}: ${known.slice(0, 3).map(([l, n]) => `${l} in ${pct(n, std.length)}`).join(", ")} of ${fmt(std.length)} ${kind} outbreaks (${SET_NAME()}); no pathogen identified in ${pct(uk, std.length)}.`
+      : `No ${kind} outbreaks so far this season in ${SET_NAME()}.`;
+    chips("ag-chips", [["week", `Weekly, ${DATA.seasons[s]}`], ["season", "Every season"]], "agView");
+    const o = baseOpts(S.agView === "week" ? "New outbreaks" : "Share of outbreaks");
+    o.scales.x.stacked = o.scales.y.stacked = true;
+    o.plugins.legend = {display: true, position: "top", align: "start", labels: {boxWidth: 10, boxHeight: 10, color: css("--text-2")}};
+    let labelsX, sets;
+    const lw = lastWeek(s);
+    if (S.agView === "week") {
+      $("ag-title").textContent = `${cap(kind)} outbreaks by pathogen and week, ${SET_NAME()}, ${DATA.seasons[s]}`;
+      labelsX = Array.from({length: lw}, (_, k) => wkLabel(s, k + 1));
+      const m = levels.map(() => new Array(lw).fill(0));
+      for (let i = 0; i < N; i++) if (O.season[i] === s && test(i) && O.week[i] <= lw) m[levels.indexOf(pathogenLabel(i))][O.week[i] - 1]++;
+      sets = m;
+      o.onClick = (e, els, c) => pick(c.getElementsAtEventForMode(e, "index", {intersect: false}), s);
+    } else {
+      $("ag-title").textContent = `${cap(kind)} outbreaks by pathogen, every season, ${SET_NAME()}`;
+      labelsX = DATA.seasons;
+      const m = levels.map(() => new Array(DATA.seasons.length).fill(0)), tot = new Array(DATA.seasons.length).fill(0);
+      for (let i = 0; i < N; i++) if (test(i)) { m[levels.indexOf(pathogenLabel(i))][O.season[i]]++; tot[O.season[i]]++; }
+      sets = m.map(row => row.map((v, k) => tot[k] ? 100 * v / tot[k] : 0));
+      o.scales.y.max = 100; o.scales.y.ticks.callback = v => v + "%";
+      o.plugins.tooltip = {callbacks: {label: c => ` ${c.dataset.label}: ${fmt(c.parsed.y)}% (${fmt(m[c.datasetIndex][c.dataIndex])} of ${fmt(tot[c.dataIndex])})`}};
+    }
+    upsert("c-agents", {type: "bar", options: o, data: {labels: labelsX, datasets: levels.map((l, k) => ({
+      label: l, data: sets[k], backgroundColor: cols[k], borderColor: "#fff", borderWidth: 1, barPercentage: 0.9}))}});
+    $("pt-title").textContent = `${cap(kind)} outbreaks by pathogen, ${DATA.seasons[s]} to ${wkName}`;
+    $("pt-tbl").innerHTML = `<thead><tr><th>Pathogen</th><th class="n">Outbreaks</th><th class="n">Share</th></tr></thead><tbody>` +
+      levels.map((l, k) => `<tr><td><i class="sw" style="background:${cols[k]}"></i>${esc(l)}</td><td class="n">${fmt(cnt[k])}</td><td class="n">${pct(cnt[k], std.length)}</td></tr>`).join("") +
+      `<tr><td><b>Total</b></td><td class="n"><b>${fmt(std.length)}</b></td><td></td></tr></tbody>`;
+  }
+
+  // 4. facilities
+  {
+    const {act: actF, nFac} = drawMap(s, w);
+    $("map-title").textContent = `${cap(TYPE_NAME())} outbreaks active in ${wkName}, ${SET_NAME()}`;
+    const std = seasonToDate(s, w), byFac = new Map();
+    for (const i of std) { const e = byFac.get(O.fac[i]) || byFac.set(O.fac[i], {eps: new Set(), n: 0, open: 0}).get(O.fac[i]);
+      e.eps.add(O.episode[i]); e.n++; if (OVER[i] == null) e.open++; }
+    const rows = [...byFac].map(([f, e]) => ({f, eps: e.eps.size, n: e.n, open: e.open})).sort((a, b) => b.eps - a.eps || b.n - a.n);
+    const rep = rows.filter(x => x.eps >= 2).length;
+    $("f-fac").textContent = `${cap(wkName)}: ${fmt(actF.length)} ${TYPE_NAME()} outbreak${actF.length === 1 ? "" : "s"} active at ${fmt(nFac)} facilit${nFac === 1 ? "y" : "ies"}. ` +
+      `So far this season, ${fmt(rows.length)} facilities have had one, ${fmt(rep)} of them in two or more separate episodes.`;
+    if (S.sel == null) {
+      drop("c-facility");
+      $("fac-panel").innerHTML = `<h3>Facilities this season</h3><p class="hint">${DATA.seasons[s]} to ${wkName}, ${TYPE_NAME()}, ${SET_NAME()}; most episodes first. Click a row or a dot for the facility's history.</p>
+        <div class="scroll"><table><thead><tr><th>Facility</th><th class="n">Episodes</th><th class="n">Outbreaks</th></tr></thead><tbody>` +
+        rows.map(x => `<tr class="pick" data-f="${x.f}"><td><i class="dot" style="background:${SCOL[F.setting[x.f]]}"></i>${esc(F.name[x.f])}<div class="hint">${esc(F.hood[x.f])}${x.open ? ` · <span class="open">${x.open} open</span>` : ""}</div></td>
+          <td class="n">${fmt(x.eps)}</td><td class="n">${fmt(x.n)}</td></tr>`).join("") + `</tbody></table></div>`;
+      $("fac-panel").querySelectorAll("tr.pick").forEach(tr => tr.onclick = () => selectFacility(+tr.dataset.f));
+    } else {
+      const f = S.sel, ids = []; for (let i = 0; i < N; i++) if (O.fac[i] === f) ids.push(i);
+      drop("c-facility");
+      $("fac-panel").innerHTML = `<div class="row"><h3 class="grow">${esc(F.name[f])}</h3><button class="back" id="fac-back">← All facilities</button></div>
+        <p class="hint">${esc(SETTINGS[F.setting[f]])} · ${esc(F.address[f])} · ${esc(F.hood[f])}. Bars: outbreaks per season (one per affected unit); dots: separate episodes. All types, not filtered.</p>
+        <div class="chart" style="height:170px"><canvas id="c-facility"></canvas></div>
+        <div class="scroll" style="max-height:270px"><table><thead><tr><th>Onset</th><th>Unit</th><th>Pathogen(s)</th><th>Over</th><th class="n">Days</th></tr></thead><tbody>` +
+        ids.slice().reverse().map(i => `<tr><td class="nw">${O.began[i]}</td><td>${esc(O.unit[i])}<div class="hint">${DATA.types[O.type[i]]}</div></td><td>${esc(rawAgents(i))}</td>
+          <td class="nw">${OVER[i] == null ? '<span class="open">open</span>' : O.over[i]}</td><td class="n">${fmt(((OVER[i] ?? ASOF) - BEGAN[i]) / 864e5)}</td></tr>`).join("") + `</tbody></table></div>`;
+      $("fac-back").onclick = () => { S.sel = null; render(); };
+      const nS = DATA.seasons.length, units = new Array(nS).fill(0), eps = Array.from({length: nS}, () => new Set());
+      for (const i of ids) { units[O.season[i]]++; eps[O.season[i]].add(O.episode[i]); }
+      const o = baseOpts("");
+      o.scales.x.ticks.callback = function (v) { return this.getLabelForValue(v).slice(2); };
+      upsert("c-facility", {type: "bar", options: o, data: {labels: DATA.seasons, datasets: [
+        {type: "line", label: "Episodes", data: eps.map(e => e.size || null), borderWidth: 0, pointRadius: 4, pointBackgroundColor: css("--outline"), showLine: false},
+        {label: "Outbreaks", data: units, backgroundColor: SCOL[F.setting[f]], borderRadius: 3, barPercentage: 0.7}]}});
+    }
+  }
+
+  // 5. duration & repeats
+  {
+    const plural = n => n === "LTCH" ? "long-term care" : n.toLowerCase() + "s";
+    const med = DATA.km.resp_setting.map(g => `${fmt(g.median)} days in ${plural(g.name)}`);
+    const RC = DATA.recurrence, lastS = RC.season.at(-1);
+    const repTxt = SETTINGS.map(st => { const k = RC.season.findIndex((x, j) => x === lastS && RC.setting[j] === st);
+      return k < 0 ? null : `${pct(RC.repeats[k], RC.facilities[k])} of ${st === "LTCH" ? "LTCHs" : plural(st)}`; }).filter(Boolean);
+    $("f-dur").textContent = `A respiratory outbreak lasts a median of ${med.join(", ")}. In ${lastS}, ${repTxt.join(", ")} with an outbreak had a repeat episode.`;
+    const curves = DATA.km[S.duView];
     chips("du-chips", [["resp_setting", "Respiratory, by setting"], ["resp_agent", "Respiratory, by pathogen"], ["ent_setting", "Enteric, by setting"]], "duView");
-    $("du-title").textContent = "How long outbreaks last (outbreaks beginning 2022/23 onward)";
-    $("du-hint").textContent = "Share of outbreaks still ongoing by day since onset (Kaplan–Meier); outbreaks still open are censored at the data-as-of date. Not affected by the filters above.";
     const o = baseOpts("Still ongoing");
     o.interaction = {mode: "nearest", intersect: false, axis: "x"};
     o.scales.x = {type: "linear", min: 0, max: 60, title: {display: true, text: "Days since onset", color: css("--text-3")},
@@ -570,51 +695,28 @@ function render() {
     $("du-tbl").innerHTML = `<thead><tr><th>Group</th><th class="n">Outbreaks</th><th class="n">Still open</th><th class="n">Median days</th><th class="n">95% CI</th></tr></thead><tbody>` +
       curves.map(g => `<tr><td><i class="sw" style="background:${g.colour}"></i>${esc(g.name)}</td><td class="n">${fmt(g.n)}</td><td class="n">${fmt(g.open)}</td>
         <td class="n">${fmt(g.median)}</td><td class="n">${fmt(g.lo)}–${fmt(g.hi)}</td></tr>`).join("") + "</tbody>";
-  }
 
-  if (S.tab === "recur") {
-    const R = DATA.recurrence, seasons = [...new Set(R.season)];
-    $("re-hint").textContent = "Share of facilities with an outbreak in a season that had 2 or more separate episodes (wards affected together count once). Complete seasons only. Not affected by the filters above.";
-    const o = baseOpts("Facilities with 2+ episodes");
-    o.scales.y.max = 100; o.scales.y.ticks.callback = v => v + "%";
-    o.plugins.legend = {display: true, position: "top", align: "start", labels: {boxWidth: 14, boxHeight: 2, color: css("--text-2")}};
-    const row = (se, st) => R.season.findIndex((x, k) => x === se && R.setting[k] === st);
-    o.plugins.tooltip = {callbacks: {label: c => { const k = row(seasons[c.dataIndex], c.dataset.label);
-      return ` ${c.dataset.label}: ${fmt(c.parsed.y)}% (${R.repeats[k]} of ${R.facilities[k]})`; }}};
-    upsert("c-recur", {type: "line", options: o, data: {labels: seasons, datasets: SETTINGS.map((st, j) => ({
+    const seasons = [...new Set(RC.season)], row = (se, st) => RC.season.findIndex((x, k) => x === se && RC.setting[k] === st);
+    const o2 = baseOpts("Facilities with 2+ episodes");
+    o2.scales.y.max = 100; o2.scales.y.ticks.callback = v => v + "%";
+    o2.plugins.legend = {display: true, position: "top", align: "start", labels: {boxWidth: 14, boxHeight: 2, color: css("--text-2")}};
+    o2.plugins.tooltip = {callbacks: {label: c => { const k = row(seasons[c.dataIndex], c.dataset.label);
+      return ` ${c.dataset.label}: ${fmt(c.parsed.y)}% (${RC.repeats[k]} of ${RC.facilities[k]})`; }}};
+    upsert("c-recur", {type: "line", options: o2, data: {labels: seasons, datasets: SETTINGS.map((st, j) => ({
       label: st, borderColor: SCOL[j], backgroundColor: SCOL[j], borderWidth: 2, pointRadius: 3,
-      data: seasons.map(se => { const k = row(se, st); return k < 0 ? null : 100 * R.repeats[k] / R.facilities[k]; })}))}});
+      data: seasons.map(se => { const k = row(se, st); return k < 0 ? null : 100 * RC.repeats[k] / RC.facilities[k]; })}))}});
     $("re-tbl").innerHTML = `<thead><tr><th>Season</th><th>Setting</th><th class="n">Facilities</th><th class="n">2+ episodes</th><th class="n">Share</th></tr></thead><tbody>` +
-      R.season.map((se, k) => [se, k]).reverse().map(([se, k]) => `<tr><td>${se}</td><td>${esc(R.setting[k])}</td><td class="n">${fmt(R.facilities[k])}</td>
-        <td class="n">${fmt(R.repeats[k])}</td><td class="n">${fmt(100 * R.repeats[k] / R.facilities[k])}%</td></tr>`).join("") + "</tbody>";
+      RC.season.map((se, k) => [se, k]).reverse().map(([se, k]) => `<tr><td>${se}</td><td>${esc(RC.setting[k])}</td><td class="n">${fmt(RC.facilities[k])}</td>
+        <td class="n">${fmt(RC.repeats[k])}</td><td class="n">${pct(RC.repeats[k], RC.facilities[k])}</td></tr>`).join("") + "</tbody>";
   }
 
-  if (S.tab === "facility") {
-    if (S.sel == null) {
-      $("fa-title").textContent = "Facility history"; $("fa-hint").textContent = "Click a facility on the map.";
-      $("fa-tbl").innerHTML = ""; if (charts["c-facility"]) { charts["c-facility"].destroy(); delete charts["c-facility"]; }
-    } else {
-      const f = S.sel, ids = []; for (let i = 0; i < N; i++) if (O.fac[i] === f) ids.push(i);
-      $("fa-title").textContent = F.name[f];
-      $("fa-hint").textContent = `${SETTINGS[F.setting[f]]} · ${F.address[f]} · ${F.hood[f]} · bars: outbreaks per season (one per affected unit); dots: separate episodes. Not filtered.`;
-      const nS = DATA.seasons.length, units = new Array(nS).fill(0), eps = Array.from({length: nS}, () => new Set());
-      for (const i of ids) { units[O.season[i]]++; eps[O.season[i]].add(O.episode[i]); }
-      const o = baseOpts("Outbreaks");
-      upsert("c-facility", {type: "bar", options: o, data: {labels: DATA.seasons, datasets: [
-        {type: "line", label: "Episodes", data: eps.map(e => e.size || null), borderWidth: 0, pointRadius: 4, pointBackgroundColor: css("--outline"), showLine: false},
-        {label: "Outbreaks", data: units, backgroundColor: SCOL[F.setting[f]], borderRadius: 3, barPercentage: 0.7}]}});
-      $("fa-tbl").innerHTML = `<thead><tr><th>Onset</th><th>Unit</th><th>Type</th><th>Pathogen(s)</th><th>Declared over</th><th class="n">Days</th></tr></thead><tbody>` +
-        ids.slice().reverse().map(i => `<tr><td class="nw">${O.began[i]}</td><td>${esc(O.unit[i])}</td><td>${DATA.types[O.type[i]]}</td><td>${esc(rawAgents(i))}</td>
-          <td class="nw">${OVER[i] == null ? '<span class="open">open</span>' : O.over[i]}</td><td class="n">${fmt(((OVER[i] ?? ASOF) - BEGAN[i]) / 864e5)}</td></tr>`).join("") + "</tbody>";
-    }
-  }
-
-  if (S.tab === "table") {
+  // 6. data
+  {
     const ids = selection().reverse();
+    $("f-data").textContent = `${fmt(N)} outbreaks since January 2016, at ${fmt(F.id.length)} facilities.`;
     $("tb-title").textContent = `${DATA.seasons[s]}: ${fmt(ids.length)} ${TYPE_NAME()} outbreaks, ${SET_NAME()}`;
-    $("tb-src").textContent = "Pathogens as published by Toronto Public Health; one row per affected unit. Newest first.";
-    $("tbl").innerHTML = `<thead><tr><th>Onset</th><th>Facility</th><th>Unit</th><th>Setting</th><th>Pathogen(s)</th><th>Declared over</th><th class="n">Days</th></tr></thead><tbody>` +
-      ids.map(i => `<tr><td class="nw">${O.began[i]}</td><td>${esc(F.name[O.fac[i]])}</td><td>${esc(O.unit[i])}</td><td>${esc(SETTINGS[O.setting[i]])}</td>
+    $("tbl").innerHTML = `<thead><tr><th>Onset</th><th>Facility / unit</th><th>Pathogen(s)</th><th>Over</th><th class="n">Days</th></tr></thead><tbody>` +
+      ids.map(i => `<tr><td class="nw">${O.began[i]}</td><td>${esc(F.name[O.fac[i]])}<div class="hint">${esc(O.unit[i])} · ${esc(SETTINGS[O.setting[i]])}</div></td>
         <td>${esc(rawAgents(i))}</td><td class="nw">${OVER[i] == null ? '<span class="open">open</span>' : O.over[i]}</td>
         <td class="n">${fmt(((OVER[i] ?? ASOF) - BEGAN[i]) / 864e5)}</td></tr>`).join("") + "</tbody>";
   }
