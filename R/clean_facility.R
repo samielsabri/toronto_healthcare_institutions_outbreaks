@@ -1,7 +1,7 @@
 # Facility derivation (decision D5): a facility is a physical site, identified
 # by its normalized street address, split by setting group where one address
 # holds more than one setting. Operators are not used. One-off setting coding
-# slips do not split a site (decision D8; see facility_setting_group()).
+# slips do not split a site (decision D5; see facility_setting_group()).
 #
 # Steps:
 #   1. normalize_address(): rule-based cleaning of the free-text address.
@@ -84,7 +84,7 @@ slugify <- function(x) {
   stringr::str_replace_all(x, "^-|-$", "")
 }
 
-#' Setting group used to define the facility (decision D8).
+#' Setting group used to define the facility (decision D5).
 #'
 #' An outbreak whose setting group is a small minority at its address (at most
 #' `max_n` outbreaks AND under `max_share` of the address's outbreaks, while

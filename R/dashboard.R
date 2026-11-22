@@ -73,7 +73,7 @@ assemble_dashboard_data <- function(clean, facilities, info) {
   flags <- Reduce(`+`, lapply(seq_along(agent_cols), function(i) as.integer(d[[agent_cols[i]]]) * 2L^(i - 1)))
   ep_idx <- match(d$episode_id, unique(d$episode_id)) - 1L
 
-  # Season onset (decision D10)
+  # Season onset (decision D9)
   onset <- lapply(c(influenza = "influenza", rsv = "rsv"), function(a) {
     w <- onset_weekly(clean, a, current)
     th <- fit_mem_thresholds(w, current)
@@ -97,7 +97,32 @@ assemble_dashboard_data <- function(clean, facilities, info) {
     ent_setting = km_curves(ent, "setting", SETTING_COLOURS)
   )
 
-  # Recurrence (decision D9), complete seasons only
+  # Week-on-week direction (TPH's rule), per season, on the 52-week axis.
+  # In 53-week seasons slot 18 holds week 52 and 53; the direction shown
+  # there is week 53's, with its own dates.
+  dir_agents <- c("influenza", "covid19", "rsv")
+  dw <- lapply(stats::setNames(dir_agents, dir_agents), function(a) weekly_direction(clean, a, info$as_of))
+  slot_rows <- function(x, sy) {
+    x <- x[x$season_start_year == sy, ]
+    x[!duplicated(x$season_week_52, fromLast = TRUE), ]
+  }
+  pad <- function(v, slots) { out <- rep(NA, 52); out[slots] <- v; out }
+  direction <- c(
+    list(weeks = lapply(starts, function(sy) {
+      r <- slot_rows(dw[[1]], sy)
+      list(start = pad(format(r$week_start), r$season_week_52),
+           end = pad(format(r$week_end), r$season_week_52),
+           wk = pad(r$epi_week, r$season_week_52))
+    })),
+    lapply(dw, function(x) lapply(starts, function(sy) {
+      r <- slot_rows(x, sy)
+      list(n = pad(r$n, r$season_week_52), prev = pad(r$prev, r$season_week_52),
+           dir = pad(r$direction, r$season_week_52))
+    })),
+    list(rules = DIRECTION_RULES)
+  )
+
+  # Recurrence (decision D8), complete seasons only
   rs <- repeat_share(facility_season_counts(clean)) |>
     dplyr::filter(.data$season %in% season_label(2016:(current$season_start_year - 1L)))
 
@@ -138,6 +163,7 @@ assemble_dashboard_data <- function(clean, facilities, info) {
       a1 = d$agent1_raw, a2 = d$agent2_raw
     ),
     onset = onset,
+    direction = direction,
     km = km,
     recurrence = list(season = rs$season, setting = as.character(rs$setting),
                       facilities = rs$facilities, repeats = rs$repeat_facilities)

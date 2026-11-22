@@ -123,7 +123,7 @@ km_medians <- function(data, group) {
   )
 }
 
-#' Group outbreaks into facility episodes (decision D9).
+#' Group outbreaks into facility episodes (decision D8).
 #'
 #' Outbreaks at the same facility and of the same type (respiratory, enteric,
 #' other) belong to one episode when each starts within `window` days of the
@@ -148,7 +148,7 @@ add_episodes <- function(clean, window = 14L) {
 
 #' Episodes per facility per season (facilities with at least one outbreak).
 #'
-#' Counts distinct episodes (decision D9), not unit-level outbreaks; the
+#' Counts distinct episodes (decision D8), not unit-level outbreaks; the
 #' number of unit-level outbreaks is kept alongside for reference.
 facility_season_counts <- function(clean, window = 14L) {
   clean |>

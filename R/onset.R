@@ -1,4 +1,4 @@
-# Season-onset alerts (decision D10): the moving epidemic method (MEM) for
+# Season-onset alerts (decision D9): the moving epidemic method (MEM) for
 # influenza and RSV, with the mem package's default settings, fitted on the
 # post-pandemic seasons (2022/23 to the last complete season). COVID-19 has no
 # stable seasonal pattern yet, so it is shown against the post-pandemic range

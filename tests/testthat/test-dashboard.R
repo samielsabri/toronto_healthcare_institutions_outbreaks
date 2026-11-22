@@ -34,6 +34,18 @@ test_that("the calendar has 52 weeks per season, week 53 merged into week 18 (D7
   expect_equal(s19$period[c(28, 29)], c("pre", "pan"))                            # D6 cut at week 10
 })
 
+test_that("weekly directions follow TPH's rule and cover only complete weeks", {
+  d <- x$direction
+  last_end <- as.Date(last_complete_week_end(as.Date(x$as_of)))
+  for (a in c("influenza", "covid19", "rsv")) for (s in seq_along(x$seasons)) {
+    v <- d[[a]][[s]]
+    ok <- !is.na(v$n) & !is.na(v$prev)
+    expect_equal(v$dir[ok], outbreak_direction(v$n[ok], v$prev[ok], DIRECTION_RULES[[a]]))
+  }
+  ends <- as.Date(unlist(lapply(d$weeks, `[[`, "end")))
+  expect_equal(max(ends, na.rm = TRUE), last_end)
+})
+
 test_that("Kaplan-Meier curves start near 1 and never increase", {
   # day 0 can sit just below 1: one outbreak was declared over the day it began
   for (v in names(x$km)) for (g in x$km[[v]]) {
