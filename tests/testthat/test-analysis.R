@@ -67,7 +67,7 @@ test_that("D9: wards declared together are one episode; a later outbreak is a re
 test_that("an episode belongs to the season of its first onset", {
   d <- tibble::tibble(in_scope = TRUE, facility_id = "a", facility_name = "X",
                       facility_setting_group = "LTCH", outbreak_type = "Respiratory",
-                      began = as.Date(c("2025-08-20", "2025-08-28")))  # ISO wk 34, then wk 35
+                      began = as.Date(c("2025-08-20", "2025-08-28")))  # week 34, then week 35
   fsc <- facility_season_counts(d)
   expect_equal(fsc$season, "2024/25")
   expect_equal(fsc$outbreaks, 1L)

@@ -89,7 +89,7 @@ onset_status_value <- function(st) {
 #' Value-box title with the detail (first crossing, weeks above now).
 onset_status_title <- function(st, label) {
   if (!st$started) return(paste(label, "season: below the epidemic threshold all season"))
-  first <- sprintf("W%02d", iso_week_of_season_week(st$first_week))
+  first <- sprintf("W%02d", epi_week_of_season_week(st$first_week))
   if (st$weeks_above_now == 0) {
     return(sprintf("%s season: first crossed the threshold in %s, now below it", label, first))
   }

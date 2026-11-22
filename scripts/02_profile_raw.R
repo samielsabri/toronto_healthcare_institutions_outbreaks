@@ -182,10 +182,10 @@ unit_vs_facility <- d |>
             .groups = "drop")
 save_table(unit_vs_facility, "unit_vs_facility_rough")
 
-# ---- 8. Counts by respiratory season (ISO week 35 to week 34) -------------
+# ---- 8. Counts by respiratory season (surveillance week 35 to week 34) ----
 by_season <- d |>
-  mutate(iso_y = isoyear(began), iso_w = isoweek(began),
-         season_start = if_else(iso_w >= 35, iso_y, iso_y - 1L),
+  mutate(epi_y = epiyear(began), epi_w = epiweek(began),
+         season_start = if_else(epi_w >= 35, epi_y, epi_y - 1L),
          season = paste0(season_start, "/", str_sub(season_start + 1, 3, 4)),
          group = case_when(
            type == "Enteric" ~ "enteric",

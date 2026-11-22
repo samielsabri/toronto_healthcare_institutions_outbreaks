@@ -217,7 +217,7 @@ const ENTERIC_MIX = ["Norovirus", "Other enteric pathogen", "Multiple agents", "
 const ENTERIC_COL = ["#008300", "#6250d6", "#e87ba4", css("--band")];
 const isCurrent = s => s === CUR.season_idx;
 const lastWeek = s => isCurrent(s) ? CUR.week : 52;     // weeks run 1..52 (week 53 merged into 52)
-const isoLabel = (s, w) => "W" + String(CAL[s].iso[w - 1]).padStart(2, "0");
+const isoLabel = (s, w) => "W" + String(CAL[s].wk[w - 1]).padStart(2, "0");
 
 const S = {season: CUR.season_idx, week: CUR.week, setting: -1, type: 0, tab: "trend", sel: null,
            base: "post", agView: "week", onAgent: "influenza", duView: "resp_setting"};
@@ -380,12 +380,12 @@ const SET_NAME = () => S.setting < 0 ? "all settings" : SETTINGS[S.setting];
 const TYPE_NAME = () => ["respiratory", "enteric", "other"][S.type] ?? "all";
 
 // ── CSV ───────────────────────────────────────────────────────────────────
-const CSV_COLS = ["season", "season_week", "iso_week", "facility_id", "facility_name", "facility_address", "neighbourhood",
+const CSV_COLS = ["season", "season_week", "surveillance_week", "facility_id", "facility_name", "facility_address", "neighbourhood",
   "unit", "setting", "outbreak_type", "causative_agent_1", "causative_agent_2", "pathogen_group",
   "date_began", "date_declared_over", "open", "duration_days"];
 function csvRow(i) {
   const f = O.fac[i], s = O.season[i];
-  return [DATA.seasons[s], O.week[i], CAL[s].iso[O.week[i] - 1], F.id[f], F.name[f], F.address[f], F.hood[f],
+  return [DATA.seasons[s], O.week[i], CAL[s].wk[O.week[i] - 1], F.id[f], F.name[f], F.address[f], F.hood[f],
     O.unit[i], SETTINGS[O.setting[i]], DATA.types[O.type[i]], O.a1[i], O.a2[i], pathogenLabel(i), O.began[i],
     O.over[i] ?? "", OVER[i] == null ? 1 : 0, Math.round(((OVER[i] ?? ASOF) - BEGAN[i]) / 864e5)];
 }
@@ -407,14 +407,14 @@ $("about").innerHTML = `
 <p>Declared outbreaks in Toronto hospitals, long-term care homes (LTCH) and retirement homes, from the City of Toronto's open dataset <i>Outbreaks in Toronto Healthcare Institutions</i>, refreshed by Toronto Public Health every Thursday with data as of Wednesday afternoon. Updated automatically each week. An unofficial, independent summary; not produced or endorsed by Toronto Public Health.</p>
 <h3>Counting</h3>
 <ul>
-<li>One outbreak per affected unit or ward, as published, by week of onset. Seasons run from ISO week 35 to week 34; week 53 is merged into week 52.</li>
+<li>One outbreak per affected unit or ward, as published, by week of onset. Weeks are surveillance (MMWR) weeks, Sunday to Saturday, as used by Toronto Public Health; seasons run from week 35 to week 34, and week 53 is merged into week 52.</li>
 <li>A facility is a physical site (one address, split by setting where an LTCH and a retirement home share it). Locations come from the City's Address Points register.</li>
 <li>Pathogens are harmonized from the source labels. An outbreak with several pathogens counts under each in the season-onset series and as <i>Multiple agents</i> in the pathogen mix. "Coronavirus" in the source means seasonal coronaviruses, not COVID-19.</li>
 <li>No case counts, attack rates or deaths are published, so everything is outbreak-level.</li>
 </ul>
 <h3>Comparison ranges</h3>
 <ul>
-<li>Testing and reporting changed during the pandemic, so a season is compared with two separate ranges: <b>pre-pandemic</b> (2016/17 to 2018/19, plus 2019/20 to ISO week 10 of 2020) and <b>post-pandemic</b> (2022/23 onward, excluding the current season). The band is the lowest to highest weekly count across those seasons; the line is the median.</li>
+<li>Testing and reporting changed during the pandemic, so a season is compared with two separate ranges: <b>pre-pandemic</b> (2016/17 to 2018/19, plus 2019/20 to week 10 of 2020) and <b>post-pandemic</b> (2022/23 onward, excluding the current season). The band is the lowest to highest weekly count across those seasons; the line is the median.</li>
 <li>The last two weeks of the current season are provisional: outbreaks are reported with a delay.</li>
 </ul>
 <h3>Season onset</h3>
@@ -435,7 +435,7 @@ $("about").innerHTML = `
 </ul>
 <p>Every analytical decision is recorded in the <a href="${REPO}/blob/main/reports/decisions.md" target="_blank" rel="noopener">decisions log</a>; code and data are in the <a href="${REPO}" target="_blank" rel="noopener">project repository</a>.</p>
 <h3>CSV columns</h3>
-<p><code>season</code>, <code>season_week</code>, <code>iso_week</code>; <code>facility_*</code> and <code>neighbourhood</code> (derived site); <code>unit</code>, <code>setting</code>, <code>outbreak_type</code>; <code>causative_agent_1/2</code> (as published) and <code>pathogen_group</code> (harmonized); <code>date_began</code>, <code>date_declared_over</code>, <code>open</code>, <code>duration_days</code> (open outbreaks: days to the data-as-of date).</p>
+<p><code>season</code>, <code>season_week</code>, <code>surveillance_week</code>; <code>facility_*</code> and <code>neighbourhood</code> (derived site); <code>unit</code>, <code>setting</code>, <code>outbreak_type</code>; <code>causative_agent_1/2</code> (as published) and <code>pathogen_group</code> (harmonized); <code>date_began</code>, <code>date_declared_over</code>, <code>open</code>, <code>duration_days</code> (open outbreaks: days to the data-as-of date).</p>
 <h3>Sources and licence</h3>
 <p>Contains information licensed under the <a href="https://open.toronto.ca/open-data-license/" target="_blank" rel="noopener">Open Government Licence – Toronto</a>: <i>Outbreaks in Toronto Healthcare Institutions</i>, <i>Address Points (Municipal)</i> and <i>Neighbourhoods</i>. Basemap: ${TILES.attribution}. Built ${DATA.built}; data as of ${DATA.as_of}.</p>`;
 

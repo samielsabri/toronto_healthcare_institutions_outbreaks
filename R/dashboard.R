@@ -20,23 +20,17 @@ TYPE_CODES <- c("Respiratory", "Enteric", "Other")
 PERIOD_CODES <- c("partial season" = "part", "pre-pandemic" = "pre", "pandemic" = "pan",
                   "post-pandemic" = "post")
 
-#' Monday of an ISO week.
-iso_week_monday <- function(iso_year, iso_week) {
-  jan4 <- as.Date(sprintf("%d-01-04", iso_year))
-  jan4 - (lubridate::wday(jan4, week_start = 1) - 1) + 7 * (iso_week - 1)
-}
-
 #' For each season and season week (1-52, week 53 merged into 52 as in D7):
-#' first and last day, ISO week label and comparison period.
+#' first and last day, surveillance week number and comparison period.
 season_week_calendar <- function(start_years) {
   purrr::map_dfr(start_years, function(sy) {
-    n53 <- iso_weeks_in_year(sy) == 53
+    n53 <- epi_weeks_in_year(sy) == 53
     tibble::tibble(season_start_year = sy, week = 1:52) |>
       dplyr::mutate(
-        iso_year = ifelse(.data$week <= 18, sy, sy + 1L),
-        iso_week = iso_week_of_season_week(.data$week),
-        start = iso_week_monday(.data$iso_year, .data$iso_week),
-        # week 18 absorbs ISO week 53 in 53-week seasons, so it spans 14 days
+        epi_year = ifelse(.data$week <= 18, sy, sy + 1L),
+        epi_week = epi_week_of_season_week(.data$week),
+        start = epi_week_start_date(.data$epi_year, .data$epi_week),
+        # week 18 absorbs week 53 in 53-week seasons, so it spans 14 days
         end = .data$start + ifelse(n53 & .data$week == 18, 13, 6),
         period = comparison_period(sy, .data$week)
       )
@@ -115,7 +109,7 @@ assemble_dashboard_data <- function(clean, facilities, info) {
                    week = current$season_week),
     seasons = seasons,
     calendar = lapply(cal_by_season, function(x) list(
-      start = format(x$start), end = format(x$end), iso = x$iso_week,
+      start = format(x$start), end = format(x$end), wk = x$epi_week,
       period = unname(PERIOD_CODES[x$period]))) |> unname(),
     settings = SETTING_CODES,
     setting_colours = unname(SETTING_COLOURS[SETTING_CODES]),

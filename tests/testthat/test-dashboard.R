@@ -25,10 +25,13 @@ test_that("agent flags encode the D4 counting (every group detected)", {
 test_that("the calendar has 52 weeks per season, week 53 merged into week 18 (D7)", {
   expect_true(all(vapply(x$calendar, function(c) length(c$start), integer(1)) == 52))
   s2020 <- x$calendar[[which(x$seasons == "2020/21")]]
-  expect_equal(c(s2020$start[18], s2020$end[18]), c("2020-12-21", "2021-01-03"))  # ISO weeks 52-53
-  expect_equal(s2020$start[19], "2021-01-04")                                     # ISO week 1
+  expect_equal(c(s2020$start[18], s2020$end[18]), c("2020-12-20", "2021-01-02"))  # weeks 52-53
+  expect_equal(s2020$start[19], "2021-01-03")                                     # week 1
+  s2025 <- x$calendar[[which(x$seasons == "2025/26")]]
+  expect_equal(c(s2025$start[18], s2025$end[18]), c("2025-12-21", "2026-01-03"))
+  expect_equal(s2025$wk[c(1, 18, 19, 52)], c(35, 52, 1, 34))
   s19 <- x$calendar[[which(x$seasons == "2019/20")]]
-  expect_equal(s19$period[c(28, 29)], c("pre", "pan"))                            # D6 cut at ISO week 10
+  expect_equal(s19$period[c(28, 29)], c("pre", "pan"))                            # D6 cut at week 10
 })
 
 test_that("Kaplan-Meier curves start near 1 and never increase", {
